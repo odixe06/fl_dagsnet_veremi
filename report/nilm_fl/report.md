@@ -4,10 +4,10 @@
 mỗi kịch bản là một run duy nhất ghép từ nhiều phiên Kaggle, cây merge verify offline pass `--require-rounds 50`
 (20c, 50c ngày 17-09; 100c ngày 18-09 sau khi phiên s5 hoàn tất r37–r50).
 
-Nguồn số liệu: [`report_data/`](report_data/) (sinh bởi [`scripts/report_data.py`](../../scripts/report_data.py) từ
+Nguồn số liệu: [`report_data/`](../../nilm_fl/papers/nilm-li-2024/report_data) (sinh bởi [`scripts/report_data.py`](../../nilm_fl/scripts/report_data.py) từ
 ba cây run đã ghép phiên và verify local `runs/merged/nilm_{20,50,100}c/`; **không có số nào lấy từ W&B**). Sổ
 quyết định: [`rebuild.md`](rebuild.md); phương pháp gốc: [`paper.md`](paper.md); caveat dùng chung:
-[`CONTEXT.md`](../../CONTEXT.md) §7.
+[`CONTEXT.md`](../../nilm_fl/CONTEXT.md) §7.
 
 ---
 
@@ -49,12 +49,12 @@ NAS nên không có claim về bộ nhớ/độ trễ** như bài báo.
 ## 2. Bài báo và những gì được dựng lại
 
 **Bài báo.** Li Y., Yao R., Qin D., Wang Y. *Lightweight Federated Learning for On-Device Non-Intrusive Load
-Monitoring* (IEEE; bản markdown trong repo: [`lightweight_fl_nilm.md`](../../lightweight_fl_nilm.md)). Khung 4 bước
+Monitoring* (IEEE; bản markdown trong repo: [`lightweight_fl_nilm.md`](lightweight_fl_nilm.md)). Khung 4 bước
 (§III.A): (1) MNAS tìm kiến trúc cá nhân hoá cho từng thiết bị; (2) **chưng cất tương hỗ** giữa model cá nhân hoá
 w_s và model proxy w_r cùng kiến trúc trên mọi thiết bị; (3) chỉ upload w_r; (4) server trung bình w_r và phát lại;
 cuối cùng fine-tune w_s. Chỉ phần (2)–(4) — §III.C, Eq. (17)–(19), Algorithm 1 — được dựng lại.
 
-**Cơ chế được dựng lại đầy đủ** ([`proj/nilm.py`](proj/nilm.py), trích xuất ở [`paper.md`](paper.md) §3):
+**Cơ chế được dựng lại đầy đủ** ([`proj/nilm.py`](../../nilm_fl/papers/nilm-li-2024/proj/nilm.py), trích xuất ở [`paper.md`](paper.md) §3):
 
 ```
 ℓ_s = ℓ(y, y_s),  ℓ_r = ℓ(y, y_r)                       (18)  label loss
@@ -85,7 +85,7 @@ tại [`rebuild.md`](rebuild.md) §1–2:
 
 ## 3. Dữ liệu
 
-Số đo thật từ [`knowledge/DATASET.md`](../../knowledge/DATASET.md) (audit 2026-09-07), không chép từ README.
+Số đo thật từ [`knowledge/dataset.md`](../../nilm_fl/knowledge/dataset.md) (audit 2026-09-07), không chép từ README.
 
 ### 3.1 Kích thước và phân mảnh
 
@@ -169,7 +169,7 @@ bình thường; `CONTEXT.md` §3) — theo dõi bằng log Kaggle.
 
 ### 5.1 Đường cong theo round
 
-![f1_macro và accuracy: w_s mean ± std trên client (nét liền), proxy w̄_r (nét đứt); lịch LR](report_data/convergence.png)
+![f1_macro và accuracy: w_s mean ± std trên client (nét liền), proxy w̄_r (nét đứt); lịch LR](../../nilm_fl/papers/nilm-li-2024/report_data/convergence.png)
 
 *Điều cần thấy:* (i) w̄_r **nhảy vọt ở round 2** (0,24 → 0,70 / 0,68 / 0,63) — round 1 w̄_r chỉ là trung bình của K
 model cùng init học một epoch rời nhau, từ round 2 mỗi w_r^k xuất phát từ w̄_r; (ii) w_s **đi lên gần như đơn điệu**
@@ -217,7 +217,7 @@ phần lớn `benign` (recall gộp 0,38 / 0,33 / 0,30 — xem 5.4). Ở w̄_r c
 
 ### 5.3 Phân tán giữa client
 
-![Phân bố f1_macro theo client ở round 50; vạch tím = proxy w̄_r](report_data/client_spread.png)
+![Phân bố f1_macro theo client ở round 50; vạch tím = proxy w̄_r](../../nilm_fl/papers/nilm-li-2024/report_data/client_spread.png)
 
 | | 20c | 50c | 100c |
 |---|---:|---:|---:|
@@ -256,13 +256,13 @@ giảm dần. Nguồn: `report_data/per_class_final_Kc.csv`.
 | feignedBraking | 1,10 % | 0,950 / 0,899 / 0,857 | 0,948 / 0,903 / 0,859 | 0,965 / 0,965 / 0,959 |
 | suddenConstantSpeed | 0,54 % | 0,581 / 0,524 / 0,439 | 0,514 / 0,480 / 0,401 | 0,778 / 0,723 / 0,701 |
 
-![F1 từng lớp 20c](report_data/per_class_f1_20c.png)
-![F1 từng lớp 50c](report_data/per_class_f1_50c.png)
-![F1 từng lớp 100c](report_data/per_class_f1_100c.png)
+![F1 từng lớp 20c](../../nilm_fl/papers/nilm-li-2024/report_data/per_class_f1_20c.png)
+![F1 từng lớp 50c](../../nilm_fl/papers/nilm-li-2024/report_data/per_class_f1_50c.png)
+![F1 từng lớp 100c](../../nilm_fl/papers/nilm-li-2024/report_data/per_class_f1_100c.png)
 
-![Confusion gộp 20c, chuẩn hoá theo hàng](report_data/confusion_20c.png)
-![Confusion gộp 50c, chuẩn hoá theo hàng](report_data/confusion_50c.png)
-![Confusion gộp 100c, chuẩn hoá theo hàng](report_data/confusion_100c.png)
+![Confusion gộp 20c, chuẩn hoá theo hàng](../../nilm_fl/papers/nilm-li-2024/report_data/confusion_20c.png)
+![Confusion gộp 50c, chuẩn hoá theo hàng](../../nilm_fl/papers/nilm-li-2024/report_data/confusion_50c.png)
+![Confusion gộp 100c, chuẩn hoá theo hàng](../../nilm_fl/papers/nilm-li-2024/report_data/confusion_100c.png)
 
 *Điều cần thấy:*
 
@@ -287,7 +287,7 @@ giảm dần. Nguồn: `report_data/per_class_final_Kc.csv`.
 
 ### 5.5 Chi phí tính toán trên 2×T4
 
-![Phút train / eval mỗi round](report_data/round_time.png)
+![Phút train / eval mỗi round](../../nilm_fl/papers/nilm-li-2024/report_data/round_time.png)
 
 | | 20c | 50c | 100c |
 |---|---:|---:|---:|
@@ -312,7 +312,7 @@ Tổng giờ GPU của cả ba kịch bản ≈ 64 h round + ~65 h session (kể
 
 ### 5.6 Động học học tương hỗ — thành phần loss theo round
 
-![ce_s, ce_r, kl_s, kl_r trung bình client theo round](report_data/mutual_loss.png)
+![ce_s, ce_r, kl_s, kl_r trung bình client theo round](../../nilm_fl/papers/nilm-li-2024/report_data/mutual_loss.png)
 
 Trung bình trên client của các bước áp dụng (`logs/round_NNN.json`, tổng hợp trong `history.csv`):
 
@@ -427,7 +427,7 @@ Tái lập: `python scripts/gen_notebook.py --owner <acct> --clients {20,50,100}
 validate lại → `kaggle kernels push`; kéo về bằng `scripts/pull_output.sh` (retry) → `merge_sessions.py` →
 `scripts/verify_run.py --require-rounds 50` → `scripts/report_data.py`. Dataset Kaggle
 `odixe0502/veremi-fl-{20,50,100}client` + `odixe0502/veremi-nextgen2026-centralized` (public); `machine_shape`
-NvidiaTeslaT4, `docker_image` pin theo digest. Mã nguồn duy nhất của notebook: [`proj/`](proj/) (8 module); test
+NvidiaTeslaT4, `docker_image` pin theo digest. Mã nguồn duy nhất của notebook: [`proj/`](../../nilm_fl/papers/nilm-li-2024/proj) (8 module); test
 local: `rebuild.md` §5.
 
 ---

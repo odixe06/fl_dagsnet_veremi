@@ -1,7 +1,7 @@
 # TinyProto — tóm tắt nguồn gốc phương pháp
 
-Nguồn trực tiếp: [bản Markdown](../../02846-AAAI26.LeeG-ML.md) và
-[PDF được cung cấp](../../02846-AAAI26.LeeG-ML.pdf), Gyuejeong Lee và Daeyoung Choi,
+Nguồn trực tiếp: [bản Markdown](02846-AAAI26.LeeG-ML.md) và
+[PDF được cung cấp](../../tinyproto/02846-AAAI26.LeeG-ML.pdf), Gyuejeong Lee và Daeyoung Choi,
 *Communication-Efficient Heterogeneous Federated Learning with Sparse Prototypes in
 Resource-Constrained Environments*, submission AAAI-26 số 02846.
 Các thay đổi của VeReMi/DAGSNet nằm trong [rebuild.md](rebuild.md), không phải trong bài báo.

@@ -6,7 +6,7 @@ Ba kịch bản federated learning 20 / 50 / 100 client, mỗi kịch bản 50 r
 
 ## 1. Cảnh báo phải đọc trước mọi con số
 
-**Đây không phải một exact reproduction của Khan et al. 2025.** Mục 4.6 của bài báo chỉ mô tả AFPHA bằng lời (FedAvg + FedProx + Hierarchical FL); bài báo **không công bố** hệ số proximal, quy tắc thích nghi, cách phân cụm, tỉ lệ tham gia hay lịch optimizer. Toàn bộ các giá trị đó là **lựa chọn triển khai** theo Đề xuất A (`papers/khan-2025-afpha/rebuild.md`, người dùng chốt 2026-09-06), không phải hyperparameter của tác giả. Không so sánh trực tiếp các số dưới đây với số CAN/CIC-IDS trong bài báo.
+**Đây không phải một exact reproduction của Khan et al. 2025.** Mục 4.6 của bài báo chỉ mô tả AFPHA bằng lời (FedAvg + FedProx + Hierarchical FL); bài báo **không công bố** hệ số proximal, quy tắc thích nghi, cách phân cụm, tỉ lệ tham gia hay lịch optimizer. Toàn bộ các giá trị đó là **lựa chọn triển khai** theo Đề xuất A (`docs/rebuild.md`, người dùng chốt 2026-09-06), không phải hyperparameter của tác giả. Không so sánh trực tiếp các số dưới đây với số CAN/CIC-IDS trong bài báo.
 
 Các caveat về dữ liệu, phải đi kèm mọi trích dẫn kết quả:
 

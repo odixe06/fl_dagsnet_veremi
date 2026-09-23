@@ -10,7 +10,7 @@ loại DAGSNet. File này là **nguồn duy nhất** của mọi lựa chọn; `
 
 | hạng mục | giá trị | nguồn |
 |---|---|---|
-| Model của mọi device và của server | **DAGSNet 395.024 tham số**, `num_classes=16`, `n_features=66` | `knowledge/ARCHITECTURE.md`; bài báo không quy định kiến trúc |
+| Model của mọi device và của server | **DAGSNet 395.024 tham số**, `num_classes=16`, `n_features=66` | `knowledge/architecture.md`; bài báo không quy định kiến trúc |
 | Khởi tạo | một `ω^0` duy nhất, seed **42**, dùng cho cả M device lẫn server | chủ dự án |
 | Loss | `φ_m = CE(z, y) + λ·KL(p_teacher ‖ p_student)`, softmax nhiệt độ 1 | Eq. (2) + G3 |
 | λ | **1,0** | G4 |
@@ -22,12 +22,12 @@ loại DAGSNet. File này là **nguồn duy nhất** của mọi lựa chọn; `
 | Ai train | **mọi** device, mỗi vòng | §IV + Alg.2 dòng 2–7 (G2) |
 | Ai upload | **chỉ** device thuộc S_t | §IV "receives … from the selected edge devices" (G2) |
 | Tổng hợp | `ω^t = (1/\|S_t\|) Σ_{m∈S_t} ω_m^t`, trung bình đều | Alg.1 dòng 10 |
-| Optimizer | **AdamW**, `weight_decay = 1e-4`, `betas` mặc định, **tạo mới mỗi device mỗi vòng** | `knowledge/ARCHITECTURE.md` §4.1 (G5) |
+| Optimizer | **AdamW**, `weight_decay = 1e-4`, `betas` mặc định, **tạo mới mỗi device mỗi vòng** | `knowledge/architecture.md` §4.1 (G5) |
 | Learning rate | **cosine theo vòng 1e-3 → 1e-5, T = 50**, hằng trong một vòng (`perfedskd.lr_at`) | chủ dự án (G5) |
 | Round × epoch | **50 × 1** | chủ dự án |
-| Batch | **512 / 512 / 256** cho 20 / 50 / 100 client | chủ dự án + `knowledge/DATASET.md` §4 |
-| Clip | grad-norm **1,0** trên student | `knowledge/ARCHITECTURE.md` §4.1 |
-| Precision | fp16 AMP + `GradScaler`; loss tính fp32 ngoài autocast; **không bao giờ bf16** (T4 là sm_75) | `knowledge/LOCAL_ENV.md` §3.3 |
+| Batch | **512 / 512 / 256** cho 20 / 50 / 100 client | chủ dự án + `knowledge/dataset.md` §4 |
+| Clip | grad-norm **1,0** trên student | `knowledge/architecture.md` §4.1 |
+| Precision | fp16 AMP + `GradScaler`; loss tính fp32 ngoài autocast; **không bao giờ bf16** (T4 là sm_75) | `knowledge/local-env.md` §3.3 |
 | Eval | mỗi vòng, **mọi M** model cá nhân hoá trên **đủ** tập test + **thêm** model tổng hợp ω^t | chủ dự án |
 | Metric | đủ **10 metric** cho từng device, cộng mean/std/min/max theo device; cột `global_*` cho ω^t | skill `METRIC_KEYS` |
 | Checkpoint | **chỉ trọng số** (`state_dict`), `weights_only=True`; không pickle module, không optimizer | chủ dự án + skill |
@@ -52,7 +52,7 @@ từng tồn tại trong bài báo), MNIST/EMNIST, và bốn baseline FedAvg/Fed
 | D8 | 50 vòng × 1 epoch thay vì 200 × 20 | Ngân sách: 200×20 trên 43 triệu dòng là ~4.000 lượt quét dữ liệu | Không thể so số với bài báo |
 | D9 | DAGSNet thay cho mạng ảnh; 16 lớp bảng thay cho 10/26 lớp ảnh | Bài báo không quy định kiến trúc | |
 | D10 | `ω^0` dùng chung cho mọi device | Bài báo nói device **dị thể** nhưng không mô tả model dị thể nào, và Alg.1 dòng 10 trung bình trọng số — phép này chỉ định nghĩa được khi mọi model cùng hình dạng | "Heterogeneous" trong bản dựng này là **dị thể dữ liệu** (Dirichlet α = 0,5), không phải dị thể kiến trúc |
-| D11 | fp16 AMP cho tính toán; đặc trưng thường trú ở fp16 | `knowledge/DATASET.md` §1.3 | Đặc trưng đã bị lượng tử hoá về fp16 |
+| D11 | fp16 AMP cho tính toán; đặc trưng thường trú ở fp16 | `knowledge/dataset.md` §1.3 | Đặc trưng đã bị lượng tử hoá về fp16 |
 | D12 | Truyền tin được **tính**, không **đo** | Driver giữ bảng trọng số của mọi device trong tiến trình của nó, nên `M` model luôn quay về driver | Cột `comm_*` là chi phí của **giao thức** (\|S_t\| lên + \|S_t\| xuống), không phải lưu lượng của tiến trình |
 | D13 | Một seed, một lần chạy | Ngân sách GPU | Bài báo lặp 10 lần và báo ± độ lệch. Bản này không có replication; `*_std` là độ lệch **giữa các device**, không phải giữa các lần chạy |
 
@@ -80,7 +80,7 @@ riêng của phương pháp này.
 | kỹ thuật | vì sao có lời | bằng chứng |
 |---|---|---|
 | Hai worker thường trú, mỗi worker một GPU, spawn **một lần** cho cả phiên | Toàn bộ train (5,29 GiB fp16) + test (1,32 GiB) nằm thường trú trên **cả hai** GPU ⇒ không có input pipeline, device nào cũng train được ở GPU nào | dự án anh em |
-| Không có `DataLoader` | Vòng lặp là `slice + randperm` trên tensor thường trú | `DATASET.md` §4 |
+| Không có `DataLoader` | Vòng lặp là `slice + randperm` trên tensor thường trú | `dataset.md` §4 |
 | `torch.compile(mode="reduce-overhead")` (CUDA graph) cho student, teacher và template eval | Model launch-bound. Đo trên T4 ở probe 21-09: **52,83 → 7,85 ms/step (6,73×)** ở batch 512 và **55,98 → 7,27 (7,70×)** ở batch 256 — cao hơn mức 2,86× của bước DAGSNet đơn vì bước SKD có ba graph | §5 |
 | Cổng compile chạy trên **dữ liệu thật**, so với eager, dropout tắt cả hai phía, quy tắc argmax hàng quyết định | Triton sm_75 là rủi ro đã biết; fallback phải **ồn ào**, không im lặng | `_compile_train`, `_compile_eval` |
 | `cudagraph_mark_step_begin()` ở đầu **mỗi** bước | Ba graph chạy trong một bước (teacher fwd, student fwd, student bwd); không khai báo ranh giới iteration thì cudagraph-tree coi lần gọi sau là iteration mới và làm hỏng output của lần trước | bẫy đã gặp ở pFedES |
@@ -208,11 +208,11 @@ tập device được chọn — suy lại sẽ khiến run được resume khô
 
 Mọi test local đi qua `scripts/run_local_checked.py` (watchdog RAM), **một cây một lúc**.
 Local là sm_86 một GPU: nó chứng minh **đúng/sai**, không chứng minh **nhanh/chậm**, và không
-chứng minh gì về sm_75. Xem `knowledge/LOCAL_ENV.md` §5.
+chứng minh gì về sm_75. Xem `knowledge/local-env.md` §5.
 
 ## 8. Caveat bắt buộc kèm mọi con số công bố
 
-Kế thừa `knowledge/DATASET.md` §6 và `ARCHITECTURE.md` §8: split theo thời gian mô phỏng
+Kế thừa `knowledge/dataset.md` §6 và `architecture.md` §8: split theo thời gian mô phỏng
 (test chỉ có scenario `_7`); mất cân bằng 41:1 ⇒ **đọc `f1_macro`, không đọc `accuracy`**; rò
 rỉ Sybil; `scaler.json` fit trên toàn bộ 43 M dòng train (rò rỉ thống kê toàn cục — trong FL
 thật client không có); đặc trưng lượng tử hoá fp16; client = receiver unit, không phải xe thật.

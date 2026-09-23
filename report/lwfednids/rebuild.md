@@ -10,8 +10,8 @@ loại DAGSNet. File này là **nguồn duy nhất** của mọi lựa chọn; `
 
 | hạng mục | giá trị | nguồn |
 |---|---|---|
-| Model của mọi client và của server | **DAGSNet** (395.024 tham số chưa cắt), `num_classes=16`, `n_features=66`, đầu vào là 66 đặc trưng bảng **trực tiếp** — **không** có backbone trích xuất đặc trưng | chủ dự án; `knowledge/ARCHITECTURE.md` |
-| Khởi tạo θ₀ | mặc định PyTorch (Kaiming uniform a=√5), seed **42**, dựng **một lần** trên server | `knowledge/ARCHITECTURE.md` §3.2; bài báo nói "Kaiming He" (G7) |
+| Model của mọi client và của server | **DAGSNet** (395.024 tham số chưa cắt), `num_classes=16`, `n_features=66`, đầu vào là 66 đặc trưng bảng **trực tiếp** — **không** có backbone trích xuất đặc trưng | chủ dự án; `knowledge/architecture.md` |
+| Khởi tạo θ₀ | mặc định PyTorch (Kaiming uniform a=√5), seed **42**, dựng **một lần** trên server | `knowledge/architecture.md` §3.2; bài báo nói "Kaiming He" (G7) |
 | Sparsity | **0,7 duy nhất** — tỉ lệ **kênh** bị cắt ở mỗi lớp (nghĩa của `pruning_ratio` Torch-Pruning) | chủ dự án (câu 2); G2 |
 | Mask 𝓜 | **zero-shot** từ θ₀, không dữ liệu; DepGraph gom nhóm; importance **L1 theo nhóm** (`GroupMagnitudeImportance(p=1)`); tỉ lệ **đồng đều mỗi lớp** (`global_pruning=False`); lớp Linear cuối (16 logit) **miễn cắt**; **xoá vật lý** kênh bị cắt | §III-B-1-b, Eq. (7)–(8); G3, G4 |
 | Kết quả cắt | **35.891 tham số** (9,09 %), MACs 208.035 / 2.276.808 (9,14 %); concat 4 nhánh 544 → 157 kênh; plan id `524e7ab78439698c` (torch-pruning 1.6.1, đo local, kiểm lại trên Kaggle) | `tests/test_units.py` |
@@ -19,12 +19,12 @@ loại DAGSNet. File này là **nguồn duy nhất** của mọi lựa chọn; `
 | Ai train / ai upload | **mọi** N client, mỗi vòng; mọi client upload | Alg. 6 dòng 6–8 |
 | Tổng hợp | **θ^{t+1} = (1/N) Σⱼ θⱼ^t — trung bình đơn**, không trọng số theo Nⱼ | Eq. (9); chủ dự án (câu 5) |
 | Mask theo vòng | **đồng nhất**: kênh đã xoá không mọc lại (Alg. 5 dòng 5 là identity) | G6 |
-| Optimizer | **AdamW**, `weight_decay = 1e-4`, betas mặc định, **tạo mới mỗi client mỗi vòng** | chủ dự án (câu 4); `knowledge/ARCHITECTURE.md` §4.1 |
+| Optimizer | **AdamW**, `weight_decay = 1e-4`, betas mặc định, **tạo mới mỗi client mỗi vòng** | chủ dự án (câu 4); `knowledge/architecture.md` §4.1 |
 | Learning rate | **cosine theo vòng 1e-3 → 1e-5, T = 50**, hằng trong vòng (`lwfednids.lr_at`) | chủ dự án (câu 4) — chính sách chung các dự án anh em |
 | Round × epoch | **50 × 1** | chủ dự án |
-| Batch | **512 / 512 / 256** cho 20 / 50 / 100 client | chủ dự án; `knowledge/DATASET.md` §4 |
-| Clip | grad-norm **1,0** | `knowledge/ARCHITECTURE.md` §4.1 |
-| Precision | fp16 AMP + `GradScaler`; loss fp32 ngoài autocast; **không bao giờ bf16** (T4 = sm_75) | `knowledge/LOCAL_ENV.md` §3.3 |
+| Batch | **512 / 512 / 256** cho 20 / 50 / 100 client | chủ dự án; `knowledge/dataset.md` §4 |
+| Clip | grad-norm **1,0** | `knowledge/architecture.md` §4.1 |
+| Precision | fp16 AMP + `GradScaler`; loss fp32 ngoài autocast; **không bao giờ bf16** (T4 = sm_75) | `knowledge/local-env.md` §3.3 |
 | Eval | mỗi vòng, **mô hình tổng hợp θ^t** trên **đủ** 10.761.343 dòng test (chia hàng cho 2 GPU, cộng ma trận nhầm lẫn) | chủ dự án (câu 3a) |
 | Metric | đủ **10 metric** của θ^t; cộng **mean/std/min/max theo client** của loss và grad-norm huấn luyện; `steps/applied/skipped`; `train_sec`, `eval_sec`; `model_mib`, `comm_mib` | skill `METRIC_KEYS`; chủ dự án |
 | Checkpoint | **chỉ trọng số** (`state_dict` của θ^t) + `cfg` chứa **plan cắt** ⇒ dựng lại được **không cần torch-pruning**; `weights_only=True`; không pickle module, không optimizer | chủ dự án (câu 6) + skill |
@@ -48,7 +48,7 @@ probe, không train đủ 50 vòng mô hình chưa cắt); FedProx (Table 11); p
 | D7 | Phân hoạch **non-IID** Dirichlet α = 0,5 thay vì IID | Bộ dữ liệu cố định của dự án | Bài toán khó hơn bài báo; f1_macro là số đáng đọc (mất cân bằng 41:1) |
 | D8 | Mask **zero-shot trên trọng số ngẫu nhiên** = chọn kênh gần như ngẫu nhiên (tất định theo seed) | Đúng phương pháp bài báo (Cai et al.) | Kết quả phụ thuộc seed nhiều hơn một mask học từ dữ liệu; chỉ một seed |
 | D9 | Lớp Linear cuối miễn cắt; các lớp Conv/Linear khác cắt đúng `int(n·0,3)` kênh; concat 544 → 157 theo tổng các nhánh | G4 | |
-| D10 | fp16 AMP; đặc trưng thường trú fp16 | `knowledge/DATASET.md` §1.3 | Đặc trưng đã bị lượng tử hoá về fp16 |
+| D10 | fp16 AMP; đặc trưng thường trú fp16 | `knowledge/dataset.md` §1.3 | Đặc trưng đã bị lượng tử hoá về fp16 |
 | D11 | Truyền tin được **tính**, không **đo**: `comm_mib = 2·N·model_mib` | Driver giữ θ^t trong tiến trình | Là chi phí **giao thức**; mask được gửi **một lần** và không tính vào đây |
 | D12 | Một seed, một lần chạy | Ngân sách GPU | Không có ± giữa các lần chạy; `*_client_std` là độ lệch **giữa các client** |
 | D13 | Kênh cắt ra số lẻ (28, 9, 14, 38, 76, 157) | Tỉ lệ đúng 0,7 không làm tròn bội 8 | Tensor core fp16 thích bội 8; mô hình vốn launch-bound nên ảnh hưởng nhỏ; `round_to` của Torch-Pruning **không** dùng để trung thành với bài báo |
@@ -64,7 +64,7 @@ probe, không train đủ 50 vòng mô hình chưa cắt); FedProx (Table 11); p
 4. **`skipped` ≈ 1–2 bước/client mỗi vòng**: GradScaler khởi động ở 2¹⁶ và tự hiệu chỉnh;
    `max_skips_per_client = 16` là trần.
 
-**Lý do thật sự phải dừng**: [`KAGGLE.md` §6](../../lwfednids/docs/KAGGLE.md).
+**Lý do thật sự phải dừng**: [`kaggle.md` §6](../../lwfednids/docs/kaggle.md).
 
 ## 4. Thiết kế để chạy nhanh nhất trên 2×T4
 
@@ -85,9 +85,9 @@ rút gọn về **một** mô hình toàn cục:
 mọi client giữ cùng θ^t sau broadcast nên vô nghĩa và tốn N×13 s/vòng); gộp nhiều mức sparsity
 vào một phiên (không cần vì chỉ một mức).
 
-## 5. Ngân sách — dự báo trước probe; **số đo thật ở [`TESTS.md` §4](../../lwfednids/docs/TESTS.md): 20c 255 s/round ⇒ 3,5 h**
+## 5. Ngân sách — dự báo trước probe; **số đo thật ở [`tests.md` §4](../../lwfednids/docs/tests.md): 20c 255 s/round ⇒ 3,5 h**
 
-Số bước/vòng (`knowledge/DATASET.md` §4): 20c 84.083 · 50c 84.098 · 100c 168.200. Với bước
+Số bước/vòng (`knowledge/dataset.md` §4): 20c 84.083 · 50c 84.098 · 100c 168.200. Với bước
 compiled ≈ 5–6 ms (mô hình cắt, launch-bound), chia 2 GPU, cộng eval ~13 s và commit:
 
 | kịch bản | train/vòng | vòng | 50 vòng | phiên 11,75 h |
@@ -127,7 +127,7 @@ phiên 3+ (`stage_ckpt_dataset.py --last-only`).
 
 ## 7. Caveat bắt buộc kèm mọi con số công bố
 
-Kế thừa `knowledge/DATASET.md` §6 (split theo thời gian, rò rỉ Sybil, scaler fit toàn cục, test
+Kế thừa `knowledge/dataset.md` §6 (split theo thời gian, rò rỉ Sybil, scaler fit toàn cục, test
 không chia theo client) cộng D1–D13 ở trên. Đặc biệt:
 
 * **f1_macro** là số đáng đọc, accuracy bị hai lớp lớn chi phối (44,5 % test).

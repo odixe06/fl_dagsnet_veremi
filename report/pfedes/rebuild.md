@@ -1,7 +1,7 @@
 # pFedES trên VeReMi NextGen / DAGSNet — bản dựng
 
 Mọi lựa chọn dưới đây là của **bản dựng** (chủ dự án chốt 2026-09-11 → 13-09 hoặc tôi chọn và ghi
-rõ), không gán cho tác giả bài báo. Phương pháp gốc: [`paper.md`](paper.md). Mã: [`proj/`](proj/).
+rõ), không gán cho tác giả bài báo. Phương pháp gốc: [`paper.md`](paper.md). Mã: [`proj/`](../../pfedes/papers/pfedes-yi-2025/proj).
 
 > **Lưu ý lịch sử.** Trước bản này có một bản (12-09) chạy **LR hằng 1e-3** đã bị **thay thế hoàn toàn** và
 > không đóng góp con số nào cho report: LR hằng làm F_k overfit cục bộ rồi trôi xuống trên test toàn cục.
@@ -12,17 +12,17 @@ rõ), không gán cho tác giả bài báo. Phương pháp gốc: [`paper.md`](p
 
 | hạng mục | giá trị | nguồn |
 |---|---|---|
-| Classifier F_k (mọi client) | **DAGSNet**, 395.024 tham số, init mặc định PyTorch, seed 42, **cùng một init** cho mọi client | `knowledge/ARCHITECTURE.md`; init chung là lựa chọn của tôi |
+| Classifier F_k (mọi client) | **DAGSNet**, 395.024 tham số, init mặc định PyTorch, seed 42, **cùng một init** cho mọi client | `knowledge/architecture.md`; init chung là lựa chọn của tôi |
 | Proxy G | **DAGSNet với head ra 66** (`build_proxy`, 407.874 tham số) để x̂ cùng chiều x | chủ dự án chọn (thay 2-conv CNN của bài báo) |
 | Server | chỉ giữ và tổng hợp θ của G; không có classifier server | bài báo |
 | Kịch bản | 20 / 50 / 100 client, α = 0,5 | chủ dự án |
 | Tham gia C | **100 % cho cả ba kịch bản** → K = N = 20 / 50 / 100 | chủ dự án 2026-09-12 (bài báo Table 1–2 dùng 100 %/20 %/10 % — không so trực tiếp được, xem lưu ý đầu file) |
 | Round × epoch | **50 × (E = 1, E_fe = 1)** | chủ dự án |
-| Batch | **512 / 512 / 256** | `knowledge/DATASET.md` §4 |
+| Batch | **512 / 512 / 256** | `knowledge/dataset.md` §4 |
 | μ | **0,5** | chủ dự án (bài báo không cho giá trị) |
 | Optimizer | **AdamW, wd 1e-4**, betas/eps mặc định, **tạo mới mỗi client mỗi round** (không giữ moment) | chủ dự án (bài báo: SGD 0,01) |
 | Learning rate | **cosine theo round** `lr_min + (lr − lr_min)/2·(1 + cos(π(t−1)/(T−1)))`, t = 1…50, **hằng trong một round**, chung cho η_ω và η_θ; giá trị `lr`/`lr_min` xem `scripts/gen_notebook.py::PAPER` (chốt 2026-09-13 sau LR scan local, CONTEXT.md §12) | chủ dự án 2026-09-13: **một lịch LR thống nhất cho mọi dự án anh em** (công thức của `afpha`) |
-| Clip | grad-norm 1,0 cho cả ω và θ | `ARCHITECTURE.md` §4.1 |
+| Clip | grad-norm 1,0 cho cả ω và θ | `architecture.md` §4.1 |
 | Precision | fp16 AMP, loss fp32, GradScaler riêng cho ω và θ | như các bản dựng trước |
 | Đánh giá | **mỗi round, mọi N client**: F_k(x) trên **đủ 10.761.343 dòng test**, 10 metric/client, mean/std/min/max trên N client | chủ dự án |
 | Checkpoint | `weights/round_NNN.pt` = state_dict của G + state_dict của **mọi** F_k (tensor thuần, `weights_only=True`), không optimizer | chủ dự án |

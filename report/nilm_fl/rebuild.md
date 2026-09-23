@@ -1,18 +1,18 @@
 # Lightweight-FL NILM (học tương hỗ liên bang) trên VeReMi NextGen / DAGSNet — bản dựng
 
 Mọi lựa chọn dưới đây là của **bản dựng** (chủ dự án chốt 2026-09-15 hoặc tôi chọn và ghi
-rõ), không gán cho tác giả bài báo. Phương pháp gốc: [`paper.md`](paper.md). Mã: [`proj/`](proj/).
+rõ), không gán cho tác giả bài báo. Phương pháp gốc: [`paper.md`](paper.md). Mã: [`proj/`](../../nilm_fl/papers/nilm-li-2024/proj).
 
 ## 1. Cấu hình đã chốt (chủ dự án, 2026-09-15)
 
 | hạng mục | giá trị | nguồn |
 |---|---|---|
-| Mọi model (w_s của từng client, w_r của từng client, w̄_r của server) | **DAGSNet**, 395.024 tham số, init mặc định PyTorch, seed 42, **cùng một init** cho tất cả | chủ dự án; `knowledge/ARCHITECTURE.md` |
+| Mọi model (w_s của từng client, w_r của từng client, w̄_r của server) | **DAGSNet**, 395.024 tham số, init mặc định PyTorch, seed 42, **cùng một init** cho tất cả | chủ dự án; `knowledge/architecture.md` |
 | NAS / backbone | **bỏ hẳn** §III.B (MNAS); chỉ dựng học tương hỗ giữa các classifier | chủ dự án |
 | Kịch bản | 20 / 50 / 100 client, α = 0,5 | chủ dự án |
 | Tham gia | **mọi client mỗi round** (Algorithm 1 lặp qua mọi hộ) | bài báo |
 | Round × epoch | **50 × 1 epoch local** | chủ dự án |
-| Batch | **512 / 512 / 256** | chủ dự án; `knowledge/DATASET.md` §4 |
+| Batch | **512 / 512 / 256** | chủ dự án; `knowledge/dataset.md` §4 |
 | Optimizer | **AdamW, wd 1e-4**, betas/eps mặc định, **tạo mới mỗi client mỗi round**, một optimizer chung hai nhóm tham số (= hai optimizer cùng rate, đã kiểm bit-identical) | chủ dự án (Q6); bài báo không nêu |
 | Learning rate | **cosine theo round 1e-3 → 1e-5, T = 50** (`proj/nilm.py::lr_at`), hằng trong round, chung cho w_s và w_r | chủ dự án — lịch thống nhất mọi dự án anh em |
 | ℓ_s, ℓ_r | CrossEntropy (nhãn số nguyên) | phân loại |
@@ -20,7 +20,7 @@ rõ), không gán cho tác giả bài báo. Phương pháp gốc: [`paper.md`](p
 | Mẫu số 1/(ℓ_s + ℓ_r) | **stop-gradient** (trọng số hằng theo batch), clamp ≥ 1e-6 | chủ dự án (Q2); clamp là của tôi |
 | Tổng hợp | **w̄_r = (1/K) Σ_k w_r^k trung bình đều** (Algorithm 1), BN running stats trung bình như tham số, `num_batches_tracked` lấy max | chủ dự án (Q3) |
 | Fine-tune cuối (§III.A bước 4) | **bỏ** | chủ dự án (Q5) |
-| Clip | grad-norm 1,0 **riêng từng model** | `ARCHITECTURE.md` §4.1 |
+| Clip | grad-norm 1,0 **riêng từng model** | `architecture.md` §4.1 |
 | Precision | fp16 AMP, loss fp32, một GradScaler (skip là nguyên tử cho cả hai model) | như các bản dựng trước |
 | Đánh giá | **mỗi round, mọi N client**: w_s^k(x) trên **đủ 10.761.343 dòng test**, 10 metric/client, mean/std/min/max trên N; **cộng w̄_r** (1 model, cột `global_*`, không trộn vào mean) | chủ dự án (Q4) |
 | Checkpoint | `weights/round_NNN.pt` = state_dict của w̄_r + state_dict của **mọi** w_s^k (tensor thuần, `weights_only=True`), không optimizer, không module | chủ dự án |
