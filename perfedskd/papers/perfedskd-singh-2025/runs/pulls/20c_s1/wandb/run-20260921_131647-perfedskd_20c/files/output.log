@@ -1,0 +1,97 @@
+W&B: https://wandb.ai/21522798-uit/perfedskd-veremi/runs/perfedskd_20c
+FL root    : /kaggle/input/datasets/odixe0502/veremi-fl-20client/20_client
+test root  : /kaggle/input/datasets/odixe0502/veremi-nextgen2026-centralized/upload/test
+data_id    : 29f492a531052d2b
+fingerprint: 90566629a718b902
+resume from round None
+train (43045415, 66) max|x|=570.5
+test  (10761343, 66) max|x|=570.5
+content_id : 3aa70a5c51aacd51
+prepack 142.2s | 43,045,415 train / 10,761,343 test rows
+W0921 13:19:47.127000 88 torch/_inductor/utils.py:1679] [0/0] Not enough SMs to use max_autotune_gemm mode
+W0921 13:19:47.127000 89 torch/_inductor/utils.py:1679] [0/0] Not enough SMs to use max_autotune_gemm mode
+[rank1] compile OK | student max|dlogit|=7.32e-04 rel|dgrad|=3.75e-03 flips 1/512 (0/490 decisive) | teacher max|dlogit|=4.88e-04 rel|dgrad|=0.00e+00 flips 0/512 (0/485 decisive)
+[rank0] compile OK | student max|dlogit|=5.68e-04 rel|dgrad|=3.35e-03 flips 0/512 (0/496 decisive) | teacher max|dlogit|=4.88e-04 rel|dgrad|=0.00e+00 flips 0/512 (0/496 decisive)
+[rank0] eval compile OK | max|dlogit|=7.32e-04 rel|dgrad|=0.00e+00 flips 7/16384 (0/15855 decisive)
+[rank1] eval compile OK | max|dlogit|=7.32e-04 rel|dgrad|=0.00e+00 flips 12/16384 (0/15176 decisive)
+[driver] 2 workers ready: train compiled, eval compiled (301s into the session)
+[r001] f1_macro mean=0.515258 std=0.1100 min=0.2903 acc=0.579013 | global f1=0.203907 acc=0.376143 | |S|=20->9 tau=0.579013 | lr=1.00e-03 ce=0.8016 kd=0.4850 skip=4/84083 train=389s eval=250s vram=7.08G 639.4s | session 0.26h
+[r002] f1_macro mean=0.530862 std=0.1023 min=0.3145 acc=0.582281 | global f1=0.549093 acc=0.558418 | |S|=9->8 tau=0.582281 | lr=9.99e-04 ce=0.3813 kd=0.1561 skip=10/84083 train=359s eval=247s vram=7.06G 606.9s | session 0.43h
+[r003] f1_macro mean=0.535220 std=0.0989 min=0.3320 acc=0.582637 | global f1=0.610746 acc=0.549169 | |S|=8->8 tau=0.582637 | lr=9.96e-04 ce=0.2113 kd=0.0817 skip=13/84083 train=347s eval=246s vram=7.02G 593.5s | session 0.59h
+[r004] f1_macro mean=0.544135 std=0.0925 min=0.3856 acc=0.581244 | global f1=0.635669 acc=0.553465 | |S|=8->8 tau=0.581244 | lr=9.91e-04 ce=0.1319 kd=0.0522 skip=17/84083 train=347s eval=246s vram=7.02G 593.3s | session 0.76h
+[r005] f1_macro mean=0.559333 std=0.0779 min=0.4235 acc=0.585461 | global f1=0.625328 acc=0.531032 | |S|=8->8 tau=0.585461 | lr=9.84e-04 ce=0.0912 kd=0.0377 skip=18/84083 train=347s eval=246s vram=7.02G 593.2s | session 0.92h
+[r006] f1_macro mean=0.561320 std=0.0763 min=0.4216 acc=0.584271 | global f1=0.637480 acc=0.545129 | |S|=8->7 tau=0.584271 | lr=9.75e-04 ce=0.0678 kd=0.0286 skip=22/84083 train=347s eval=246s vram=7.02G 593.3s | session 1.09h
+[r007] f1_macro mean=0.566017 std=0.0750 min=0.4179 acc=0.581961 | global f1=0.628583 acc=0.529554 | |S|=7->8 tau=0.581961 | lr=9.64e-04 ce=0.0531 kd=0.0230 skip=24/84083 train=347s eval=246s vram=7.02G 593.0s | session 1.25h
+[r008] f1_macro mean=0.568130 std=0.0728 min=0.4266 acc=0.581520 | global f1=0.626130 acc=0.529193 | |S|=8->8 tau=0.581520 | lr=9.51e-04 ce=0.0458 kd=0.0208 skip=29/84083 train=347s eval=246s vram=7.02G 592.8s | session 1.42h
+[r009] f1_macro mean=0.565375 std=0.0665 min=0.4416 acc=0.580875 | global f1=0.636285 acc=0.539024 | |S|=8->7 tau=0.580875 | lr=9.36e-04 ce=0.0401 kd=0.0186 skip=24/84083 train=347s eval=246s vram=7.02G 592.7s | session 1.58h
+[r010] f1_macro mean=0.567053 std=0.0661 min=0.4417 acc=0.578398 | global f1=0.627066 acc=0.526445 | |S|=7->7 tau=0.578398 | lr=9.20e-04 ce=0.0358 kd=0.0168 skip=23/84083 train=347s eval=246s vram=7.02G 593.1s | session 1.75h
+[r011] f1_macro mean=0.563236 std=0.0628 min=0.4393 acc=0.571190 | global f1=0.628814 acc=0.522414 | |S|=7->8 tau=0.571190 | lr=9.02e-04 ce=0.0326 kd=0.0157 skip=25/84083 train=349s eval=247s vram=7.02G 596.5s | session 1.91h
+[r012] f1_macro mean=0.567482 std=0.0570 min=0.4458 acc=0.573296 | global f1=0.632520 acc=0.534322 | |S|=8->8 tau=0.573296 | lr=8.82e-04 ce=0.0410 kd=0.0244 skip=28/84083 train=379s eval=248s vram=7.02G 627.4s | session 2.09h
+[r013] f1_macro mean=0.571303 std=0.0563 min=0.4669 acc=0.575921 | global f1=0.648910 acc=0.567641 | |S|=8->7 tau=0.575921 | lr=8.61e-04 ce=0.0357 kd=0.0184 skip=24/84083 train=399s eval=248s vram=7.02G 647.6s | session 2.27h
+[r014] f1_macro mean=0.573190 std=0.0577 min=0.4613 acc=0.576188 | global f1=0.640871 acc=0.530257 | |S|=7->7 tau=0.576188 | lr=8.38e-04 ce=0.0313 kd=0.0160 skip=25/84083 train=406s eval=248s vram=7.02G 653.9s | session 2.45h
+[r015] f1_macro mean=0.575596 std=0.0571 min=0.4704 acc=0.578020 | global f1=0.632398 acc=0.529867 | |S|=7->7 tau=0.578020 | lr=8.14e-04 ce=0.0286 kd=0.0145 skip=23/84083 train=357s eval=246s vram=7.02G 603.6s | session 2.62h
+[r016] f1_macro mean=0.575011 std=0.0537 min=0.4744 acc=0.576742 | global f1=0.634102 acc=0.531859 | |S|=7->8 tau=0.576742 | lr=7.88e-04 ce=0.0257 kd=0.0129 skip=28/84083 train=348s eval=246s vram=7.02G 594.7s | session 2.78h
+[r017] f1_macro mean=0.579105 std=0.0656 min=0.4579 acc=0.582073 | global f1=0.656408 acc=0.548131 | |S|=8->8 tau=0.582073 | lr=7.62e-04 ce=0.0262 kd=0.0141 skip=24/84083 train=353s eval=246s vram=7.02G 599.8s | session 2.95h
+[r018] f1_macro mean=0.582262 std=0.0572 min=0.4462 acc=0.580917 | global f1=0.640593 acc=0.545491 | |S|=8->8 tau=0.580917 | lr=7.34e-04 ce=0.0261 kd=0.0142 skip=25/84083 train=348s eval=246s vram=7.02G 594.8s | session 3.11h
+[r019] f1_macro mean=0.579765 std=0.0660 min=0.4234 acc=0.578682 | global f1=0.649302 acc=0.551949 | |S|=8->7 tau=0.578682 | lr=7.05e-04 ce=0.0248 kd=0.0127 skip=24/84083 train=347s eval=245s vram=7.02G 592.9s | session 3.28h
+[r020] f1_macro mean=0.584453 std=0.0551 min=0.4806 acc=0.582936 | global f1=0.629786 acc=0.542315 | |S|=7->8 tau=0.582936 | lr=6.76e-04 ce=0.0248 kd=0.0139 skip=26/84083 train=347s eval=246s vram=7.02G 593.5s | session 3.44h
+[r021] f1_macro mean=0.585481 std=0.0612 min=0.4362 acc=0.579689 | global f1=0.652301 acc=0.551908 | |S|=8->9 tau=0.579689 | lr=6.46e-04 ce=0.0234 kd=0.0122 skip=24/84083 train=349s eval=246s vram=7.02G 596.1s | session 3.61h
+[r022] f1_macro mean=0.595624 std=0.0619 min=0.4749 acc=0.587503 | global f1=0.661982 acc=0.571471 | |S|=9->7 tau=0.587503 | lr=6.15e-04 ce=0.0289 kd=0.0182 skip=23/84083 train=349s eval=246s vram=7.02G 595.1s | session 3.77h
+[r023] f1_macro mean=0.595779 std=0.0603 min=0.4740 acc=0.589106 | global f1=0.636097 acc=0.532922 | |S|=7->8 tau=0.589106 | lr=5.84e-04 ce=0.0229 kd=0.0111 skip=25/84083 train=349s eval=247s vram=7.02G 596.2s | session 3.94h
+[r024] f1_macro mean=0.603493 std=0.0660 min=0.4727 acc=0.595082 | global f1=0.661403 acc=0.560080 | |S|=8->8 tau=0.595082 | lr=5.53e-04 ce=0.0243 kd=0.0133 skip=22/84083 train=347s eval=247s vram=7.02G 594.8s | session 4.11h
+[r025] f1_macro mean=0.603815 std=0.0579 min=0.4874 acc=0.591888 | global f1=0.639684 acc=0.537994 | |S|=8->8 tau=0.591888 | lr=5.21e-04 ce=0.0231 kd=0.0120 skip=21/84083 train=354s eval=245s vram=7.02G 600.3s | session 4.27h
+[r026] f1_macro mean=0.606098 std=0.0540 min=0.4952 acc=0.593366 | global f1=0.649130 acc=0.553733 | |S|=8->8 tau=0.593366 | lr=4.89e-04 ce=0.0216 kd=0.0107 skip=27/84083 train=351s eval=245s vram=7.02G 597.3s | session 4.44h
+[r027] f1_macro mean=0.605368 std=0.0565 min=0.4875 acc=0.594382 | global f1=0.646680 acc=0.549773 | |S|=8->8 tau=0.594382 | lr=4.57e-04 ce=0.0199 kd=0.0096 skip=27/84083 train=347s eval=245s vram=7.02G 593.0s | session 4.60h
+[r028] f1_macro mean=0.600460 std=0.0577 min=0.4966 acc=0.587760 | global f1=0.643958 acc=0.548599 | |S|=8->7 tau=0.587760 | lr=4.26e-04 ce=0.0185 kd=0.0089 skip=22/84083 train=347s eval=245s vram=7.02G 592.9s | session 4.77h
+[r029] f1_macro mean=0.611874 std=0.0520 min=0.4939 acc=0.594844 | global f1=0.651850 acc=0.547162 | |S|=7->7 tau=0.594844 | lr=3.95e-04 ce=0.0214 kd=0.0143 skip=22/84083 train=347s eval=245s vram=7.02G 592.1s | session 4.93h
+[r030] f1_macro mean=0.610257 std=0.0505 min=0.5029 acc=0.593529 | global f1=0.638194 acc=0.536811 | |S|=7->8 tau=0.593529 | lr=3.64e-04 ce=0.0179 kd=0.0084 skip=25/84083 train=347s eval=245s vram=7.02G 591.9s | session 5.10h
+[r031] f1_macro mean=0.610860 std=0.0464 min=0.5092 acc=0.594249 | global f1=0.640555 acc=0.542138 | |S|=8->7 tau=0.594249 | lr=3.34e-04 ce=0.0191 kd=0.0099 skip=23/84083 train=347s eval=245s vram=7.02G 592.2s | session 5.26h
+[r032] f1_macro mean=0.613468 std=0.0489 min=0.5136 acc=0.596316 | global f1=0.639688 acc=0.539611 | |S|=7->7 tau=0.596316 | lr=3.05e-04 ce=0.0176 kd=0.0086 skip=27/84083 train=347s eval=245s vram=7.02G 592.2s | session 5.43h
+[r033] f1_macro mean=0.611374 std=0.0503 min=0.5128 acc=0.594452 | global f1=0.639120 acc=0.531321 | |S|=7->7 tau=0.594452 | lr=2.76e-04 ce=0.0164 kd=0.0075 skip=23/84083 train=347s eval=245s vram=7.02G 592.1s | session 5.59h
+[r034] f1_macro mean=0.612743 std=0.0471 min=0.5188 acc=0.594653 | global f1=0.637632 acc=0.535663 | |S|=7->7 tau=0.594653 | lr=2.48e-04 ce=0.0154 kd=0.0070 skip=22/84083 train=347s eval=245s vram=7.02G 592.1s | session 5.75h
+[r035] f1_macro mean=0.609200 std=0.0454 min=0.5135 acc=0.591229 | global f1=0.635424 acc=0.538870 | |S|=7->8 tau=0.591229 | lr=2.22e-04 ce=0.0143 kd=0.0063 skip=24/84083 train=347s eval=245s vram=7.02G 592.3s | session 5.92h
+[r036] f1_macro mean=0.611566 std=0.0450 min=0.5157 acc=0.592472 | global f1=0.645346 acc=0.552778 | |S|=8->7 tau=0.592472 | lr=1.96e-04 ce=0.0168 kd=0.0087 skip=20/84083 train=347s eval=245s vram=7.02G 591.7s | session 6.08h
+[r037] f1_macro mean=0.613763 std=0.0434 min=0.5320 acc=0.593896 | global f1=0.641704 acc=0.543349 | |S|=7->7 tau=0.593896 | lr=1.72e-04 ce=0.0162 kd=0.0075 skip=27/84083 train=346s eval=245s vram=7.02G 592.5s | session 6.25h
+[r038] f1_macro mean=0.612976 std=0.0441 min=0.5355 acc=0.593739 | global f1=0.642908 acc=0.544310 | |S|=7->6 tau=0.593739 | lr=1.49e-04 ce=0.0144 kd=0.0062 skip=26/84083 train=347s eval=246s vram=7.02G 592.9s | session 6.41h
+[r039] f1_macro mean=0.616056 std=0.0444 min=0.5354 acc=0.594990 | global f1=0.637490 acc=0.526574 | |S|=6->9 tau=0.594990 | lr=1.28e-04 ce=0.0130 kd=0.0053 skip=24/84083 train=347s eval=245s vram=7.02G 592.8s | session 6.58h
+[r040] f1_macro mean=0.623272 std=0.0464 min=0.5207 acc=0.599552 | global f1=0.659643 acc=0.570438 | |S|=9->8 tau=0.599552 | lr=1.08e-04 ce=0.0179 kd=0.0101 skip=25/84083 train=347s eval=245s vram=7.02G 593.0s | session 6.74h
+[r041] f1_macro mean=0.634963 std=0.0393 min=0.5469 acc=0.606968 | global f1=0.662213 acc=0.573717 | |S|=8->7 tau=0.606968 | lr=9.01e-05 ce=0.0197 kd=0.0111 skip=27/84083 train=347s eval=245s vram=7.02G 592.4s | session 6.91h
+[r042] f1_macro mean=0.636128 std=0.0373 min=0.5531 acc=0.607128 | global f1=0.647957 acc=0.551490 | |S|=7->6 tau=0.607128 | lr=7.37e-05 ce=0.0169 kd=0.0067 skip=29/84083 train=346s eval=245s vram=7.02G 592.4s | session 7.07h
+[r043] f1_macro mean=0.634666 std=0.0364 min=0.5499 acc=0.607136 | global f1=0.642327 acc=0.535882 | |S|=6->7 tau=0.607136 | lr=5.90e-05 ce=0.0158 kd=0.0065 skip=28/84083 train=347s eval=245s vram=7.02G 592.7s | session 7.24h
+[r044] f1_macro mean=0.625657 std=0.0495 min=0.4749 acc=0.600978 | global f1=0.650957 acc=0.549857 | |S|=7->6 tau=0.600978 | lr=4.62e-05 ce=0.0185 kd=0.0090 skip=30/84083 train=348s eval=246s vram=7.02G 594.4s | session 7.40h
+[r045] f1_macro mean=0.630829 std=0.0390 min=0.5532 acc=0.606757 | global f1=0.634834 acc=0.540709 | |S|=6->7 tau=0.606757 | lr=3.52e-05 ce=0.0258 kd=0.0170 skip=25/84083 train=347s eval=246s vram=7.02G 593.5s | session 7.57h
+[r046] f1_macro mean=0.639072 std=0.0440 min=0.5576 acc=0.613301 | global f1=0.660473 acc=0.557742 | |S|=7->6 tau=0.613301 | lr=2.62e-05 ce=0.0311 kd=0.0200 skip=25/84083 train=347s eval=246s vram=7.02G 593.1s | session 7.73h
+[r047] f1_macro mean=0.633726 std=0.0544 min=0.5180 acc=0.611621 | global f1=0.622072 acc=0.527189 | |S|=6->6 tau=0.611621 | lr=1.91e-05 ce=0.0263 kd=0.0125 skip=23/84083 train=346s eval=246s vram=7.02G 592.5s | session 7.90h
+[r048] f1_macro mean=0.640420 std=0.0432 min=0.5670 acc=0.615222 | global f1=0.630904 acc=0.535178 | |S|=6->6 tau=0.615222 | lr=1.41e-05 ce=0.0392 kd=0.0277 skip=27/84083 train=347s eval=246s vram=7.02G 593.0s | session 8.06h
+[r049] f1_macro mean=0.644564 std=0.0392 min=0.5702 acc=0.618887 | global f1=0.646752 acc=0.549300 | |S|=6->6 tau=0.618887 | lr=1.10e-05 ce=0.0334 kd=0.0166 skip=32/84083 train=346s eval=246s vram=7.02G 592.5s | session 8.22h
+[r050] f1_macro mean=0.650413 std=0.0485 min=0.5578 acc=0.622931 | global f1=0.661597 acc=0.553945 | |S|=6->6 tau=0.622931 | lr=1.00e-05 ce=0.0389 kd=0.0225 skip=31/84083 train=349s eval=246s vram=7.02G 596.8s | session 8.39h
+
+completed 50 rounds this session
+run      : /kaggle/working/runs/perfedskd_20c
+complete : rounds 1..50   (mode: full)
+artifacts: 1 prediction files, 50 client logs
+  all artifact checks passed
+
+rounds verified : 50 / 50
+
+result at round 50 (mean over 20 personalized models; std / min / max of f1_macro 0.0485 / 0.5578 / 0.7689):
+  accuracy             0.622931   server aggregate 0.553945
+  precision_macro      0.702161   server aggregate 0.688700
+  precision_micro      0.622931   server aggregate 0.553945
+  precision_weighted   0.744563   server aggregate 0.726840
+  recall_macro         0.711387   server aggregate 0.753372
+  recall_micro         0.622931   server aggregate 0.553945
+  recall_weighted      0.622931   server aggregate 0.553945
+  f1_macro             0.650413   server aggregate 0.661597
+  f1_micro             0.622931   server aggregate 0.553945
+  f1_weighted          0.607742   server aggregate 0.534300
+
+selection: |S| per round min 6 median 7 max 20 of 20; mean downlink+uplink saving 61.8% against broadcasting to every device
+
+[descriptive only] best mean f1_macro 0.650413 at round 50 — picked on test, not a reported result
+
+backend  : train compiled | eval compiled
+session  : 50 round(s) here | startup+prepack+compile 7.0 min | verify and W&B are outside this figure
+timing   : rounds [593, 592, 597]s | steady 597s/round = train 351s + eval 246s (20 clients + aggregate) + commit
+VRAM     : train 7.08 GiB/GPU | eval 7.09 GiB/GPU (of 16)
+projected: 50 rounds = 8.41 h (8.29 h of rounds + 0.12 h startup)

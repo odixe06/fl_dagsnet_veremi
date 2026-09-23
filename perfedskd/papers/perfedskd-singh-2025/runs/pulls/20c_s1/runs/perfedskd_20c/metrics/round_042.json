@@ -1,0 +1,3095 @@
+{
+ "round": 42,
+ "evaluated": 20,
+ "lr": 7.369724145892235e-05,
+ "accuracy": 0.6071283807234841,
+ "accuracy_std": 0.0731574887007526,
+ "accuracy_min": 0.45944005316065106,
+ "accuracy_max": 0.7169531721087229,
+ "precision_macro": 0.6933907897490873,
+ "precision_macro_std": 0.03775756556921435,
+ "precision_macro_min": 0.6312128243416111,
+ "precision_macro_max": 0.7801861958219432,
+ "precision_micro": 0.6071283807234841,
+ "precision_micro_std": 0.0731574887007526,
+ "precision_micro_min": 0.45944005316065106,
+ "precision_micro_max": 0.7169531721087229,
+ "precision_weighted": 0.7385171253127586,
+ "precision_weighted_std": 0.024177443181412045,
+ "precision_weighted_min": 0.6980808880111935,
+ "precision_weighted_max": 0.8171392811211922,
+ "recall_macro": 0.699166405752625,
+ "recall_macro_std": 0.027896659273137055,
+ "recall_macro_min": 0.6193594004196192,
+ "recall_macro_max": 0.7432909123465696,
+ "recall_micro": 0.6071283807234841,
+ "recall_micro_std": 0.0731574887007526,
+ "recall_micro_min": 0.45944005316065106,
+ "recall_micro_max": 0.7169531721087229,
+ "recall_weighted": 0.6071283807234841,
+ "recall_weighted_std": 0.0731574887007526,
+ "recall_weighted_min": 0.45944005316065106,
+ "recall_weighted_max": 0.716953172108723,
+ "f1_macro": 0.6361279375878942,
+ "f1_macro_std": 0.037308510140177,
+ "f1_macro_min": 0.5531269391530657,
+ "f1_macro_max": 0.6811699634110702,
+ "f1_micro": 0.6071283807234841,
+ "f1_micro_std": 0.0731574887007526,
+ "f1_micro_min": 0.45944005316065106,
+ "f1_micro_max": 0.7169531721087229,
+ "f1_weighted": 0.5901344591402674,
+ "f1_weighted_std": 0.09428907779804768,
+ "f1_weighted_min": 0.4019440276759557,
+ "f1_weighted_max": 0.7196129327007821,
+ "global_accuracy": 0.551489716478696,
+ "global_precision_macro": 0.6717753042815175,
+ "global_precision_micro": 0.551489716478696,
+ "global_precision_weighted": 0.7126163779806143,
+ "global_recall_macro": 0.7437369391569153,
+ "global_recall_micro": 0.551489716478696,
+ "global_recall_weighted": 0.5514897164786959,
+ "global_f1_macro": 0.6479567559393948,
+ "global_f1_micro": 0.551489716478696,
+ "global_f1_weighted": 0.524201702817622,
+ "loss_client_mean": 0.02364227070259671,
+ "ce_client_mean": 0.01690687197630681,
+ "kd_client_mean": 0.006735397371953747,
+ "gnorm_client_mean": 0.38731935485220875,
+ "n_selected": 7,
+ "tau": 0.6071283807234841,
+ "n_selected_next": 6,
+ "select_metric": "accuracy",
+ "comm_down_mib": 10.63626480102539,
+ "comm_up_mib": 10.63626480102539,
+ "comm_saving": 0.65,
+ "steps": 84083,
+ "skipped": 29,
+ "train_sec": 346.46666750400254,
+ "eval_sec": 245.2848796299986,
+ "vram_train_gb": 7.015446662902832,
+ "vram_eval_gb": 7.074650764465332,
+ "backend": "compiled",
+ "seconds": 592.3596868780005,
+ "selected": [
+  1,
+  9,
+  11,
+  12,
+  15,
+  16,
+  19
+ ],
+ "selected_next": [
+  1,
+  9,
+  11,
+  12,
+  15,
+  16
+ ],
+ "clients": [
+  {
+   "cid": 0,
+   "accuracy": 0.6666049023806787,
+   "precision_macro": 0.6508824453012412,
+   "precision_micro": 0.6666049023806787,
+   "precision_weighted": 0.7203213342067266,
+   "recall_macro": 0.6193594004196192,
+   "recall_micro": 0.6666049023806787,
+   "recall_weighted": 0.6666049023806787,
+   "f1_macro": 0.5678751483160949,
+   "f1_micro": 0.6666049023806787,
+   "f1_weighted": 0.6604964461913018,
+   "per_class": [
+    {
+     "idx": 0,
+     "class": "benign",
+     "support": 2391136,
+     "precision": 0.6057394444004353,
+     "recall": 0.4860819292587289,
+     "f1": 0.5393537896688761
+    },
+    {
+     "idx": 1,
+     "class": "accelerationMultiplication",
+     "support": 157490,
+     "precision": 0.95660527461311,
+     "recall": 0.8093212267445552,
+     "f1": 0.8768212649450353
+    },
+    {
+     "idx": 2,
+     "class": "constantPositionOffset",
+     "support": 442475,
+     "precision": 0.6960881427214302,
+     "recall": 0.4653325046612803,
+     "f1": 0.5577866032389321
+    },
+    {
+     "idx": 3,
+     "class": "constantSpeedOffset",
+     "support": 433177,
+     "precision": 0.684688995215311,
+     "recall": 0.003303499493278729,
+     "f1": 0.006575274486694375
+    },
+    {
+     "idx": 4,
+     "class": "dataReplay",
+     "support": 475410,
+     "precision": 0.37363165609045823,
+     "recall": 0.36622283923350374,
+     "f1": 0.3698901521468717
+    },
+    {
+     "idx": 5,
+     "class": "dosAttack",
+     "support": 1574090,
+     "precision": 0.9679082171879141,
+     "recall": 0.9815055047678342,
+     "f1": 0.9746594399949784
+    },
+    {
+     "idx": 6,
+     "class": "feignedBraking",
+     "support": 118605,
+     "precision": 0.8522588058043358,
+     "recall": 0.9443362421483074,
+     "f1": 0.8959379899529645
+    },
+    {
+     "idx": 7,
+     "class": "positionMirroring",
+     "support": 467049,
+     "precision": 0.15815724041793167,
+     "recall": 0.505274607161133,
+     "f1": 0.24090745059487262
+    },
+    {
+     "idx": 8,
+     "class": "randomPositionOffset",
+     "support": 470279,
+     "precision": 0.6454408977305132,
+     "recall": 0.9818660837502844,
+     "f1": 0.7788776595430652
+    },
+    {
+     "idx": 9,
+     "class": "randomSpeedOffset",
+     "support": 542163,
+     "precision": 0.6016044995949628,
+     "recall": 0.9643372933970042,
+     "f1": 0.7409594116859255
+    },
+    {
+     "idx": 10,
+     "class": "reversedHeading",
+     "support": 269999,
+     "precision": 0.6968842949173615,
+     "recall": 0.9259071329893814,
+     "f1": 0.795234838483928
+    },
+    {
+     "idx": 11,
+     "class": "suddenConstantSpeed",
+     "support": 57757,
+     "precision": 0.22736637569082352,
+     "recall": 0.8063265058780754,
+     "f1": 0.35471180760515636
+    },
+    {
+     "idx": 12,
+     "class": "suddenStop",
+     "support": 211445,
+     "precision": 0.9845354250366686,
+     "recall": 0.14602851805434036,
+     "f1": 0.25433368889694286
+    },
+    {
+     "idx": 13,
+     "class": "timeDelayAttack",
+     "support": 490574,
+     "precision": 0.13410114573305468,
+     "recall": 0.0548031489642745,
+     "f1": 0.07780834287186152
+    },
+    {
+     "idx": 14,
+     "class": "trafficCongestionSybil",
+     "support": 2393335,
+     "precision": 0.9777553668350725,
+     "recall": 0.8835064878088525,
+     "f1": 0.9282446829642608
+    },
+    {
+     "idx": 15,
+     "class": "zeroSpeedReport",
+     "support": 266359,
+     "precision": 0.851353342830476,
+     "recall": 0.5855968824030725,
+     "f1": 0.6938999759771515
+    }
+   ]
+  },
+  {
+   "cid": 1,
+   "accuracy": 0.45944005316065106,
+   "precision_macro": 0.6312128243416111,
+   "precision_micro": 0.45944005316065106,
+   "precision_weighted": 0.7240314444806544,
+   "recall_macro": 0.686181631018778,
+   "recall_micro": 0.45944005316065106,
+   "recall_weighted": 0.45944005316065106,
+   "f1_macro": 0.5531269391530657,
+   "f1_micro": 0.45944005316065106,
+   "f1_weighted": 0.4019440276759557,
+   "per_class": [
+    {
+     "idx": 0,
+     "class": "benign",
+     "support": 2391136,
+     "precision": 0.6768905341089371,
+     "recall": 0.0005353104131258113,
+     "f1": 0.001069774808224061
+    },
+    {
+     "idx": 1,
+     "class": "accelerationMultiplication",
+     "support": 157490,
+     "precision": 0.8942369065441168,
+     "recall": 0.9785446695028256,
+     "f1": 0.9344931297524771
+    },
+    {
+     "idx": 2,
+     "class": "constantPositionOffset",
+     "support": 442475,
+     "precision": 0.31657547622488336,
+     "recall": 0.8961252048138313,
+     "f1": 0.4678669154008715
+    },
+    {
+     "idx": 3,
+     "class": "constantSpeedOffset",
+     "support": 433177,
+     "precision": 0.9840688752434366,
+     "recall": 0.6404079625649561,
+     "f1": 0.7758873857117685
+    },
+    {
+     "idx": 4,
+     "class": "dataReplay",
+     "support": 475410,
+     "precision": 0.1443169371518201,
+     "recall": 0.8236869228665783,
+     "f1": 0.24560227244931174
+    },
+    {
+     "idx": 5,
+     "class": "dosAttack",
+     "support": 1574090,
+     "precision": 0.9233715234057991,
+     "recall": 0.9960567693079811,
+     "f1": 0.9583379175621194
+    },
+    {
+     "idx": 6,
+     "class": "feignedBraking",
+     "support": 118605,
+     "precision": 0.7791564272369945,
+     "recall": 0.9810716242991442,
+     "f1": 0.8685332119158339
+    },
+    {
+     "idx": 7,
+     "class": "positionMirroring",
+     "support": 467049,
+     "precision": 0.14954700177018487,
+     "recall": 0.4809666651678946,
+     "f1": 0.22815404803692146
+    },
+    {
+     "idx": 8,
+     "class": "randomPositionOffset",
+     "support": 470279,
+     "precision": 0.5174138078343024,
+     "recall": 0.9786786141843459,
+     "f1": 0.6769392331095019
+    },
+    {
+     "idx": 9,
+     "class": "randomSpeedOffset",
+     "support": 542163,
+     "precision": 0.973213086152967,
+     "recall": 0.9486279956396877,
+     "f1": 0.9607632889046636
+    },
+    {
+     "idx": 10,
+     "class": "reversedHeading",
+     "support": 269999,
+     "precision": 0.43748814517073426,
+     "recall": 0.9823962310971522,
+     "f1": 0.6053826806589584
+    },
+    {
+     "idx": 11,
+     "class": "suddenConstantSpeed",
+     "support": 57757,
+     "precision": 0.27088315617620184,
+     "recall": 0.9393839707741053,
+     "f1": 0.4205076535555125
+    },
+    {
+     "idx": 12,
+     "class": "suddenStop",
+     "support": 211445,
+     "precision": 0.9521142965330925,
+     "recall": 0.6183688429615266,
+     "f1": 0.7497792253965341
+    },
+    {
+     "idx": 13,
+     "class": "timeDelayAttack",
+     "support": 490574,
+     "precision": 0.1429716517831943,
+     "recall": 0.07744397379396381,
+     "f1": 0.10046740402350904
+    },
+    {
+     "idx": 14,
+     "class": "trafficCongestionSybil",
+     "support": 2393335,
+     "precision": 0.9822946039784389,
+     "recall": 0.08558434151508251,
+     "f1": 0.15745049981570872
+    },
+    {
+     "idx": 15,
+     "class": "zeroSpeedReport",
+     "support": 266359,
+     "precision": 0.9548627601506743,
+     "recall": 0.5510269973982482,
+     "f1": 0.6987963853471342
+    }
+   ]
+  },
+  {
+   "cid": 2,
+   "accuracy": 0.6867240455024991,
+   "precision_macro": 0.7660893575474376,
+   "precision_micro": 0.6867240455024991,
+   "precision_weighted": 0.76484467193119,
+   "recall_macro": 0.6972640267684748,
+   "recall_micro": 0.6867240455024991,
+   "recall_weighted": 0.6867240455024991,
+   "f1_macro": 0.6811699634110702,
+   "f1_micro": 0.6867240455024991,
+   "f1_weighted": 0.6884263361194882,
+   "per_class": [
+    {
+     "idx": 0,
+     "class": "benign",
+     "support": 2391136,
+     "precision": 0.586592214530592,
+     "recall": 0.6515304859280275,
+     "f1": 0.6173583772160031
+    },
+    {
+     "idx": 1,
+     "class": "accelerationMultiplication",
+     "support": 157490,
+     "precision": 0.9364128381096335,
+     "recall": 0.9755603530382881,
+     "f1": 0.9555858242838129
+    },
+    {
+     "idx": 2,
+     "class": "constantPositionOffset",
+     "support": 442475,
+     "precision": 0.8385158535857169,
+     "recall": 0.7616769309000508,
+     "f1": 0.798251545766654
+    },
+    {
+     "idx": 3,
+     "class": "constantSpeedOffset",
+     "support": 433177,
+     "precision": 0.9952697331619184,
+     "recall": 0.2341190783444181,
+     "f1": 0.37906906334450935
+    },
+    {
+     "idx": 4,
+     "class": "dataReplay",
+     "support": 475410,
+     "precision": 0.9159222218267667,
+     "recall": 0.4871836940745882,
+     "f1": 0.6360494478108097
+    },
+    {
+     "idx": 5,
+     "class": "dosAttack",
+     "support": 1574090,
+     "precision": 0.9668787566175153,
+     "recall": 0.9943478454217992,
+     "f1": 0.9804209339471953
+    },
+    {
+     "idx": 6,
+     "class": "feignedBraking",
+     "support": 118605,
+     "precision": 0.9493477037184199,
+     "recall": 0.9669491168163231,
+     "f1": 0.958067574736121
+    },
+    {
+     "idx": 7,
+     "class": "positionMirroring",
+     "support": 467049,
+     "precision": 0.16361518908767478,
+     "recall": 0.48760408436802133,
+     "f1": 0.24501558143525648
+    },
+    {
+     "idx": 8,
+     "class": "randomPositionOffset",
+     "support": 470279,
+     "precision": 0.43936681705821967,
+     "recall": 0.9838117372878653,
+     "f1": 0.6074490516691305
+    },
+    {
+     "idx": 9,
+     "class": "randomSpeedOffset",
+     "support": 542163,
+     "precision": 0.7370031263645583,
+     "recall": 0.9744099099348351,
+     "f1": 0.8392400136619618
+    },
+    {
+     "idx": 10,
+     "class": "reversedHeading",
+     "support": 269999,
+     "precision": 0.8114314422389824,
+     "recall": 0.9631035670502484,
+     "f1": 0.8807856845271362
+    },
+    {
+     "idx": 11,
+     "class": "suddenConstantSpeed",
+     "support": 57757,
+     "precision": 0.9856333072713057,
+     "recall": 0.3492217393562685,
+     "f1": 0.5157182853709362
+    },
+    {
+     "idx": 12,
+     "class": "suddenStop",
+     "support": 211445,
+     "precision": 0.9940376528929845,
+     "recall": 0.7356475679254653,
+     "f1": 0.8455427299437117
+    },
+    {
+     "idx": 13,
+     "class": "timeDelayAttack",
+     "support": 490574,
+     "precision": 0.15057856272838002,
+     "recall": 0.008064022960858097,
+     "f1": 0.015308234948127683
+    },
+    {
+     "idx": 14,
+     "class": "trafficCongestionSybil",
+     "support": 2393335,
+     "precision": 0.9825672924472022,
+     "recall": 0.5870114296577787,
+     "f1": 0.7349465470593035
+    },
+    {
+     "idx": 15,
+     "class": "zeroSpeedReport",
+     "support": 266359,
+     "precision": 0.8042570091191308,
+     "recall": 0.99598286523076,
+     "f1": 0.8899105188564528
+    }
+   ]
+  },
+  {
+   "cid": 3,
+   "accuracy": 0.6086403899587626,
+   "precision_macro": 0.6917252928761002,
+   "precision_micro": 0.6086403899587626,
+   "precision_weighted": 0.7337174621846352,
+   "recall_macro": 0.7333455272416729,
+   "recall_micro": 0.6086403899587626,
+   "recall_weighted": 0.6086403899587627,
+   "f1_macro": 0.6626641270750677,
+   "f1_micro": 0.6086403899587626,
+   "f1_weighted": 0.6103975884192152,
+   "per_class": [
+    {
+     "idx": 0,
+     "class": "benign",
+     "support": 2391136,
+     "precision": 0.615082709177759,
+     "recall": 0.25030153031864355,
+     "f1": 0.3558099081381994
+    },
+    {
+     "idx": 1,
+     "class": "accelerationMultiplication",
+     "support": 157490,
+     "precision": 0.9452029497580854,
+     "recall": 0.9749952377928758,
+     "f1": 0.9598679768959569
+    },
+    {
+     "idx": 2,
+     "class": "constantPositionOffset",
+     "support": 442475,
+     "precision": 0.3406761052402931,
+     "recall": 0.9109531611955478,
+     "f1": 0.4958976005669173
+    },
+    {
+     "idx": 3,
+     "class": "constantSpeedOffset",
+     "support": 433177,
+     "precision": 0.759678413663042,
+     "recall": 0.9615422794839061,
+     "f1": 0.8487731020857724
+    },
+    {
+     "idx": 4,
+     "class": "dataReplay",
+     "support": 475410,
+     "precision": 0.1509422063452084,
+     "recall": 0.8256704739067331,
+     "f1": 0.25522610051187355
+    },
+    {
+     "idx": 5,
+     "class": "dosAttack",
+     "support": 1574090,
+     "precision": 0.9574854384600713,
+     "recall": 0.995032050263962,
+     "f1": 0.9758977365692328
+    },
+    {
+     "idx": 6,
+     "class": "feignedBraking",
+     "support": 118605,
+     "precision": 0.732952443070285,
+     "recall": 0.9853716116521226,
+     "f1": 0.8406220329717756
+    },
+    {
+     "idx": 7,
+     "class": "positionMirroring",
+     "support": 467049,
+     "precision": 0.3609596063153578,
+     "recall": 0.018845988322424415,
+     "f1": 0.035821697318459855
+    },
+    {
+     "idx": 8,
+     "class": "randomPositionOffset",
+     "support": 470279,
+     "precision": 0.6979336500956517,
+     "recall": 0.9767010646871326,
+     "f1": 0.8141149029241508
+    },
+    {
+     "idx": 9,
+     "class": "randomSpeedOffset",
+     "support": 542163,
+     "precision": 0.9953084084233584,
+     "recall": 0.9218980269771267,
+     "f1": 0.9571977654743962
+    },
+    {
+     "idx": 10,
+     "class": "reversedHeading",
+     "support": 269999,
+     "precision": 0.6717809775267101,
+     "recall": 0.9725036018651921,
+     "f1": 0.7946427625695491
+    },
+    {
+     "idx": 11,
+     "class": "suddenConstantSpeed",
+     "support": 57757,
+     "precision": 0.8697430304682707,
+     "recall": 0.6627768062745641,
+     "f1": 0.7522845632308146
+    },
+    {
+     "idx": 12,
+     "class": "suddenStop",
+     "support": 211445,
+     "precision": 0.9118285610622473,
+     "recall": 0.7369103076450141,
+     "f1": 0.8150907074553786
+    },
+    {
+     "idx": 13,
+     "class": "timeDelayAttack",
+     "support": 490574,
+     "precision": 0.15758126618586743,
+     "recall": 0.07032782006384358,
+     "f1": 0.0972523484351987
+    },
+    {
+     "idx": 14,
+     "class": "trafficCongestionSybil",
+     "support": 2393335,
+     "precision": 0.9808066637221747,
+     "recall": 0.4945446416820044,
+     "f1": 0.6575419404084544
+    },
+    {
+     "idx": 15,
+     "class": "zeroSpeedReport",
+     "support": 266359,
+     "precision": 0.9196422565032202,
+     "recall": 0.9751538337356725,
+     "f1": 0.9465848876449537
+    }
+   ]
+  },
+  {
+   "cid": 4,
+   "accuracy": 0.6688857515274813,
+   "precision_macro": 0.6835668333964158,
+   "precision_micro": 0.6688857515274813,
+   "precision_weighted": 0.757501594684118,
+   "recall_macro": 0.7273250247123918,
+   "recall_micro": 0.6688857515274813,
+   "recall_weighted": 0.6688857515274813,
+   "f1_macro": 0.6475991140655601,
+   "f1_micro": 0.6688857515274813,
+   "f1_weighted": 0.6693037339987276,
+   "per_class": [
+    {
+     "idx": 0,
+     "class": "benign",
+     "support": 2391136,
+     "precision": 0.6334823934023216,
+     "recall": 0.2506632830587637,
+     "f1": 0.3591959576746021
+    },
+    {
+     "idx": 1,
+     "class": "accelerationMultiplication",
+     "support": 157490,
+     "precision": 0.9025274375508375,
+     "recall": 0.9722585560988,
+     "f1": 0.9360962011077556
+    },
+    {
+     "idx": 2,
+     "class": "constantPositionOffset",
+     "support": 442475,
+     "precision": 0.4216764856490044,
+     "recall": 0.906344991242443,
+     "f1": 0.5755695632080969
+    },
+    {
+     "idx": 3,
+     "class": "constantSpeedOffset",
+     "support": 433177,
+     "precision": 0.6937117630878938,
+     "recall": 0.9373789467123139,
+     "f1": 0.7973447434875327
+    },
+    {
+     "idx": 4,
+     "class": "dataReplay",
+     "support": 475410,
+     "precision": 0.34557273386312015,
+     "recall": 0.6326980921730717,
+     "f1": 0.4469993453819708
+    },
+    {
+     "idx": 5,
+     "class": "dosAttack",
+     "support": 1574090,
+     "precision": 0.9684861039527416,
+     "recall": 0.9932087745935747,
+     "f1": 0.980691652955342
+    },
+    {
+     "idx": 6,
+     "class": "feignedBraking",
+     "support": 118605,
+     "precision": 0.7066002460324227,
+     "recall": 0.9782724168458328,
+     "f1": 0.8205338547651966
+    },
+    {
+     "idx": 7,
+     "class": "positionMirroring",
+     "support": 467049,
+     "precision": 0.2964458496819169,
+     "recall": 0.016662063295285932,
+     "f1": 0.03155078045813906
+    },
+    {
+     "idx": 8,
+     "class": "randomPositionOffset",
+     "support": 470279,
+     "precision": 0.9584126428638494,
+     "recall": 0.9550479608913007,
+     "f1": 0.9567273436027212
+    },
+    {
+     "idx": 9,
+     "class": "randomSpeedOffset",
+     "support": 542163,
+     "precision": 0.9948178458663117,
+     "recall": 0.5183754701076982,
+     "f1": 0.6815905979475452
+    },
+    {
+     "idx": 10,
+     "class": "reversedHeading",
+     "support": 269999,
+     "precision": 0.888836859853581,
+     "recall": 0.9420553409457072,
+     "f1": 0.9146726505131579
+    },
+    {
+     "idx": 11,
+     "class": "suddenConstantSpeed",
+     "support": 57757,
+     "precision": 0.21989630795900028,
+     "recall": 0.9575808992849352,
+     "f1": 0.3576604337296416
+    },
+    {
+     "idx": 12,
+     "class": "suddenStop",
+     "support": 211445,
+     "precision": 0.796637548561079,
+     "recall": 0.8466409704651328,
+     "f1": 0.8208784809313971
+    },
+    {
+     "idx": 13,
+     "class": "timeDelayAttack",
+     "support": 490574,
+     "precision": 0.14078011666844154,
+     "recall": 0.48505424258113966,
+     "f1": 0.21822385381005613
+    },
+    {
+     "idx": 14,
+     "class": "trafficCongestionSybil",
+     "support": 2393335,
+     "precision": 0.9835366703733763,
+     "recall": 0.8754720922896293,
+     "f1": 0.9263634727809456
+    },
+    {
+     "idx": 15,
+     "class": "zeroSpeedReport",
+     "support": 266359,
+     "precision": 0.9856483289767549,
+     "recall": 0.36948629481264006,
+     "f1": 0.5374868926948619
+    }
+   ]
+  },
+  {
+   "cid": 5,
+   "accuracy": 0.6551422066929751,
+   "precision_macro": 0.7262501418916602,
+   "precision_micro": 0.6551422066929751,
+   "precision_weighted": 0.7515387174192085,
+   "recall_macro": 0.6912268210286976,
+   "recall_micro": 0.6551422066929751,
+   "recall_weighted": 0.6551422066929751,
+   "f1_macro": 0.6723519507951036,
+   "f1_micro": 0.6551422066929751,
+   "f1_weighted": 0.6745378971464695,
+   "per_class": [
+    {
+     "idx": 0,
+     "class": "benign",
+     "support": 2391136,
+     "precision": 0.5947774554533298,
+     "recall": 0.4479377166334328,
+     "f1": 0.5110182769617151
+    },
+    {
+     "idx": 1,
+     "class": "accelerationMultiplication",
+     "support": 157490,
+     "precision": 0.8393413004201223,
+     "recall": 0.9793256714712045,
+     "f1": 0.9039461268410471
+    },
+    {
+     "idx": 2,
+     "class": "constantPositionOffset",
+     "support": 442475,
+     "precision": 0.9031085528201718,
+     "recall": 0.5340030510198316,
+     "f1": 0.6711555613627455
+    },
+    {
+     "idx": 3,
+     "class": "constantSpeedOffset",
+     "support": 433177,
+     "precision": 0.9051800133996262,
+     "recall": 0.5925984066559398,
+     "f1": 0.71627181496916
+    },
+    {
+     "idx": 4,
+     "class": "dataReplay",
+     "support": 475410,
+     "precision": 0.16599887141671585,
+     "recall": 0.8124524094991692,
+     "f1": 0.27567276099922167
+    },
+    {
+     "idx": 5,
+     "class": "dosAttack",
+     "support": 1574090,
+     "precision": 0.9706155882469802,
+     "recall": 0.9932221156350654,
+     "f1": 0.9817887355165499
+    },
+    {
+     "idx": 6,
+     "class": "feignedBraking",
+     "support": 118605,
+     "precision": 0.8824097135740971,
+     "recall": 0.9558787572193415,
+     "f1": 0.9176761033652387
+    },
+    {
+     "idx": 7,
+     "class": "positionMirroring",
+     "support": 467049,
+     "precision": 0.20868707126254324,
+     "recall": 0.25220694188404214,
+     "f1": 0.22839232688025268
+    },
+    {
+     "idx": 8,
+     "class": "randomPositionOffset",
+     "support": 470279,
+     "precision": 0.6886632115025464,
+     "recall": 0.9762013613195571,
+     "f1": 0.807601982207977
+    },
+    {
+     "idx": 9,
+     "class": "randomSpeedOffset",
+     "support": 542163,
+     "precision": 0.9881275309652059,
+     "recall": 0.7061547910868133,
+     "f1": 0.8236773542567131
+    },
+    {
+     "idx": 10,
+     "class": "reversedHeading",
+     "support": 269999,
+     "precision": 0.6396796044644318,
+     "recall": 0.9698739624961574,
+     "f1": 0.7709076671259172
+    },
+    {
+     "idx": 11,
+     "class": "suddenConstantSpeed",
+     "support": 57757,
+     "precision": 0.9107823650167812,
+     "recall": 0.4839413404435826,
+     "f1": 0.6320466725459603
+    },
+    {
+     "idx": 12,
+     "class": "suddenStop",
+     "support": 211445,
+     "precision": 0.9245777592501357,
+     "recall": 0.6922887748587103,
+     "f1": 0.7917472354212247
+    },
+    {
+     "idx": 13,
+     "class": "timeDelayAttack",
+     "support": 490574,
+     "precision": 0.14906352577717707,
+     "recall": 0.0015736667658701848,
+     "f1": 0.0031144541737518484
+    },
+    {
+     "idx": 14,
+     "class": "trafficCongestionSybil",
+     "support": 2393335,
+     "precision": 0.9810044942490811,
+     "recall": 0.6720768300300627,
+     "f1": 0.79767447742194
+    },
+    {
+     "idx": 15,
+     "class": "zeroSpeedReport",
+     "support": 266359,
+     "precision": 0.8679852124476164,
+     "recall": 0.9898933394403794,
+     "f1": 0.924939662672242
+    }
+   ]
+  },
+  {
+   "cid": 6,
+   "accuracy": 0.7169531721087229,
+   "precision_macro": 0.7044306989248064,
+   "precision_micro": 0.7169531721087229,
+   "precision_weighted": 0.7434806971901771,
+   "recall_macro": 0.6896409242600705,
+   "recall_micro": 0.7169531721087229,
+   "recall_weighted": 0.716953172108723,
+   "f1_macro": 0.6772838652797359,
+   "f1_micro": 0.7169531721087229,
+   "f1_weighted": 0.7196129327007821,
+   "per_class": [
+    {
+     "idx": 0,
+     "class": "benign",
+     "support": 2391136,
+     "precision": 0.5974999335187965,
+     "recall": 0.5356111070219344,
+     "f1": 0.5648653828045215
+    },
+    {
+     "idx": 1,
+     "class": "accelerationMultiplication",
+     "support": 157490,
+     "precision": 0.911753873205969,
+     "recall": 0.9745444155184456,
+     "f1": 0.9421040678153371
+    },
+    {
+     "idx": 2,
+     "class": "constantPositionOffset",
+     "support": 442475,
+     "precision": 0.6482517414954156,
+     "recall": 0.6065517825865868,
+     "f1": 0.6267088700704155
+    },
+    {
+     "idx": 3,
+     "class": "constantSpeedOffset",
+     "support": 433177,
+     "precision": 0.6927643948555439,
+     "recall": 0.9058791210059629,
+     "f1": 0.7851166252505972
+    },
+    {
+     "idx": 4,
+     "class": "dataReplay",
+     "support": 475410,
+     "precision": 0.23397041081973458,
+     "recall": 0.5425548473948802,
+     "f1": 0.32694823302742987
+    },
+    {
+     "idx": 5,
+     "class": "dosAttack",
+     "support": 1574090,
+     "precision": 0.9879678651116636,
+     "recall": 0.9696237191011949,
+     "f1": 0.9787098426940066
+    },
+    {
+     "idx": 6,
+     "class": "feignedBraking",
+     "support": 118605,
+     "precision": 0.9534715017165608,
+     "recall": 0.9530373930272754,
+     "f1": 0.9532543979490293
+    },
+    {
+     "idx": 7,
+     "class": "positionMirroring",
+     "support": 467049,
+     "precision": 0.1965467561454453,
+     "recall": 0.28187192350267315,
+     "f1": 0.2316005397350935
+    },
+    {
+     "idx": 8,
+     "class": "randomPositionOffset",
+     "support": 470279,
+     "precision": 0.688334314477969,
+     "recall": 0.9821021138515648,
+     "f1": 0.8093867851785389
+    },
+    {
+     "idx": 9,
+     "class": "randomSpeedOffset",
+     "support": 542163,
+     "precision": 0.9391200445981295,
+     "recall": 0.8886497234226607,
+     "f1": 0.9131880639392563
+    },
+    {
+     "idx": 10,
+     "class": "reversedHeading",
+     "support": 269999,
+     "precision": 0.9589571761522485,
+     "recall": 0.67204322978974,
+     "f1": 0.7902642765060451
+    },
+    {
+     "idx": 11,
+     "class": "suddenConstantSpeed",
+     "support": 57757,
+     "precision": 0.4681160200182963,
+     "recall": 0.602455113665876,
+     "f1": 0.5268568919440679
+    },
+    {
+     "idx": 12,
+     "class": "suddenStop",
+     "support": 211445,
+     "precision": 0.9794632550981146,
+     "recall": 0.3852538485185273,
+     "f1": 0.5529966430537688
+    },
+    {
+     "idx": 13,
+     "class": "timeDelayAttack",
+     "support": 490574,
+     "precision": 0.12905435050134298,
+     "recall": 0.024583447145588636,
+     "f1": 0.04129974333202631
+    },
+    {
+     "idx": 14,
+     "class": "trafficCongestionSybil",
+     "support": 2393335,
+     "precision": 0.9773875212224109,
+     "recall": 0.8851694392970478,
+     "f1": 0.9289955501764472
+    },
+    {
+     "idx": 15,
+     "class": "zeroSpeedReport",
+     "support": 266359,
+     "precision": 0.9082320238592602,
+     "recall": 0.8243235633111703,
+     "f1": 0.8642459309991931
+    }
+   ]
+  },
+  {
+   "cid": 7,
+   "accuracy": 0.6287817422044814,
+   "precision_macro": 0.7311076007785693,
+   "precision_micro": 0.6287817422044814,
+   "precision_weighted": 0.754053786987704,
+   "recall_macro": 0.6861179159968191,
+   "recall_micro": 0.6287817422044814,
+   "recall_weighted": 0.6287817422044814,
+   "f1_macro": 0.6737531942380186,
+   "f1_micro": 0.6287817422044814,
+   "f1_weighted": 0.6428901494903476,
+   "per_class": [
+    {
+     "idx": 0,
+     "class": "benign",
+     "support": 2391136,
+     "precision": 0.61367751942587,
+     "recall": 0.1383254653854904,
+     "f1": 0.2257630094180829
+    },
+    {
+     "idx": 1,
+     "class": "accelerationMultiplication",
+     "support": 157490,
+     "precision": 0.9583275039745628,
+     "recall": 0.9568671026731856,
+     "f1": 0.9575967465209378
+    },
+    {
+     "idx": 2,
+     "class": "constantPositionOffset",
+     "support": 442475,
+     "precision": 0.5818594972934475,
+     "recall": 0.707172156619018,
+     "f1": 0.6384247187434965
+    },
+    {
+     "idx": 3,
+     "class": "constantSpeedOffset",
+     "support": 433177,
+     "precision": 0.6326226576302604,
+     "recall": 0.8067856788333637,
+     "f1": 0.7091676313832361
+    },
+    {
+     "idx": 4,
+     "class": "dataReplay",
+     "support": 475410,
+     "precision": 0.37589742881561644,
+     "recall": 0.515304684377695,
+     "f1": 0.4346975911449669
+    },
+    {
+     "idx": 5,
+     "class": "dosAttack",
+     "support": 1574090,
+     "precision": 0.9976076307564999,
+     "recall": 0.857785768285168,
+     "f1": 0.9224282337509735
+    },
+    {
+     "idx": 6,
+     "class": "feignedBraking",
+     "support": 118605,
+     "precision": 0.8221126870600937,
+     "recall": 0.9759369335188229,
+     "f1": 0.8924449310336853
+    },
+    {
+     "idx": 7,
+     "class": "positionMirroring",
+     "support": 467049,
+     "precision": 0.11894738326294566,
+     "recall": 0.6863776605880754,
+     "f1": 0.2027574512439902
+    },
+    {
+     "idx": 8,
+     "class": "randomPositionOffset",
+     "support": 470279,
+     "precision": 0.9854342965669776,
+     "recall": 0.697290331909356,
+     "f1": 0.8166919246320578
+    },
+    {
+     "idx": 9,
+     "class": "randomSpeedOffset",
+     "support": 542163,
+     "precision": 0.8647497892971356,
+     "recall": 0.9481299904272331,
+     "f1": 0.9045224273756337
+    },
+    {
+     "idx": 10,
+     "class": "reversedHeading",
+     "support": 269999,
+     "precision": 0.9973310227984806,
+     "recall": 0.47747584250312036,
+     "f1": 0.6457814668062575
+    },
+    {
+     "idx": 11,
+     "class": "suddenConstantSpeed",
+     "support": 57757,
+     "precision": 0.8061968253968254,
+     "recall": 0.5496130339179667,
+     "f1": 0.6536259934933905
+    },
+    {
+     "idx": 12,
+     "class": "suddenStop",
+     "support": 211445,
+     "precision": 0.9519889635785076,
+     "recall": 0.6918820497055972,
+     "f1": 0.8013573693983862
+    },
+    {
+     "idx": 13,
+     "class": "timeDelayAttack",
+     "support": 490574,
+     "precision": 0.13977647618527675,
+     "recall": 0.10959814421473621,
+     "f1": 0.12286127890808254
+    },
+    {
+     "idx": 14,
+     "class": "trafficCongestionSybil",
+     "support": 2393335,
+     "precision": 0.9645993736902828,
+     "recall": 0.8901010514616633,
+     "f1": 0.9258540140687601
+    },
+    {
+     "idx": 15,
+     "class": "zeroSpeedReport",
+     "support": 266359,
+     "precision": 0.8865925567243268,
+     "recall": 0.9692407615286136,
+     "f1": 0.9260763198863595
+    }
+   ]
+  },
+  {
+   "cid": 8,
+   "accuracy": 0.6701215638234002,
+   "precision_macro": 0.649472452596313,
+   "precision_micro": 0.6701215638234002,
+   "precision_weighted": 0.7132528983994784,
+   "recall_macro": 0.7023359139188663,
+   "recall_micro": 0.6701215638234002,
+   "recall_weighted": 0.6701215638234002,
+   "f1_macro": 0.6521929145273613,
+   "f1_micro": 0.6701215638234002,
+   "f1_weighted": 0.6697923654482694,
+   "per_class": [
+    {
+     "idx": 0,
+     "class": "benign",
+     "support": 2391136,
+     "precision": 0.5588582976490035,
+     "recall": 0.6194356991823133,
+     "f1": 0.5875898227080693
+    },
+    {
+     "idx": 1,
+     "class": "accelerationMultiplication",
+     "support": 157490,
+     "precision": 0.8923532394267698,
+     "recall": 0.9722395072703028,
+     "f1": 0.9305850570835575
+    },
+    {
+     "idx": 2,
+     "class": "constantPositionOffset",
+     "support": 442475,
+     "precision": 0.49859219892834883,
+     "recall": 0.7720006780044071,
+     "f1": 0.6058801723327534
+    },
+    {
+     "idx": 3,
+     "class": "constantSpeedOffset",
+     "support": 433177,
+     "precision": 0.6064515826524042,
+     "recall": 0.8957423870611783,
+     "f1": 0.7232413379820297
+    },
+    {
+     "idx": 4,
+     "class": "dataReplay",
+     "support": 475410,
+     "precision": 0.2727468988132053,
+     "recall": 0.3933026229990955,
+     "f1": 0.32211439902011624
+    },
+    {
+     "idx": 5,
+     "class": "dosAttack",
+     "support": 1574090,
+     "precision": 0.9820541747443361,
+     "recall": 0.9545083190923009,
+     "f1": 0.968085339436371
+    },
+    {
+     "idx": 6,
+     "class": "feignedBraking",
+     "support": 118605,
+     "precision": 0.8215431104522714,
+     "recall": 0.9719151806416255,
+     "f1": 0.890425190889815
+    },
+    {
+     "idx": 7,
+     "class": "positionMirroring",
+     "support": 467049,
+     "precision": 0.18216049126592257,
+     "recall": 0.03759990921723417,
+     "f1": 0.0623335043029321
+    },
+    {
+     "idx": 8,
+     "class": "randomPositionOffset",
+     "support": 470279,
+     "precision": 0.980994777636224,
+     "recall": 0.8579821765377573,
+     "f1": 0.9153742058356124
+    },
+    {
+     "idx": 9,
+     "class": "randomSpeedOffset",
+     "support": 542163,
+     "precision": 0.8902600408441116,
+     "recall": 0.9045656011199584,
+     "f1": 0.8973558101365186
+    },
+    {
+     "idx": 10,
+     "class": "reversedHeading",
+     "support": 269999,
+     "precision": 0.3648771396368329,
+     "recall": 0.9759850962410972,
+     "f1": 0.5311726152261488
+    },
+    {
+     "idx": 11,
+     "class": "suddenConstantSpeed",
+     "support": 57757,
+     "precision": 0.7844021819254018,
+     "recall": 0.4606021780909673,
+     "f1": 0.5803953224539663
+    },
+    {
+     "idx": 12,
+     "class": "suddenStop",
+     "support": 211445,
+     "precision": 0.6141860349146314,
+     "recall": 0.7572371065761782,
+     "f1": 0.6782508503869632
+    },
+    {
+     "idx": 13,
+     "class": "timeDelayAttack",
+     "support": 490574,
+     "precision": 0.11877109137195738,
+     "recall": 0.11859169055025337,
+     "f1": 0.11868132316476729
+    },
+    {
+     "idx": 14,
+     "class": "trafficCongestionSybil",
+     "support": 2393335,
+     "precision": 0.9853237274840314,
+     "recall": 0.5694501605500275,
+     "f1": 0.7217676591147406
+    },
+    {
+     "idx": 15,
+     "class": "zeroSpeedReport",
+     "support": 266359,
+     "precision": 0.8379842537955572,
+     "recall": 0.9762163095671631,
+     "f1": 0.9018340223634195
+    }
+   ]
+  },
+  {
+   "cid": 9,
+   "accuracy": 0.48293386801257054,
+   "precision_macro": 0.679926696555885,
+   "precision_micro": 0.48293386801257054,
+   "precision_weighted": 0.6980808880111935,
+   "recall_macro": 0.7036994792319171,
+   "recall_micro": 0.48293386801257054,
+   "recall_weighted": 0.48293386801257054,
+   "f1_macro": 0.6116618243180802,
+   "f1_micro": 0.48293386801257054,
+   "f1_weighted": 0.43014109797575695,
+   "per_class": [
+    {
+     "idx": 0,
+     "class": "benign",
+     "support": 2391136,
+     "precision": 0.49275842263490965,
+     "recall": 0.0796525166280797,
+     "f1": 0.13713731083857095
+    },
+    {
+     "idx": 1,
+     "class": "accelerationMultiplication",
+     "support": 157490,
+     "precision": 0.9994344538776939,
+     "recall": 0.942567782081402,
+     "f1": 0.9701685189481699
+    },
+    {
+     "idx": 2,
+     "class": "constantPositionOffset",
+     "support": 442475,
+     "precision": 0.9322948500282966,
+     "recall": 0.7446138199898299,
+     "f1": 0.8279516255693419
+    },
+    {
+     "idx": 3,
+     "class": "constantSpeedOffset",
+     "support": 433177,
+     "precision": 0.6791948501670799,
+     "recall": 0.9309289274361289,
+     "f1": 0.7853832633008897
+    },
+    {
+     "idx": 4,
+     "class": "dataReplay",
+     "support": 475410,
+     "precision": 0.24213153697519887,
+     "recall": 0.5284890936244505,
+     "f1": 0.33210602320455496
+    },
+    {
+     "idx": 5,
+     "class": "dosAttack",
+     "support": 1574090,
+     "precision": 0.9766394167131521,
+     "recall": 0.9932481624303566,
+     "f1": 0.9848737727755628
+    },
+    {
+     "idx": 6,
+     "class": "feignedBraking",
+     "support": 118605,
+     "precision": 0.9581461959561378,
+     "recall": 0.9533071961553055,
+     "f1": 0.9557205708948444
+    },
+    {
+     "idx": 7,
+     "class": "positionMirroring",
+     "support": 467049,
+     "precision": 0.24861087890797873,
+     "recall": 0.10825202494813178,
+     "f1": 0.15082896414907182
+    },
+    {
+     "idx": 8,
+     "class": "randomPositionOffset",
+     "support": 470279,
+     "precision": 0.5428021093924339,
+     "recall": 0.9827315274549788,
+     "f1": 0.6993339683697394
+    },
+    {
+     "idx": 9,
+     "class": "randomSpeedOffset",
+     "support": 542163,
+     "precision": 0.6064960131012029,
+     "recall": 0.9754501874897402,
+     "f1": 0.7479478751810282
+    },
+    {
+     "idx": 10,
+     "class": "reversedHeading",
+     "support": 269999,
+     "precision": 0.41885458559050026,
+     "recall": 0.978236956433172,
+     "f1": 0.5865600394411176
+    },
+    {
+     "idx": 11,
+     "class": "suddenConstantSpeed",
+     "support": 57757,
+     "precision": 0.9795327612041956,
+     "recall": 0.49800024239486124,
+     "f1": 0.6603000424696687
+    },
+    {
+     "idx": 12,
+     "class": "suddenStop",
+     "support": 211445,
+     "precision": 0.8754212129819929,
+     "recall": 0.7433327815744047,
+     "f1": 0.8039878665732277
+    },
+    {
+     "idx": 13,
+     "class": "timeDelayAttack",
+     "support": 490574,
+     "precision": 0.11373964968506607,
+     "recall": 0.7827504107433333,
+     "f1": 0.19861850440649453
+    },
+    {
+     "idx": 14,
+     "class": "trafficCongestionSybil",
+     "support": 2393335,
+     "precision": 0.9921217578003255,
+     "recall": 0.023941069678920835,
+     "f1": 0.046753912240640794
+    },
+    {
+     "idx": 15,
+     "class": "zeroSpeedReport",
+     "support": 266359,
+     "precision": 0.8206484498779932,
+     "recall": 0.9936889686475772,
+     "f1": 0.8989169307263596
+    }
+   ]
+  },
+  {
+   "cid": 10,
+   "accuracy": 0.618639792449697,
+   "precision_macro": 0.6817041454496073,
+   "precision_micro": 0.618639792449697,
+   "precision_weighted": 0.7398524851991928,
+   "recall_macro": 0.6988478818291375,
+   "recall_micro": 0.618639792449697,
+   "recall_weighted": 0.618639792449697,
+   "f1_macro": 0.6350917653424528,
+   "f1_micro": 0.618639792449697,
+   "f1_weighted": 0.5991900252077,
+   "per_class": [
+    {
+     "idx": 0,
+     "class": "benign",
+     "support": 2391136,
+     "precision": 0.6206864827152637,
+     "recall": 0.03385754720768706,
+     "f1": 0.06421240108836997
+    },
+    {
+     "idx": 1,
+     "class": "accelerationMultiplication",
+     "support": 157490,
+     "precision": 0.8470935130581297,
+     "recall": 0.9832179820941012,
+     "f1": 0.9100938028963702
+    },
+    {
+     "idx": 2,
+     "class": "constantPositionOffset",
+     "support": 442475,
+     "precision": 0.587517207211686,
+     "recall": 0.7745454545454545,
+     "f1": 0.6681906715304843
+    },
+    {
+     "idx": 3,
+     "class": "constantSpeedOffset",
+     "support": 433177,
+     "precision": 0.8032004867341346,
+     "recall": 0.7070412325677494,
+     "f1": 0.7520595609052982
+    },
+    {
+     "idx": 4,
+     "class": "dataReplay",
+     "support": 475410,
+     "precision": 0.23508758162323765,
+     "recall": 0.781363454702257,
+     "f1": 0.36143176281028405
+    },
+    {
+     "idx": 5,
+     "class": "dosAttack",
+     "support": 1574090,
+     "precision": 0.9603086674224467,
+     "recall": 0.9944812558367057,
+     "f1": 0.9770962682034857
+    },
+    {
+     "idx": 6,
+     "class": "feignedBraking",
+     "support": 118605,
+     "precision": 0.9616996283049302,
+     "recall": 0.9249441423211501,
+     "f1": 0.9429638511756642
+    },
+    {
+     "idx": 7,
+     "class": "positionMirroring",
+     "support": 467049,
+     "precision": 0.16568795122781171,
+     "recall": 0.36071804029127563,
+     "f1": 0.22707428877965413
+    },
+    {
+     "idx": 8,
+     "class": "randomPositionOffset",
+     "support": 470279,
+     "precision": 0.9446443440631971,
+     "recall": 0.9311600135238869,
+     "f1": 0.9378537123398423
+    },
+    {
+     "idx": 9,
+     "class": "randomSpeedOffset",
+     "support": 542163,
+     "precision": 0.8610122478988086,
+     "recall": 0.9504337256507729,
+     "f1": 0.9035158547929089
+    },
+    {
+     "idx": 10,
+     "class": "reversedHeading",
+     "support": 269999,
+     "precision": 0.8118258014013785,
+     "recall": 0.9449146107948548,
+     "f1": 0.873328871856927
+    },
+    {
+     "idx": 11,
+     "class": "suddenConstantSpeed",
+     "support": 57757,
+     "precision": 0.5925580634609093,
+     "recall": 0.6272659591045241,
+     "f1": 0.6094182359521265
+    },
+    {
+     "idx": 12,
+     "class": "suddenStop",
+     "support": 211445,
+     "precision": 0.6222222222222222,
+     "recall": 0.00013242214287403345,
+     "f1": 0.000264787933235614
+    },
+    {
+     "idx": 13,
+     "class": "timeDelayAttack",
+     "support": 490574,
+     "precision": 0.1408578601212456,
+     "recall": 0.4284470844357834,
+     "f1": 0.21201340359258244
+    },
+    {
+     "idx": 14,
+     "class": "trafficCongestionSybil",
+     "support": 2393335,
+     "precision": 0.9823853476763889,
+     "recall": 0.7708498810237597,
+     "f1": 0.8638562766472261
+    },
+    {
+     "idx": 15,
+     "class": "zeroSpeedReport",
+     "support": 266359,
+     "precision": 0.7704789220519256,
+     "recall": 0.9681933030233631,
+     "f1": 0.8580944949747865
+    }
+   ]
+  },
+  {
+   "cid": 11,
+   "accuracy": 0.5936389166296437,
+   "precision_macro": 0.6989322494272725,
+   "precision_micro": 0.5936389166296437,
+   "precision_weighted": 0.7256034689509145,
+   "recall_macro": 0.6859361236848824,
+   "recall_micro": 0.5936389166296437,
+   "recall_weighted": 0.5936389166296436,
+   "f1_macro": 0.6376554643317438,
+   "f1_micro": 0.5936389166296437,
+   "f1_weighted": 0.5926513956290794,
+   "per_class": [
+    {
+     "idx": 0,
+     "class": "benign",
+     "support": 2391136,
+     "precision": 0.5770225195886869,
+     "recall": 0.5012998005968711,
+     "f1": 0.5365024327047903
+    },
+    {
+     "idx": 1,
+     "class": "accelerationMultiplication",
+     "support": 157490,
+     "precision": 0.9935225983483286,
+     "recall": 0.9563908819607594,
+     "f1": 0.9746031951445191
+    },
+    {
+     "idx": 2,
+     "class": "constantPositionOffset",
+     "support": 442475,
+     "precision": 0.7410774778262633,
+     "recall": 0.8133001864512119,
+     "f1": 0.7755109517365031
+    },
+    {
+     "idx": 3,
+     "class": "constantSpeedOffset",
+     "support": 433177,
+     "precision": 0.981726501606692,
+     "recall": 0.27012283662336645,
+     "f1": 0.4236719856037483
+    },
+    {
+     "idx": 4,
+     "class": "dataReplay",
+     "support": 475410,
+     "precision": 0.1469714968880976,
+     "recall": 0.814019477924318,
+     "f1": 0.24898810561661702
+    },
+    {
+     "idx": 5,
+     "class": "dosAttack",
+     "support": 1574090,
+     "precision": 0.9293079304551152,
+     "recall": 0.9958128188350094,
+     "f1": 0.9614116414603898
+    },
+    {
+     "idx": 6,
+     "class": "feignedBraking",
+     "support": 118605,
+     "precision": 0.9792592464509882,
+     "recall": 0.954993465705493,
+     "f1": 0.96697414532742
+    },
+    {
+     "idx": 7,
+     "class": "positionMirroring",
+     "support": 467049,
+     "precision": 0.31240659674923626,
+     "recall": 0.10115426860993172,
+     "f1": 0.15282519914277629
+    },
+    {
+     "idx": 8,
+     "class": "randomPositionOffset",
+     "support": 470279,
+     "precision": 0.5534491541841159,
+     "recall": 0.9841243176922635,
+     "f1": 0.7084705624819653
+    },
+    {
+     "idx": 9,
+     "class": "randomSpeedOffset",
+     "support": 542163,
+     "precision": 0.5897671031216486,
+     "recall": 0.9798307888955904,
+     "f1": 0.7363312206971352
+    },
+    {
+     "idx": 10,
+     "class": "reversedHeading",
+     "support": 269999,
+     "precision": 0.95627344112948,
+     "recall": 0.9377145841280894,
+     "f1": 0.9469030851338361
+    },
+    {
+     "idx": 11,
+     "class": "suddenConstantSpeed",
+     "support": 57757,
+     "precision": 0.4636344291945952,
+     "recall": 0.7544886334124002,
+     "f1": 0.5743375486830054
+    },
+    {
+     "idx": 12,
+     "class": "suddenStop",
+     "support": 211445,
+     "precision": 0.916483584683175,
+     "recall": 0.6983991108798978,
+     "f1": 0.7927155606253774
+    },
+    {
+     "idx": 13,
+     "class": "timeDelayAttack",
+     "support": 490574,
+     "precision": 0.14934427692033186,
+     "recall": 0.013649316922625332,
+     "f1": 0.02501260716086737
+    },
+    {
+     "idx": 14,
+     "class": "trafficCongestionSybil",
+     "support": 2393335,
+     "precision": 0.9817564673770607,
+     "recall": 0.320859804415178,
+     "f1": 0.48365154793058157
+    },
+    {
+     "idx": 15,
+     "class": "zeroSpeedReport",
+     "support": 266359,
+     "precision": 0.9109131663125453,
+     "recall": 0.878817685905113,
+     "f1": 0.8945776398583694
+    }
+   ]
+  },
+  {
+   "cid": 12,
+   "accuracy": 0.5301672848825653,
+   "precision_macro": 0.7238012343512495,
+   "precision_micro": 0.5301672848825653,
+   "precision_weighted": 0.7246826345197143,
+   "recall_macro": 0.6737212602509013,
+   "recall_micro": 0.5301672848825653,
+   "recall_weighted": 0.5301672848825654,
+   "f1_macro": 0.6113084200338117,
+   "f1_micro": 0.5301672848825653,
+   "f1_weighted": 0.48829804611819083,
+   "per_class": [
+    {
+     "idx": 0,
+     "class": "benign",
+     "support": 2391136,
+     "precision": 0.48988998257495214,
+     "recall": 0.44032376242923865,
+     "f1": 0.46378631032338763
+    },
+    {
+     "idx": 1,
+     "class": "accelerationMultiplication",
+     "support": 157490,
+     "precision": 0.9970366039215165,
+     "recall": 0.9528033525938154,
+     "f1": 0.9744182497654168
+    },
+    {
+     "idx": 2,
+     "class": "constantPositionOffset",
+     "support": 442475,
+     "precision": 0.33138743949937055,
+     "recall": 0.9001118707271597,
+     "f1": 0.48442701611971384
+    },
+    {
+     "idx": 3,
+     "class": "constantSpeedOffset",
+     "support": 433177,
+     "precision": 0.929697082865173,
+     "recall": 0.6666466594486781,
+     "f1": 0.7764987429247504
+    },
+    {
+     "idx": 4,
+     "class": "dataReplay",
+     "support": 475410,
+     "precision": 0.7183537776483577,
+     "recall": 0.3736101470309838,
+     "f1": 0.4915625038918339
+    },
+    {
+     "idx": 5,
+     "class": "dosAttack",
+     "support": 1574090,
+     "precision": 0.9970647835980414,
+     "recall": 0.9918219415662383,
+     "f1": 0.9944364523362664
+    },
+    {
+     "idx": 6,
+     "class": "feignedBraking",
+     "support": 118605,
+     "precision": 0.9769101667935497,
+     "recall": 0.9520930820791703,
+     "f1": 0.9643419855933252
+    },
+    {
+     "idx": 7,
+     "class": "positionMirroring",
+     "support": 467049,
+     "precision": 0.641086186540732,
+     "recall": 0.0011626189115060733,
+     "f1": 0.002321028604647187
+    },
+    {
+     "idx": 8,
+     "class": "randomPositionOffset",
+     "support": 470279,
+     "precision": 0.44305935338587743,
+     "recall": 0.972288790271307,
+     "f1": 0.6087288765700082
+    },
+    {
+     "idx": 9,
+     "class": "randomSpeedOffset",
+     "support": 542163,
+     "precision": 0.5287229420482208,
+     "recall": 0.98312315668904,
+     "f1": 0.6876358225013982
+    },
+    {
+     "idx": 10,
+     "class": "reversedHeading",
+     "support": 269999,
+     "precision": 0.9557770504038998,
+     "recall": 0.9106181874747684,
+     "f1": 0.9326512922932777
+    },
+    {
+     "idx": 11,
+     "class": "suddenConstantSpeed",
+     "support": 57757,
+     "precision": 0.9834104119818405,
+     "recall": 0.4013020066831726,
+     "f1": 0.5700022133143152
+    },
+    {
+     "idx": 12,
+     "class": "suddenStop",
+     "support": 211445,
+     "precision": 0.6935391211146839,
+     "recall": 0.7650594717302371,
+     "f1": 0.727545846029301
+    },
+    {
+     "idx": 13,
+     "class": "timeDelayAttack",
+     "support": 490574,
+     "precision": 0.10649030566693024,
+     "recall": 0.45076787599832036,
+     "f1": 0.17228067879218495
+    },
+    {
+     "idx": 14,
+     "class": "trafficCongestionSybil",
+     "support": 2393335,
+     "precision": 0.9917390533593334,
+     "recall": 0.023374914084321668,
+     "f1": 0.04567332518282515
+    },
+    {
+     "idx": 15,
+     "class": "zeroSpeedReport",
+     "support": 266359,
+     "precision": 0.7966554882175135,
+     "recall": 0.9944323262964645,
+     "f1": 0.8846243762983347
+    }
+   ]
+  },
+  {
+   "cid": 13,
+   "accuracy": 0.6110497546635211,
+   "precision_macro": 0.7048185196282797,
+   "precision_micro": 0.6110497546635211,
+   "precision_weighted": 0.7464458409942271,
+   "recall_macro": 0.655784519359462,
+   "recall_micro": 0.6110497546635211,
+   "recall_weighted": 0.6110497546635211,
+   "f1_macro": 0.6264453713057574,
+   "f1_micro": 0.6110497546635211,
+   "f1_weighted": 0.5994044849117453,
+   "per_class": [
+    {
+     "idx": 0,
+     "class": "benign",
+     "support": 2391136,
+     "precision": 0.6209206252817724,
+     "recall": 0.056446810219075785,
+     "f1": 0.10348589807974666
+    },
+    {
+     "idx": 1,
+     "class": "accelerationMultiplication",
+     "support": 157490,
+     "precision": 0.9701586758816605,
+     "recall": 0.9367769382182995,
+     "f1": 0.9531756261286144
+    },
+    {
+     "idx": 2,
+     "class": "constantPositionOffset",
+     "support": 442475,
+     "precision": 0.9111377692471743,
+     "recall": 0.3862206904344878,
+     "f1": 0.5424873221328973
+    },
+    {
+     "idx": 3,
+     "class": "constantSpeedOffset",
+     "support": 433177,
+     "precision": 0.7591329543886609,
+     "recall": 0.6477559981254776,
+     "f1": 0.6990358744394618
+    },
+    {
+     "idx": 4,
+     "class": "dataReplay",
+     "support": 475410,
+     "precision": 0.16891294784417016,
+     "recall": 0.8229969920700028,
+     "f1": 0.28029731814051156
+    },
+    {
+     "idx": 5,
+     "class": "dosAttack",
+     "support": 1574090,
+     "precision": 0.989900513001164,
+     "recall": 0.967577457451607,
+     "f1": 0.9786116992960734
+    },
+    {
+     "idx": 6,
+     "class": "feignedBraking",
+     "support": 118605,
+     "precision": 0.9695636374350564,
+     "recall": 0.8323426499725981,
+     "f1": 0.8957282328603057
+    },
+    {
+     "idx": 7,
+     "class": "positionMirroring",
+     "support": 467049,
+     "precision": 0.25858905937291526,
+     "recall": 0.013279120606189073,
+     "f1": 0.025261031335979456
+    },
+    {
+     "idx": 8,
+     "class": "randomPositionOffset",
+     "support": 470279,
+     "precision": 0.6743120536566807,
+     "recall": 0.9836118559408351,
+     "f1": 0.8001107007878784
+    },
+    {
+     "idx": 9,
+     "class": "randomSpeedOffset",
+     "support": 542163,
+     "precision": 0.6750815835679299,
+     "recall": 0.977940213552013,
+     "f1": 0.7987667544973689
+    },
+    {
+     "idx": 10,
+     "class": "reversedHeading",
+     "support": 269999,
+     "precision": 0.9185713034304409,
+     "recall": 0.8932662713565606,
+     "f1": 0.9057420760102148
+    },
+    {
+     "idx": 11,
+     "class": "suddenConstantSpeed",
+     "support": 57757,
+     "precision": 0.4277598217332825,
+     "recall": 0.36892497879044966,
+     "f1": 0.3961699358557219
+    },
+    {
+     "idx": 12,
+     "class": "suddenStop",
+     "support": 211445,
+     "precision": 0.876672564248658,
+     "recall": 0.6913003381494005,
+     "f1": 0.7730287164842138
+    },
+    {
+     "idx": 13,
+     "class": "timeDelayAttack",
+     "support": 490574,
+     "precision": 0.12685114238591821,
+     "recall": 0.4204870213260385,
+     "f1": 0.19490422027918505
+    },
+    {
+     "idx": 14,
+     "class": "trafficCongestionSybil",
+     "support": 2393335,
+     "precision": 0.973974486135447,
+     "recall": 0.8542322742115082,
+     "f1": 0.9101819973114766
+    },
+    {
+     "idx": 15,
+     "class": "zeroSpeedReport",
+     "support": 266359,
+     "precision": 0.9555571764415443,
+     "recall": 0.6393926993268484,
+     "f1": 0.7661385372524674
+    }
+   ]
+  },
+  {
+   "cid": 14,
+   "accuracy": 0.6452888826236651,
+   "precision_macro": 0.7801861958219432,
+   "precision_micro": 0.6452888826236651,
+   "precision_weighted": 0.8171392811211922,
+   "recall_macro": 0.7131689502150877,
+   "recall_micro": 0.6452888826236651,
+   "recall_weighted": 0.645288882623665,
+   "f1_macro": 0.6694134666035396,
+   "f1_micro": 0.6452888826236651,
+   "f1_weighted": 0.6323845802567968,
+   "per_class": [
+    {
+     "idx": 0,
+     "class": "benign",
+     "support": 2391136,
+     "precision": 0.6956893602463222,
+     "recall": 0.011906056368186502,
+     "f1": 0.02341144824671122
+    },
+    {
+     "idx": 1,
+     "class": "accelerationMultiplication",
+     "support": 157490,
+     "precision": 0.9999713397245747,
+     "recall": 0.8861642009016445,
+     "f1": 0.9396342777119465
+    },
+    {
+     "idx": 2,
+     "class": "constantPositionOffset",
+     "support": 442475,
+     "precision": 0.9085643639267098,
+     "recall": 0.6377784055596362,
+     "f1": 0.7494622056737966
+    },
+    {
+     "idx": 3,
+     "class": "constantSpeedOffset",
+     "support": 433177,
+     "precision": 0.9048372211720788,
+     "recall": 0.703920106561521,
+     "f1": 0.7918324313656241
+    },
+    {
+     "idx": 4,
+     "class": "dataReplay",
+     "support": 475410,
+     "precision": 0.8231048801676935,
+     "recall": 0.4344565743253192,
+     "f1": 0.5687250118401198
+    },
+    {
+     "idx": 5,
+     "class": "dosAttack",
+     "support": 1574090,
+     "precision": 0.9730690090325308,
+     "recall": 0.9944209035061528,
+     "f1": 0.9836290971244722
+    },
+    {
+     "idx": 6,
+     "class": "feignedBraking",
+     "support": 118605,
+     "precision": 0.88720689312446,
+     "recall": 0.9784073184098478,
+     "f1": 0.9305779424383125
+    },
+    {
+     "idx": 7,
+     "class": "positionMirroring",
+     "support": 467049,
+     "precision": 0.12266679292986916,
+     "recall": 0.9207984601187456,
+     "f1": 0.21649287066824097
+    },
+    {
+     "idx": 8,
+     "class": "randomPositionOffset",
+     "support": 470279,
+     "precision": 0.97780018233496,
+     "recall": 0.9692671796954574,
+     "f1": 0.9735149831171633
+    },
+    {
+     "idx": 9,
+     "class": "randomSpeedOffset",
+     "support": 542163,
+     "precision": 0.9046520180983091,
+     "recall": 0.9754372762434913,
+     "f1": 0.9387121166401006
+    },
+    {
+     "idx": 10,
+     "class": "reversedHeading",
+     "support": 269999,
+     "precision": 0.9976277418644255,
+     "recall": 0.8722328601217042,
+     "f1": 0.9307257425488232
+    },
+    {
+     "idx": 11,
+     "class": "suddenConstantSpeed",
+     "support": 57757,
+     "precision": 0.21612545896788388,
+     "recall": 0.9661339751025849,
+     "f1": 0.3532323663928848
+    },
+    {
+     "idx": 12,
+     "class": "suddenStop",
+     "support": 211445,
+     "precision": 0.9627687097229408,
+     "recall": 0.7743857740783655,
+     "f1": 0.8583627990364779
+    },
+    {
+     "idx": 13,
+     "class": "timeDelayAttack",
+     "support": 490574,
+     "precision": 0.14783120706575073,
+     "recall": 0.0767672155475015,
+     "f1": 0.10105672164052143
+    },
+    {
+     "idx": 14,
+     "class": "trafficCongestionSybil",
+     "support": 2393335,
+     "precision": 0.9696635803239412,
+     "recall": 0.9740412437038692,
+     "f1": 0.9718474822693187
+    },
+    {
+     "idx": 15,
+     "class": "zeroSpeedReport",
+     "support": 266359,
+     "precision": 0.9914003744486403,
+     "recall": 0.23458565319737648,
+     "f1": 0.3793979689421194
+    }
+   ]
+  },
+  {
+   "cid": 15,
+   "accuracy": 0.49798189686919186,
+   "precision_macro": 0.6597149643687359,
+   "precision_micro": 0.49798189686919186,
+   "precision_weighted": 0.7309955289368442,
+   "recall_macro": 0.716506436168977,
+   "recall_micro": 0.49798189686919186,
+   "recall_weighted": 0.4979818968691919,
+   "f1_macro": 0.5860619569373166,
+   "f1_micro": 0.49798189686919186,
+   "f1_weighted": 0.45140512833797064,
+   "per_class": [
+    {
+     "idx": 0,
+     "class": "benign",
+     "support": 2391136,
+     "precision": 0.557188569413021,
+     "recall": 0.1929074715950912,
+     "f1": 0.28659220220038306
+    },
+    {
+     "idx": 1,
+     "class": "accelerationMultiplication",
+     "support": 157490,
+     "precision": 0.9376416610154995,
+     "recall": 0.9745126674709506,
+     "f1": 0.9557216827068278
+    },
+    {
+     "idx": 2,
+     "class": "constantPositionOffset",
+     "support": 442475,
+     "precision": 0.8870438505754652,
+     "recall": 0.765537035990734,
+     "f1": 0.821823519421598
+    },
+    {
+     "idx": 3,
+     "class": "constantSpeedOffset",
+     "support": 433177,
+     "precision": 0.5577530419541182,
+     "recall": 0.9638000170830862,
+     "f1": 0.7065969709970898
+    },
+    {
+     "idx": 4,
+     "class": "dataReplay",
+     "support": 475410,
+     "precision": 0.1757258989442387,
+     "recall": 0.7692917692097347,
+     "f1": 0.28609938681645597
+    },
+    {
+     "idx": 5,
+     "class": "dosAttack",
+     "support": 1574090,
+     "precision": 0.9980071074295649,
+     "recall": 0.9919648812964951,
+     "f1": 0.9949768212448027
+    },
+    {
+     "idx": 6,
+     "class": "feignedBraking",
+     "support": 118605,
+     "precision": 0.835740111281907,
+     "recall": 0.9764006576451246,
+     "f1": 0.9006112640567402
+    },
+    {
+     "idx": 7,
+     "class": "positionMirroring",
+     "support": 467049,
+     "precision": 0.6372837087822396,
+     "recall": 0.004179432993112072,
+     "f1": 0.00830440405690559
+    },
+    {
+     "idx": 8,
+     "class": "randomPositionOffset",
+     "support": 470279,
+     "precision": 0.5079827969928775,
+     "recall": 0.983790473314777,
+     "f1": 0.6700061547373376
+    },
+    {
+     "idx": 9,
+     "class": "randomSpeedOffset",
+     "support": 542163,
+     "precision": 0.9094550273430397,
+     "recall": 0.9594918871261964,
+     "f1": 0.933803644914756
+    },
+    {
+     "idx": 10,
+     "class": "reversedHeading",
+     "support": 269999,
+     "precision": 0.33599420181521567,
+     "recall": 0.9855517983399938,
+     "f1": 0.5011398616346397
+    },
+    {
+     "idx": 11,
+     "class": "suddenConstantSpeed",
+     "support": 57757,
+     "precision": 0.3516104426226129,
+     "recall": 0.8858839621171459,
+     "f1": 0.5034140774119915
+    },
+    {
+     "idx": 12,
+     "class": "suddenStop",
+     "support": 211445,
+     "precision": 0.7744716048845258,
+     "recall": 0.8413535434746624,
+     "f1": 0.8065283917035022
+    },
+    {
+     "idx": 13,
+     "class": "timeDelayAttack",
+     "support": 490574,
+     "precision": 0.12995298368878266,
+     "recall": 0.5270805220007583,
+     "f1": 0.20849982804561848
+    },
+    {
+     "idx": 14,
+     "class": "trafficCongestionSybil",
+     "support": 2393335,
+     "precision": 0.9914044397937065,
+     "recall": 0.01662617226589675,
+     "f1": 0.03270388975094022
+    },
+    {
+     "idx": 15,
+     "class": "zeroSpeedReport",
+     "support": 266359,
+     "precision": 0.9681839833629593,
+     "recall": 0.6257306867798723,
+     "f1": 0.7601692112974766
+    }
+   ]
+  },
+  {
+   "cid": 16,
+   "accuracy": 0.48736444884249114,
+   "precision_macro": 0.6411445130244993,
+   "precision_micro": 0.48736444884249114,
+   "precision_weighted": 0.7194148524794527,
+   "recall_macro": 0.7222198064970137,
+   "recall_micro": 0.48736444884249114,
+   "recall_weighted": 0.48736444884249114,
+   "f1_macro": 0.5878260111002742,
+   "f1_micro": 0.48736444884249114,
+   "f1_weighted": 0.42149682702633695,
+   "per_class": [
+    {
+     "idx": 0,
+     "class": "benign",
+     "support": 2391136,
+     "precision": 0.6167193994932468,
+     "recall": 0.05975235202012767,
+     "f1": 0.10894892380567842
+    },
+    {
+     "idx": 1,
+     "class": "accelerationMultiplication",
+     "support": 157490,
+     "precision": 0.7896419079946949,
+     "recall": 0.9867039177090609,
+     "f1": 0.877242204678181
+    },
+    {
+     "idx": 2,
+     "class": "constantPositionOffset",
+     "support": 442475,
+     "precision": 0.45724163961307374,
+     "recall": 0.9062297304932482,
+     "f1": 0.6078102949892302
+    },
+    {
+     "idx": 3,
+     "class": "constantSpeedOffset",
+     "support": 433177,
+     "precision": 0.5974402137146039,
+     "recall": 0.9561495647275825,
+     "f1": 0.7353835719320548
+    },
+    {
+     "idx": 4,
+     "class": "dataReplay",
+     "support": 475410,
+     "precision": 0.16043015646737543,
+     "recall": 0.7859090048589639,
+     "f1": 0.26646578683678457
+    },
+    {
+     "idx": 5,
+     "class": "dosAttack",
+     "support": 1574090,
+     "precision": 0.9898819273062508,
+     "recall": 0.9925074169837811,
+     "f1": 0.9911929335369905
+    },
+    {
+     "idx": 6,
+     "class": "feignedBraking",
+     "support": 118605,
+     "precision": 0.9190273271673688,
+     "recall": 0.9601028624425615,
+     "f1": 0.939116163802879
+    },
+    {
+     "idx": 7,
+     "class": "positionMirroring",
+     "support": 467049,
+     "precision": 0.45442689465294883,
+     "recall": 0.006714498906966935,
+     "f1": 0.013233463445511129
+    },
+    {
+     "idx": 8,
+     "class": "randomPositionOffset",
+     "support": 470279,
+     "precision": 0.7341640180081543,
+     "recall": 0.95532226614414,
+     "f1": 0.8302680406274486
+    },
+    {
+     "idx": 9,
+     "class": "randomSpeedOffset",
+     "support": 542163,
+     "precision": 0.7368261853784737,
+     "recall": 0.9749927604797819,
+     "f1": 0.8393413312945439
+    },
+    {
+     "idx": 10,
+     "class": "reversedHeading",
+     "support": 269999,
+     "precision": 0.5374165192077174,
+     "recall": 0.9763739865703206,
+     "f1": 0.6932524775452941
+    },
+    {
+     "idx": 11,
+     "class": "suddenConstantSpeed",
+     "support": 57757,
+     "precision": 0.7076635213166207,
+     "recall": 0.6089824610003982,
+     "f1": 0.6546249767355294
+    },
+    {
+     "idx": 12,
+     "class": "suddenStop",
+     "support": 211445,
+     "precision": 0.5020395126823314,
+     "recall": 0.877197379933316,
+     "f1": 0.6385962375364954
+    },
+    {
+     "idx": 13,
+     "class": "timeDelayAttack",
+     "support": 490574,
+     "precision": 0.12922819035005123,
+     "recall": 0.560074524944249,
+     "f1": 0.21000183435751626
+    },
+    {
+     "idx": 14,
+     "class": "trafficCongestionSybil",
+     "support": 2393335,
+     "precision": 0.9933080770416332,
+     "recall": 0.041739246699688926,
+     "f1": 0.08011214545547864
+    },
+    {
+     "idx": 15,
+     "class": "zeroSpeedReport",
+     "support": 266359,
+     "precision": 0.9328567179974431,
+     "recall": 0.9067649300380314,
+     "f1": 0.9196257910247722
+    }
+   ]
+  },
+  {
+   "cid": 17,
+   "accuracy": 0.6332159471173812,
+   "precision_macro": 0.6884432835083165,
+   "precision_micro": 0.6332159471173812,
+   "precision_weighted": 0.7353726689654323,
+   "recall_macro": 0.707141125159386,
+   "recall_micro": 0.6332159471173812,
+   "recall_weighted": 0.6332159471173813,
+   "f1_macro": 0.64424040142033,
+   "f1_micro": 0.6332159471173812,
+   "f1_weighted": 0.6019201520464267,
+   "per_class": [
+    {
+     "idx": 0,
+     "class": "benign",
+     "support": 2391136,
+     "precision": 0.6140877647920812,
+     "recall": 0.03575246242790038,
+     "f1": 0.06757091610682954
+    },
+    {
+     "idx": 1,
+     "class": "accelerationMultiplication",
+     "support": 157490,
+     "precision": 0.915908040734762,
+     "recall": 0.9691154993967871,
+     "f1": 0.9417608421338417
+    },
+    {
+     "idx": 2,
+     "class": "constantPositionOffset",
+     "support": 442475,
+     "precision": 0.4222108706309026,
+     "recall": 0.8798169388101023,
+     "f1": 0.5705996032301492
+    },
+    {
+     "idx": 3,
+     "class": "constantSpeedOffset",
+     "support": 433177,
+     "precision": 0.8435216733779131,
+     "recall": 0.10687317193664483,
+     "f1": 0.18971028152276362
+    },
+    {
+     "idx": 4,
+     "class": "dataReplay",
+     "support": 475410,
+     "precision": 0.2847558190911487,
+     "recall": 0.6452788119728234,
+     "f1": 0.39513990233949836
+    },
+    {
+     "idx": 5,
+     "class": "dosAttack",
+     "support": 1574090,
+     "precision": 0.9747961665354291,
+     "recall": 0.9940816598796766,
+     "f1": 0.9843444608630394
+    },
+    {
+     "idx": 6,
+     "class": "feignedBraking",
+     "support": 118605,
+     "precision": 0.8521292848984677,
+     "recall": 0.968728131191771,
+     "f1": 0.9066954967467515
+    },
+    {
+     "idx": 7,
+     "class": "positionMirroring",
+     "support": 467049,
+     "precision": 0.16914173250575715,
+     "recall": 0.44898072793218696,
+     "f1": 0.24571628777359455
+    },
+    {
+     "idx": 8,
+     "class": "randomPositionOffset",
+     "support": 470279,
+     "precision": 0.8903848564132291,
+     "recall": 0.966785674036051,
+     "f1": 0.9270137657748767
+    },
+    {
+     "idx": 9,
+     "class": "randomSpeedOffset",
+     "support": 542163,
+     "precision": 0.6624588886142849,
+     "recall": 0.9640827573995274,
+     "f1": 0.7853044446347521
+    },
+    {
+     "idx": 10,
+     "class": "reversedHeading",
+     "support": 269999,
+     "precision": 0.9362219472797882,
+     "recall": 0.8071511375968059,
+     "f1": 0.8669086569539058
+    },
+    {
+     "idx": 11,
+     "class": "suddenConstantSpeed",
+     "support": 57757,
+     "precision": 0.5820226179643833,
+     "recall": 0.46513842477968037,
+     "f1": 0.5170572102198913
+    },
+    {
+     "idx": 12,
+     "class": "suddenStop",
+     "support": 211445,
+     "precision": 0.8836195495147211,
+     "recall": 0.8215327863037669,
+     "f1": 0.8514458389394974
+    },
+    {
+     "idx": 13,
+     "class": "timeDelayAttack",
+     "support": 490574,
+     "precision": 0.1534415065144735,
+     "recall": 0.3727490653805542,
+     "f1": 0.21739339774892186
+    },
+    {
+     "idx": 14,
+     "class": "trafficCongestionSybil",
+     "support": 2393335,
+     "precision": 0.980254303603023,
+     "recall": 0.878282396739278,
+     "f1": 0.9264709155583412
+    },
+    {
+     "idx": 15,
+     "class": "zeroSpeedReport",
+     "support": 266359,
+     "precision": 0.8501375136626997,
+     "recall": 0.9899083567666195,
+     "f1": 0.9147144021786265
+    }
+   ]
+  },
+  {
+   "cid": 18,
+   "accuracy": 0.6553013875684476,
+   "precision_macro": 0.6870130452297551,
+   "precision_micro": 0.6553013875684476,
+   "precision_weighted": 0.7473400170038844,
+   "recall_macro": 0.7432909123465696,
+   "recall_micro": 0.6553013875684476,
+   "recall_weighted": 0.6553013875684476,
+   "f1_macro": 0.6579991271778686,
+   "f1_micro": 0.6553013875684476,
+   "f1_weighted": 0.6216065567382054,
+   "per_class": [
+    {
+     "idx": 0,
+     "class": "benign",
+     "support": 2391136,
+     "precision": 0.6428343114316034,
+     "recall": 0.0630804772292333,
+     "f1": 0.11488722377202919
+    },
+    {
+     "idx": 1,
+     "class": "accelerationMultiplication",
+     "support": 157490,
+     "precision": 0.9808891028727331,
+     "recall": 0.9702076322306178,
+     "f1": 0.9755191291717875
+    },
+    {
+     "idx": 2,
+     "class": "constantPositionOffset",
+     "support": 442475,
+     "precision": 0.21419433633970164,
+     "recall": 0.9520515283349342,
+     "f1": 0.34971021368601635
+    },
+    {
+     "idx": 3,
+     "class": "constantSpeedOffset",
+     "support": 433177,
+     "precision": 0.9067471328153903,
+     "recall": 0.6337016969968396,
+     "f1": 0.7460256851013638
+    },
+    {
+     "idx": 4,
+     "class": "dataReplay",
+     "support": 475410,
+     "precision": 0.35489674214994615,
+     "recall": 0.7564628425990197,
+     "f1": 0.4831311163011579
+    },
+    {
+     "idx": 5,
+     "class": "dosAttack",
+     "support": 1574090,
+     "precision": 0.9954473356015935,
+     "recall": 0.9923492303489635,
+     "f1": 0.9938958686798921
+    },
+    {
+     "idx": 6,
+     "class": "feignedBraking",
+     "support": 118605,
+     "precision": 0.9979609456803277,
+     "recall": 0.9160827958349143,
+     "f1": 0.9552705964067012
+    },
+    {
+     "idx": 7,
+     "class": "positionMirroring",
+     "support": 467049,
+     "precision": 0.44789234361558317,
+     "recall": 0.015606499532169001,
+     "f1": 0.03016202415361983
+    },
+    {
+     "idx": 8,
+     "class": "randomPositionOffset",
+     "support": 470279,
+     "precision": 0.9628148520773844,
+     "recall": 0.968629260502808,
+     "f1": 0.9657133044589877
+    },
+    {
+     "idx": 9,
+     "class": "randomSpeedOffset",
+     "support": 542163,
+     "precision": 0.7346816901875728,
+     "recall": 0.9802734601955501,
+     "f1": 0.839892474647627
+    },
+    {
+     "idx": 10,
+     "class": "reversedHeading",
+     "support": 269999,
+     "precision": 0.44922916317133643,
+     "recall": 0.9817740065703947,
+     "f1": 0.6164088587932174
+    },
+    {
+     "idx": 11,
+     "class": "suddenConstantSpeed",
+     "support": 57757,
+     "precision": 0.5348264697225121,
+     "recall": 0.6921065844832661,
+     "f1": 0.6033856859297051
+    },
+    {
+     "idx": 12,
+     "class": "suddenStop",
+     "support": 211445,
+     "precision": 0.7967328272044971,
+     "recall": 0.8700513135803637,
+     "f1": 0.8317795039199904
+    },
+    {
+     "idx": 13,
+     "class": "timeDelayAttack",
+     "support": 490574,
+     "precision": 0.1568237061489758,
+     "recall": 0.24790551476433728,
+     "f1": 0.19211591153404753
+    },
+    {
+     "idx": 14,
+     "class": "trafficCongestionSybil",
+     "support": 2393335,
+     "precision": 0.9720767096813013,
+     "recall": 0.9045156653790631,
+     "f1": 0.9370800217906561
+    },
+    {
+     "idx": 15,
+     "class": "zeroSpeedReport",
+     "support": 266359,
+     "precision": 0.8441610549756251,
+     "recall": 0.9478560889626406,
+     "f1": 0.8930084164990972
+    }
+   ]
+  },
+  {
+   "cid": 19,
+   "accuracy": 0.6256916074508544,
+   "precision_macro": 0.687393299962049,
+   "precision_micro": 0.6256916074508544,
+   "precision_weighted": 0.7226722325892304,
+   "recall_macro": 0.7302144349437749,
+   "recall_micro": 0.6256916074508544,
+   "recall_weighted": 0.6256916074508545,
+   "f1_macro": 0.6668377263256315,
+   "f1_micro": 0.6256916074508544,
+   "f1_weighted": 0.6267894113665815,
+   "per_class": [
+    {
+     "idx": 0,
+     "class": "benign",
+     "support": 2391136,
+     "precision": 0.608928475582171,
+     "recall": 0.26569672323113364,
+     "f1": 0.3699648737855484
+    },
+    {
+     "idx": 1,
+     "class": "accelerationMultiplication",
+     "support": 157490,
+     "precision": 0.927269663191853,
+     "recall": 0.9782462378563719,
+     "f1": 0.952076085008559
+    },
+    {
+     "idx": 2,
+     "class": "constantPositionOffset",
+     "support": 442475,
+     "precision": 0.19559792478390156,
+     "recall": 0.9486027459178484,
+     "f1": 0.32432200626494184
+    },
+    {
+     "idx": 3,
+     "class": "constantSpeedOffset",
+     "support": 433177,
+     "precision": 0.8273814114924798,
+     "recall": 0.8171971272713002,
+     "f1": 0.8222577355747009
+    },
+    {
+     "idx": 4,
+     "class": "dataReplay",
+     "support": 475410,
+     "precision": 0.5661721434676823,
+     "recall": 0.6172230285437833,
+     "f1": 0.5905964352960238
+    },
+    {
+     "idx": 5,
+     "class": "dosAttack",
+     "support": 1574090,
+     "precision": 0.9125430452244754,
+     "recall": 0.996117121638534,
+     "f1": 0.9525003637229559
+    },
+    {
+     "idx": 6,
+     "class": "feignedBraking",
+     "support": 118605,
+     "precision": 0.9330310172988933,
+     "recall": 0.9645293200118039,
+     "f1": 0.9485187426932102
+    },
+    {
+     "idx": 7,
+     "class": "positionMirroring",
+     "support": 467049,
+     "precision": 0.34008218745060853,
+     "recall": 0.04607011255778302,
+     "f1": 0.08114738487589546
+    },
+    {
+     "idx": 8,
+     "class": "randomPositionOffset",
+     "support": 470279,
+     "precision": 0.9032136067005806,
+     "recall": 0.934415527803708,
+     "f1": 0.9185496716150852
+    },
+    {
+     "idx": 9,
+     "class": "randomSpeedOffset",
+     "support": 542163,
+     "precision": 0.5919942575689855,
+     "recall": 0.9796426535931076,
+     "f1": 0.7380112051045475
+    },
+    {
+     "idx": 10,
+     "class": "reversedHeading",
+     "support": 269999,
+     "precision": 0.6458233069783431,
+     "recall": 0.9741443486827729,
+     "f1": 0.7767131924418872
+    },
+    {
+     "idx": 11,
+     "class": "suddenConstantSpeed",
+     "support": 57757,
+     "precision": 0.9701186934126755,
+     "recall": 0.525009955503229,
+     "f1": 0.6813085582043273
+    },
+    {
+     "idx": 12,
+     "class": "suddenStop",
+     "support": 211445,
+     "precision": 0.5961257190080477,
+     "recall": 0.8596987396249616,
+     "f1": 0.704052643504093
+    },
+    {
+     "idx": 13,
+     "class": "timeDelayAttack",
+     "support": 490574,
+     "precision": 0.14488987105471463,
+     "recall": 0.21864998960401488,
+     "f1": 0.17428718128700582
+    },
+    {
+     "idx": 14,
+     "class": "trafficCongestionSybil",
+     "support": 2393335,
+     "precision": 0.9839183981537256,
+     "recall": 0.5664693826814884,
+     "f1": 0.7189938601178126
+    },
+    {
+     "idx": 15,
+     "class": "zeroSpeedReport",
+     "support": 266359,
+     "precision": 0.8512030780236459,
+     "recall": 0.9917179445785576,
+     "f1": 0.9161036817135089
+    }
+   ]
+  }
+ ],
+ "global": {
+  "accuracy": 0.551489716478696,
+  "precision_macro": 0.6717753042815175,
+  "precision_micro": 0.551489716478696,
+  "precision_weighted": 0.7126163779806143,
+  "recall_macro": 0.7437369391569153,
+  "recall_micro": 0.551489716478696,
+  "recall_weighted": 0.5514897164786959,
+  "f1_macro": 0.6479567559393948,
+  "f1_micro": 0.551489716478696,
+  "f1_weighted": 0.524201702817622,
+  "per_class": [
+   {
+    "idx": 0,
+    "class": "benign",
+    "support": 2391136,
+    "precision": 0.5817637135158886,
+    "recall": 0.23089401857527134,
+    "f1": 0.3305838518986451
+   },
+   {
+    "idx": 1,
+    "class": "accelerationMultiplication",
+    "support": 157490,
+    "precision": 0.9513084725610889,
+    "recall": 0.9754460600673058,
+    "f1": 0.963226073434992
+   },
+   {
+    "idx": 2,
+    "class": "constantPositionOffset",
+    "support": 442475,
+    "precision": 0.5009427281634851,
+    "recall": 0.9000870105655687,
+    "f1": 0.6436580612004125
+   },
+   {
+    "idx": 3,
+    "class": "constantSpeedOffset",
+    "support": 433177,
+    "precision": 0.8416821154539369,
+    "recall": 0.9055674701103706,
+    "f1": 0.8724568604577457
+   },
+   {
+    "idx": 4,
+    "class": "dataReplay",
+    "support": 475410,
+    "precision": 0.20697098870173405,
+    "recall": 0.7889569003596896,
+    "f1": 0.327917696660525
+   },
+   {
+    "idx": 5,
+    "class": "dosAttack",
+    "support": 1574090,
+    "precision": 0.949259127771228,
+    "recall": 0.9954119523026003,
+    "f1": 0.9717878681879187
+   },
+   {
+    "idx": 6,
+    "class": "feignedBraking",
+    "support": 118605,
+    "precision": 0.8572803387546916,
+    "recall": 0.9763837949496227,
+    "f1": 0.9129639557251427
+   },
+   {
+    "idx": 7,
+    "class": "positionMirroring",
+    "support": 467049,
+    "precision": 0.35394418104870257,
+    "recall": 0.0804005575432128,
+    "f1": 0.1310355897840326
+   },
+   {
+    "idx": 8,
+    "class": "randomPositionOffset",
+    "support": 470279,
+    "precision": 0.5646528689768194,
+    "recall": 0.977351742263635,
+    "f1": 0.7157753760862118
+   },
+   {
+    "idx": 9,
+    "class": "randomSpeedOffset",
+    "support": 542163,
+    "precision": 0.6725099803240521,
+    "recall": 0.9803103494705466,
+    "f1": 0.797749739580988
+   },
+   {
+    "idx": 10,
+    "class": "reversedHeading",
+    "support": 269999,
+    "precision": 0.5301369149669128,
+    "recall": 0.9803406679283997,
+    "f1": 0.6881462965057253
+   },
+   {
+    "idx": 11,
+    "class": "suddenConstantSpeed",
+    "support": 57757,
+    "precision": 0.8584963813611561,
+    "recall": 0.6510552833422789,
+    "f1": 0.7405226570038795
+   },
+   {
+    "idx": 12,
+    "class": "suddenStop",
+    "support": 211445,
+    "precision": 0.8466117085508362,
+    "recall": 0.8421953699543616,
+    "f1": 0.844397764748558
+   },
+   {
+    "idx": 13,
+    "class": "timeDelayAttack",
+    "support": 490574,
+    "precision": 0.14259233162419105,
+    "recall": 0.4826427817210044,
+    "f1": 0.22014489627420208
+   },
+   {
+    "idx": 14,
+    "class": "trafficCongestionSybil",
+    "support": 2393335,
+    "precision": 0.9904354119561313,
+    "recall": 0.15666966805733423,
+    "f1": 0.270543980542
+   },
+   {
+    "idx": 15,
+    "class": "zeroSpeedReport",
+    "support": 266359,
+    "precision": 0.899817604773425,
+    "recall": 0.9760773992994417,
+    "f1": 0.9363974269393399
+   }
+  ]
+ }
+}
