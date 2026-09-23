@@ -74,7 +74,7 @@ client on the full fixed test set every round.
 | μ | 5 published values; method "in the appendix" — **the PDF has no appendix** | **grid search on a train-side validation split** | user decision; this build's realization, not the authors' method |
 | seeds | 3, averaged | **1 (seed 42)** | GPU budget — **no replication** |
 
-Full decision table with every gap named: `papers/tinyproto-lee-2026/rebuild.md`.
+Full decision table with every gap named: `docs/rebuild.md`.
 """
 
 ENV_CELL = '''import os, sys, json, time, math, shutil, platform, subprocess

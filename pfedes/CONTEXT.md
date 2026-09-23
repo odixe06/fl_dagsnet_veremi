@@ -16,7 +16,7 @@ dẫn trong skill/test/knowledge/`.codex` đã sửa (§14.5); memory Claude đ�
 - f1_macro r50: **20c 0,4856** (acc 0,5276) · **50c 0,3652** (acc 0,4335) · **100c 0,2900** (acc 0,3692).
   Đường cong khớp §12.4: phẳng từ r15 (20c, 50c) / r25 (100c); giảm so đỉnh −3,1 / −6,2 / −10,5 %.
 - Số liệu: `papers/pfedes-yi-2025/report_data/` (sinh lại 16-09 từ ba thư mục merged); báo cáo:
-  `papers/pfedes-yi-2025/report.md` **bản chính thức 16-09** (phụ lục A–C = 50 × 3 hàng, 0 ô lệch so `summary.json`).
+  `docs/report.md` **bản chính thức 16-09** (phụ lục A–C = 50 × 3 hàng, 0 ô lệch so `summary.json`).
 - Kaggle: 100c s4 (`minhtrit06/pfedes-veremi-100-clients-cos-s4`) COMPLETE 15-09 ~20:15Z, 11 round, steady 2907 s
   (chậm hơn s3 12 %); quota còn (16-09 03:30Z): minhtran0601 17,59 · minhtrit06 9,97 · khanhmay0304 3,57 ·
   odixe0502 1,50 · minhtriethihi 0,97 (ba tài khoản sau bị dự án khác dùng thêm từ 15-09). Refresh 19-09 00:00Z.
@@ -38,8 +38,8 @@ cầu chủ dự án và không còn được nhắc trong report/rebuild.
 | ├ [`KAGGLE_DATASETS.md`](knowledge/KAGGLE_DATASETS.md) | 4 dataset Kaggle, đều public | |
 | └ [`runtime.json`](knowledge/runtime.json), `meta.json`, `scaler.json` | digest image đã kiểm, thứ tự cột, tên lớp, mean/std | |
 | [`papers/pfedes-yi-2025/`](papers/pfedes-yi-2025/) | **phương pháp này** | |
-| ├ [`paper.md`](papers/pfedes-yi-2025/paper.md) | trích xuất phương pháp + những chỗ bài báo để trống | |
-| ├ [`rebuild.md`](papers/pfedes-yi-2025/rebuild.md) | **quyết định đã chốt, 10 deviation, hợp đồng artifact, ước lượng chi phí, bảng test** | |
+| ├ [`paper.md`](docs/paper.md) | trích xuất phương pháp + những chỗ bài báo để trống | |
+| ├ [`rebuild.md`](docs/rebuild.md) | **quyết định đã chốt, 10 deviation, hợp đồng artifact, ước lượng chi phí, bảng test** | |
 | ├ [`proj/`](papers/pfedes-yi-2025/proj/) | **8 module** — nguồn duy nhất của code notebook | sửa ở đây |
 | │ ├ `model.py` | DAGSNet; `build_model` (F_k, 16 lớp) và `build_proxy` (G, ra 66) | |
 | │ ├ `pfedes.py` | Eq. (4)–(11): `client_update` (bước ①/②), `aggregate`, `select_clients`, flat layout | |
@@ -51,7 +51,7 @@ cầu chủ dự án và không còn được nhắc trong report/rebuild.
 | ├ [`notebook/`](papers/pfedes-yi-2025/notebook/) | `{20,50,100}c/` production phiên 1, run-tag `_cos` = C 100 % + LR cosine (owner 20c `minhtriethihi`, 50c `khanhmay0304`, 100c `odixe0502`; W&B key đã nhúng, mode 600; **đã push 13-09**); `100c_s2/` phiên 2 (đã push 22:52Z 13-09); `20c_s2/`, `50c_s2/` phiên 2 (đã push 00:51Z 14-09); `50c_s3/` (push 17:03Z 14-09), `100c_s3/` (owner **`minhtrit06`**, `--dataset-source`, push 17:47Z 14-09), `100c_s4/` (owner `minhtrit06`, `--kernel-source …-s3`, push 10:44Z 15-09); `100c_ckpt_probe/` (CPU probe của cổng resume, sinh bởi `scripts/gen_ckpt_probe.py`; **đã xoá 16-09**, sinh lại được); `20c_probe/` (owner `khanhmay0304`, sinh lại 13-09, chưa push lại). Thư mục phiên tiếp (`{K}c_sN/`) **sinh khi cần** bằng `--session N --require-resume --kernel-source …`. `.ipynb` **sinh tự động** | ❌ không sửa tay |
 | ├ `runs/pulls/probe20/` | output probe 20c kéo về (calibration.json, history, weights 2 round, log kernel) — pull duy nhất còn giữ | |
 | ├ `runs/merged/pfedes_{20c,50c,100c}_cos/` | **20c ghép 2 phiên, 50c 3, 100c 4 = một run duy nhất 50 round mỗi K** (`merge_sessions.py`; `logs/sessions.json` + `logs/sessions/{n}/` giữ log kernel, manifest, `executed.ipynb`, `wandb/` từng phiên); verify pass. **Thư mục chuẩn cho report và bản duy nhất của mọi artifact** — pull gốc đã xoá 16-09 | |
-| ├ [`report.md`](papers/pfedes-yi-2025/report.md) | **báo cáo dựng lại** (tiếng Việt, **bản chính thức 16-09**, cả ba K đủ 50 round): tóm tắt, deviation, dữ liệu+caveat, cấu hình/hạ tầng/phiên, đường cong, 10 metric round cuối, phân tán client, per-class + confusion, chi phí, kết quả bài báo để riêng, bằng chứng/giới hạn, tái lập; **phụ lục A–C = mọi round × 10 metric** nối từ `rounds_Kc.md` | sửa tay thân bài; phụ lục nối lại bằng `tail -n +5 rounds_Kc.md` |
+| ├ [`report.md`](docs/report.md) | **báo cáo dựng lại** (tiếng Việt, **bản chính thức 16-09**, cả ba K đủ 50 round): tóm tắt, deviation, dữ liệu+caveat, cấu hình/hạ tầng/phiên, đường cong, 10 metric round cuối, phân tán client, per-class + confusion, chi phí, kết quả bài báo để riêng, bằng chứng/giới hạn, tái lập; **phụ lục A–C = mọi round × 10 metric** nối từ `rounds_Kc.md` | sửa tay thân bài; phụ lục nối lại bằng `tail -n +5 rounds_Kc.md` |
 | └ [`report_data/`](papers/pfedes-yi-2025/report_data/) | **số liệu cho report**: `README.md` (bảng tổng hợp tiếng Việt), `rounds_Kc.md`/`history_Kc.csv` (đủ 10 metric mọi round), per-client, per-class, confusion gộp, `summary.json`, 9 hình PNG | sinh lại bằng `scripts/report_data.py` |
 | [`scripts/`](scripts/) | | |
 | ├ `gen_notebook.py` | sinh notebook từ `proj/`: `--owner --clients --probe --max-hours --run-tag --require-resume --kernel-source --dataset-source --eval-batch --session N` | |
@@ -739,7 +739,7 @@ README §1 nay ghi 50c **HOÀN TẤT 3 phiên (21/21/8)**, round-time trung vị
 
 ### 15.5 `report.md` bản tạm (viết 11:40–12:00Z 15-09, yêu cầu chủ dự án "viết trước một phần")
 
-`papers/pfedes-yi-2025/report.md`: thân bài viết tay từ `report_data/` + `rebuild.md` + `DATASET.md` + CONTEXT §12;
+`docs/report.md`: thân bài viết tay từ `report_data/` + `rebuild.md` + `DATASET.md` + CONTEXT §12;
 phụ lục A/B/C nối nguyên bảng `rounds_{20,50,100}c.md` (bỏ 4 dòng đầu). Cổng kiểm đã chạy: 10 metric round cuối
 khớp `summary.json` (0 lệch), phụ lục 50/50/39 hàng, mọi hình tồn tại. Phân tích thêm ngoài README (tính từ CSV,
 script scratchpad không lưu): Spearman(số dòng client, f1_macro) = 0,69 / 0,53 / 0,44; số client f1 < 0,30 =

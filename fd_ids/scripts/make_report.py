@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Build report.md (repository root) and figures/ from the verified run directories.
+"""Build docs/report.md and figures/ from the verified run directories.
 
 Reads ONLY pulled, verified artifacts under papers/fd-ids-2025/runs/<run>/ and the frozen
 knowledge/ files. Every number in the report is re-derived here from history.csv, the per-round
@@ -19,7 +19,7 @@ section and no numbers. Re-run after every merge:
 
     python scripts/make_report.py
 """
-import csv, json, sys, datetime as dt
+import csv, json, os, sys, datetime as dt
 from pathlib import Path
 
 import matplotlib
@@ -30,7 +30,7 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 RUNS = ROOT / "papers/fd-ids-2025/runs"
 FIG = ROOT / "figures"
-OUT = ROOT / "report.md"
+OUT = ROOT / "docs" / "report.md"
 META = json.loads((ROOT / "knowledge/meta.json").read_text())
 RUNTIME = json.loads((ROOT / "knowledge/runtime.json").read_text())
 
@@ -163,6 +163,7 @@ def fig_per_class(K, run, final, peak):
 
 # ----------------------------------------------------------------------------- markdown
 def rel(p): return p.relative_to(ROOT).as_posix()
+def link(p): return Path(os.path.relpath(p, OUT.parent)).as_posix()   # link tính từ docs/
 def f4(x): return f"{x:.4f}"
 
 
@@ -231,7 +232,7 @@ lr={cfg['lr']}, μ={cfg['mu']}, λ={cfg['lam']}, β={cfg['beta']}, T={cfg['tempe
 world_size={cfg['world_size']}, compile={cfg['compile']}; fingerprint `{run['manifest']['fingerprint']}`, data_id `{cfg['data_id']}`, content_id `{cfg['content_id']}`;
 torch {run['manifest']['torch']}, CUDA {run['manifest']['cuda']}.
 
-![]({rel(figs['conv'])})
+![]({link(figs['conv'])})
 
 *Hình: trái — năm metric phân biệt được của global model trên toàn bộ tập test theo round (đường chấm xám: round đỉnh F1 macro, hậu kiểm; đường đứt đỏ: ranh giới phiên Kaggle); phải — loss huấn luyện trung bình phía client. Điều cần thấy: CE train giảm rồi đi ngang ở mức thấp (cực tiểu {f4(rows[ce_min]['ce_client_mean'])} @r{ce_min}, round cuối {f4(rows[final]['ce_client_mean'])}); số hạng KD chạm cực tiểu sớm ({f4(rows[kd_min]['kd_client_mean'])} @r{kd_min}) rồi tăng dần tới {f4(rows[final]['kd_client_mean'])} — teacher (global model round trước) và student cách nhau dần; trong khi đó metric test bão hoà từ round {peak} và accuracy/F1 weighted đi xuống.*
 
@@ -253,14 +254,14 @@ Nguồn: `{rel(RUNS / sc['run'])}/history.csv`, đối chiếu từng giá trị
 
 ### {n}.3 Từng lớp ở round cuối {final}
 
-![]({rel(figs['pc'])})
+![]({link(figs['pc'])})
 
 *Hình: F1 từng lớp ở round cuối (đậm) và ở round đỉnh {peak} (nhạt), xếp theo support giảm dần. Điều cần thấy (ΔF1 = cuối − đỉnh, tính từ artifact): mất nhiều nhất {losers}; được nhiều nhất {gainers}. `benign` — lớp lớn thứ hai — là nơi mất lớn nhất hoặc nhì: recall `benign` {f4(ben_p['recall'])} ở round {peak} → **{f4(ben_f['recall'])}** ở round {final}, precision {f4(ben_f['precision'])}: global model ngày càng gán lưu lượng lành tính thành tấn công (tỉ lệ báo động giả tăng), đổi lấy recall ở các lớp hiếm.*
 
 {per_class_table(run, final)}
 Lớp khó ở round {final} (F1 < 0,4): {hard}. `timeDelayAttack` cũng là lớp yếu nhất của DAGSNet centralized (`knowledge/ARCHITECTURE.md` §8: F1 0,2281, 76 % bị gán thành `benign`); `benign` khó ở đây vì cơ chế báo động giả nói trên.
 
-![]({rel(figs['cm'])})
+![]({link(figs['cm'])})
 
 *Hình: ma trận nhầm lẫn round {final} chuẩn hoá theo hàng (mỗi hàng = một lớp thật, tổng 1). Điều cần thấy: hàng `benign` trải sang các cột tấn công — recall `benign` chỉ {f4(ben_f['recall'])} trên {ben_f['support']:,} dòng; vì `benign` chiếm 22 % tập test, riêng nó kéo accuracy và F1 weighted xuống trong khi F1 macro (mỗi lớp nặng như nhau) gần như giữ nguyên. `trafficCongestionSybil` (F1 {f4(next(c['f1'] for c in run['per_class'][final] if c['class']=='trafficCongestionSybil'))}) ổn định nhưng nhớ caveat rò rỉ Sybil (§3).*
 
@@ -335,14 +336,14 @@ def build():
     md = f"""# Báo cáo tái dựng FD-IDS trên VeReMi NextGen với DAGSNet — {status}
 
 Sinh tự động bởi `scripts/make_report.py` lúc {dt.datetime.now(dt.UTC):%Y-%m-%d %H:%MZ} từ artifact đã pull và verify.
-Không sửa tay; sửa generator rồi chạy lại. Ngữ cảnh đầy đủ: [`CONTEXT.md`](CONTEXT.md); mọi số đo kỹ thuật: [`TEST_LOG.md`](TEST_LOG.md).
+Không sửa tay; sửa generator rồi chạy lại. Ngữ cảnh đầy đủ: [`CONTEXT.md`](../CONTEXT.md); mọi số đo kỹ thuật: [`TEST_LOG.md`](TEST_LOG.md).
 
 ## 0. Tóm tắt
 
 | cấu hình | round | accuracy (round cuối) | F1 macro (round cuối) | F1 weighted (round cuối) | đỉnh F1 macro (hậu kiểm) | Σ `seconds` 50 round (không gồm startup) |
 |---|---:|---:|---:|---:|---|---:|
 {summary_rows}
-![]({rel(all_fig) if all_fig else ''})
+![]({link(all_fig) if all_fig else ''})
 
 *Hình: F1 macro của global model theo round, các cấu hình đã có. Điều cần thấy: mọi đường bão hoà trước round 10 (đỉnh ở round {pk_range}) rồi giữ một plateau nhiễu thấp hơn đỉnh; mức plateau (trung bình 10 round cuối): {plateau_line}{' — nhiều client hơn, plateau thấp hơn, đơn điệu' if plateau_mono else ''}.*
 
@@ -355,10 +356,10 @@ client, bộ metric.
 
 | hạng mục | giá trị |
 |---|---|
-| Bài báo | Peng, Xiao, Wu — *FD-IDS: A Federated Learning and Knowledge Distillation-Based Intrusion Detection System for Non-IID IoT Environments*, **Sensors 2025, 25, 4309** ([`sensors-25-04309.md`](sensors-25-04309.md)) |
+| Bài báo | Peng, Xiao, Wu — *FD-IDS: A Federated Learning and Knowledge Distillation-Based Intrusion Detection System for Non-IID IoT Environments*, **Sensors 2025, 25, 4309** ([`sensors-25-04309.md`](../sensors-25-04309.md)) |
 | Phương pháp lấy từ bài báo | FedProx + knowledge distillation **round-wise** (Algorithm 1, Eq. 2–6): L = λ·CE + (1−λ)·T²·KL(teacher‖student) + β·(μ/2)‖w−w_G‖²; Adam lr 0,001, μ = 0,01, λ = 0,5, β = 0,1, T = 3 (Table 3); toàn bộ client mỗi round |
-| Dữ liệu | VeReMi NextGen, phân mảnh Dirichlet α = 0,5: `odixe0502/veremi-fl-{{20,50,100}}client` (train) + `odixe0502/veremi-nextgen2026-centralized` (test), 66 đặc trưng `f_*` đã z-score, 16 lớp ([`knowledge/DATASET.md`](knowledge/DATASET.md)) |
-| Bộ phân loại | **DAGSNet**, 395.024 tham số ([`knowledge/ARCHITECTURE.md`](knowledge/ARCHITECTURE.md)) thay cho DNN 5 lớp 22.095 tham số của bài báo |
+| Dữ liệu | VeReMi NextGen, phân mảnh Dirichlet α = 0,5: `odixe0502/veremi-fl-{{20,50,100}}client` (train) + `odixe0502/veremi-nextgen2026-centralized` (test), 66 đặc trưng `f_*` đã z-score, 16 lớp ([`knowledge/DATASET.md`](../knowledge/DATASET.md)) |
+| Bộ phân loại | **DAGSNet**, 395.024 tham số ([`knowledge/ARCHITECTURE.md`](../knowledge/ARCHITECTURE.md)) thay cho DNN 5 lớp 22.095 tham số của bài báo |
 | Phần cứng | Kaggle 2 × Tesla T4 (sm_75, 14,6 GB), 4 vCPU; image `{RUNTIME['docker_image'].split('@')[1][:19]}…`; torch 2.10.0+cu128, CUDA 12.8; mỗi worker một GPU, mỗi client train tuần tự trên một GPU, không DDP |
 | Kế hoạch | 3 cấu hình × 50 round × 1 epoch local; batch 512/512/256 (20c/50c/100c); seed 42; fp16 AMP; `torch.compile` chứng nhận trên T4 (`compile OK`, `max|Δlogit| ≤ 9,8e-04`) |
 | Kernel / phiên | xem bảng phiên ở từng mục; mỗi phiên là một kernel Kaggle riêng, tiếp nối qua checkpoint đã verify (§9) |
@@ -391,7 +392,7 @@ weighted: trọng số n_c/N. Vì mỗi dòng có đúng một dự đoán, Σ_c
 ## 3. Dữ liệu và caveat bắt buộc
 
 Train {43_045_415:,} dòng / test {N_TEST:,} dòng; 16 lớp; mất cân bằng **41:1** (`trafficCongestionSybil` 2.393.335 dòng
-test so với `suddenConstantSpeed` 57.757). Từ [`knowledge/DATASET.md`](knowledge/DATASET.md) §6, phải đọc cùng mọi bảng ở đây:
+test so với `suddenConstantSpeed` 57.757). Từ [`knowledge/DATASET.md`](../knowledge/DATASET.md) §6, phải đọc cùng mọi bảng ở đây:
 
 1. Split theo **thời gian mô phỏng**, không theo xe; test chỉ có scenario `highway_7`/`urban_7`.
 2. `benign` lấy từ luồng không có tấn công ⇒ nhóm đặc trưng `rate` mạnh bất thường.

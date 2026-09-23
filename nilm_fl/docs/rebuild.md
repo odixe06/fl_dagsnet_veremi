@@ -1,7 +1,7 @@
 # Lightweight-FL NILM (học tương hỗ liên bang) trên VeReMi NextGen / DAGSNet — bản dựng
 
 Mọi lựa chọn dưới đây là của **bản dựng** (chủ dự án chốt 2026-09-15 hoặc tôi chọn và ghi
-rõ), không gán cho tác giả bài báo. Phương pháp gốc: [`paper.md`](paper.md). Mã: [`proj/`](proj/).
+rõ), không gán cho tác giả bài báo. Phương pháp gốc: [`paper.md`](paper.md). Mã: [`proj/`](../papers/nilm-li-2024/proj).
 
 ## 1. Cấu hình đã chốt (chủ dự án, 2026-09-15)
 

@@ -21,7 +21,7 @@ Xây dựng lại phương pháp TinyProto-FP (AAAI-26 #02846, Lee & Choi) cho b
 | 50 client | 2, đã ghép | **21.133 check / 0 fail** | `…/runs/tinyproto_fp_50client/` |
 | 100 client | 4, đã ghép | **38.733 check / 0 fail** | `…/runs/tinyproto_fp_100client/` |
 
-**Báo cáo hoàn chỉnh: [`report.md`](report.md) ở thư mục gốc** — 23 bảng sinh tự động bằng
+**Báo cáo hoàn chỉnh: [`report.md`](docs/report.md) ở thư mục gốc** — 23 bảng sinh tự động bằng
 `scripts/make_report_tables.py --splice report.md`, CSV per-client ở
 `papers/tinyproto-lee-2026/report/`. Xem §12 về cơ chế phân kỳ (τ) — đó là kết quả khoa học
 chính của toàn bộ công việc này.
@@ -43,14 +43,14 @@ Số client và k **bị lẫn**. Báo cáo nêu cả round đỉnh lẫn round 
 
 | Cần biết | Đọc |
 |---|---|
-| **BÁO CÁO KẾT QUẢ HOÀN CHỈNH** (phương pháp, 23 bảng, cơ chế phân kỳ) | [`report.md`](report.md) |
+| **BÁO CÁO KẾT QUẢ HOÀN CHỈNH** (phương pháp, 23 bảng, cơ chế phân kỳ) | [`report.md`](docs/report.md) |
 | CSV per-client + mean-over-clients, `summary.json` | `papers/tinyproto-lee-2026/report/` |
-| **Mọi kết quả test** (local + Kaggle), số đo, đính chính | [`papers/tinyproto-lee-2026/TESTLOG.md`](papers/tinyproto-lee-2026/TESTLOG.md) |
+| **Mọi kết quả test** (local + Kaggle), số đo, đính chính | [`docs/TESTLOG.md`](docs/TESTLOG.md) |
 | Log thô từng lần chạy | [`papers/tinyproto-lee-2026/review-logs/INDEX.md`](papers/tinyproto-lee-2026/review-logs/INDEX.md) |
-| Thuật toán, công thức, mọi lựa chọn triển khai và lý do | [`papers/tinyproto-lee-2026/rebuild.md`](papers/tinyproto-lee-2026/rebuild.md) |
-| Chi phí truyền tin + ước lượng μ ban đầu (đã tách khỏi `knowledge/`) | [`rebuild.md` §8](papers/tinyproto-lee-2026/rebuild.md) |
+| Thuật toán, công thức, mọi lựa chọn triển khai và lý do | [`docs/rebuild.md`](docs/rebuild.md) |
+| Chi phí truyền tin + ước lượng μ ban đầu (đã tách khỏi `knowledge/`) | [`rebuild.md` §8](docs/rebuild.md) |
 | **Quy tắc: cái gì được ghi vào `knowledge/`** | [`knowledge/README.md`](knowledge/README.md) |
-| Tóm tắt bài báo gốc | [`papers/tinyproto-lee-2026/paper.md`](papers/tinyproto-lee-2026/paper.md) |
+| Tóm tắt bài báo gốc | [`docs/paper.md`](docs/paper.md) |
 | DAGSNet: kiến trúc, tham số khởi tạo, hợp đồng input | [`knowledge/ARCHITECTURE.md`](knowledge/ARCHITECTURE.md) |
 | Dataset: cột, scaler, số dòng, phân bố lớp (đã audit thật) | [`knowledge/DATASET.md`](knowledge/DATASET.md) |
 | **4 dataset VeReMi trên Kaggle đều public** (nên chạy chéo tài khoản được) | [`knowledge/KAGGLE_DATASETS.md`](knowledge/KAGGLE_DATASETS.md) |
@@ -65,7 +65,7 @@ Số client và k **bị lẫn**. Báo cáo nêu cả round đỉnh lẫn round 
 | **Session 3+4 của 100 client, bàn giao s3→s4, cơ chế τ, báo cáo** | §12 ngay trong file này |
 | **Kế hoạch production 4 tài khoản**, phân công, ranh giới session | §5d ngay trong file này |
 | **Notebook production sẽ push** (7 bản chia session) | `papers/tinyproto-lee-2026/production/` |
-| **Review trực tiếp bộ production, μ và các điểm cần sửa** | [`papers/tinyproto-lee-2026/PRODUCTION_REVIEW.md`](papers/tinyproto-lee-2026/PRODUCTION_REVIEW.md) + §8 |
+| **Review trực tiếp bộ production, μ và các điểm cần sửa** | [`docs/PRODUCTION_REVIEW.md`](docs/PRODUCTION_REVIEW.md) + §8 |
 
 **Mã nguồn:** `src/*.py` là nguồn thuật toán duy nhất. `scripts/gen_notebooks.py` nhúng nguyên
 module vào notebook qua `%%writefile`. **Sửa `src/` → phải regenerate → phải validate.**
@@ -437,7 +437,7 @@ Lưu ý vận hành:
 
 ## 8. Đã thực hiện review P1–P6 và đã push production s1 — 2026-09-08
 
-Review ở [PRODUCTION_REVIEW.md](papers/tinyproto-lee-2026/PRODUCTION_REVIEW.md) (P1–P6) đã được
+Review ở [PRODUCTION_REVIEW.md](docs/PRODUCTION_REVIEW.md) (P1–P6) đã được
 thực hiện. Trạng thái từng mục:
 
 | Mục | Đã làm | Bằng chứng |

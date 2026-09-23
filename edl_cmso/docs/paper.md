@@ -2,7 +2,7 @@
 
 **Citation** · Hasim Khan, Ghanshyam G. Tejani, Rayed AlGhamdi, Sultan Alasmari, Naveen Kumar Sharma, Sunil Kumar Sharma — *Scientific Reports*, 2025 · DOI `10.1038/s41598-025-94445-9`
 **Link** · https://doi.org/10.1038/s41598-025-94445-9   **Code** · none released
-**Local copy** · [`../../s41598-025-94445-9.md`](../../s41598-025-94445-9.md)
+**Local copy** · [`../../s41598-025-94445-9.md`](../s41598-025-94445-9.md)
 
 ## Problem
 

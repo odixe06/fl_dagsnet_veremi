@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Generate report.md from the three verified run directories.
+"""Generate docs/report.md from the three verified run directories.
 
 Usage: conda run -n nckh python scripts/make_report.py
 
@@ -77,7 +77,7 @@ def main():
       "mô tả AFPHA bằng lời (FedAvg + FedProx + Hierarchical FL); bài báo **không công bố** "
       "hệ số proximal, quy tắc thích nghi, cách phân cụm, tỉ lệ tham gia hay lịch optimizer. "
       "Toàn bộ các giá trị đó là **lựa chọn triển khai** theo Đề xuất A "
-      "(`papers/khan-2025-afpha/rebuild.md`, người dùng chốt 2026-09-06), không phải "
+      "(`docs/rebuild.md`, người dùng chốt 2026-09-06), không phải "
       "hyperparameter của tác giả. Không so sánh trực tiếp các số dưới đây với số CAN/CIC-IDS "
       "trong bài báo.\n")
     W("Các caveat về dữ liệu, phải đi kèm mọi trích dẫn kết quả:\n")
@@ -272,8 +272,8 @@ def main():
       "m = build_dagsnet()\n"
       "m.load_state_dict(torch.load('weights/round_050.pt', weights_only=True), strict=True)\n```\n")
 
-    (ROOT / "report.md").write_text("\n".join(out), encoding="utf-8")
-    print(f"wrote report.md ({len('\n'.join(out)):,} chars)")
+    (ROOT / "docs" / "report.md").write_text("\n".join(out), encoding="utf-8")
+    print(f"wrote docs/report.md ({len('\n'.join(out)):,} chars)")
     for n, _ in SCENARIOS:
         print(f"  {n:3d} client: 50 rounds, final acc {float(s[n]['final']['accuracy']):.6f}, "
               f"final f1_macro {float(s[n]['final']['f1_macro']):.6f}")

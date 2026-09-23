@@ -115,7 +115,7 @@ mà bài báo không quy định đầy đủ:
 Khan et al. có khiếm khuyết. Bài báo không công bố đường cong hội tụ dài nào để đối chiếu.
 
 Danh sách deviation đầy đủ (34 mục, kèm phân loại forced / user / judgement):
-[`papers/build2-paper-order/rebuild.md`](papers/build2-paper-order/rebuild.md).
+[`papers/build2-paper-order/rebuild.md`](../papers/build2-paper-order/rebuild.md).
 
 ---
 
@@ -157,13 +157,13 @@ mục run duy nhất**; round 0–45 của bản pull sau trùng khít từng ch
 Ba probe TPU và năm run TPU đã bị **loại vĩnh viễn**; lý do là số học chứ không phải thiếu tối
 ưu, tóm tắt ở mục 4.6.
 
-![f1_macro của mọi bản dựng qua từng round](figures/convergence_all.png)
+![f1_macro của mọi bản dựng qua từng round](../figures/convergence_all.png)
 
 Bảng trái cho thấy hai run wd 1e-4 rơi xuống 0,02; bảng phải phóng to vùng 0,78–0,86 là nơi
 mọi so sánh có nghĩa thực sự diễn ra. Đọc được ngay: **build 4 (cam) nằm trên mọi bản khác ở
 mọi round**, và bản final (xanh lá) đi hết 50 round trong dải 0,79–0,82.
 
-![Cùng pipeline, chỉ đổi weight_decay](figures/divergence_wd1e4.png)
+![Cùng pipeline, chỉ đổi weight_decay](../figures/divergence_wd1e4.png)
 
 Đây là hình quan trọng nhất về tính ổn định: **ba run cùng một pipeline**, chỉ khác
 `weight_decay`. Hai run wd 1e-4 chết ở round 22 và 25 theo cùng một cơ chế; run wd 5e-2 đi hết
@@ -341,7 +341,7 @@ Train loss giảm đơn điệu suốt 50 round trong khi `f1_macro` đi xuống
 round 0–2 sang round 5 khi bỏ extractor. ⚠ Nhận định sớm của tôi (lúc mới có 4 round) rằng
 đường cong này buộc phải viết lại mục 6 là **quá mạnh**; số liệu đủ 50 round không ủng hộ.
 
-![Build 4 — đường hội tụ 50 round](figures/build4_convergence.png)
+![Build 4 — đường hội tụ 50 round](../figures/build4_convergence.png)
 
 Hình trên là bằng chứng trực tiếp của overfitting: **train loss (nét đứt xám) giảm đơn điệu
 suốt 50 round trong khi f1_macro đi xuống từ round 5**. Đường đứt dọc ở 45/46 là ranh giới
@@ -407,7 +407,7 @@ thứ mà một CNN 1-D trên đặc trưng thô không bắt được.
 Đó là kết luận có ích nhất rút ra được về §4.8: nó không vô dụng, nhưng cái nó mua được rất
 hẹp, và cái giá là 332.928 tham số cộng với điểm thấp hơn ở 15 lớp khác.
 
-![F1 từng lớp: pipeline đầy đủ so với DAGSNet trần](figures/per_class_f1.png)
+![F1 từng lớp: pipeline đầy đủ so với DAGSNet trần](../figures/per_class_f1.png)
 
 ⚠ Hai dòng phải đọc kèm caveat. `trafficCongestionSybil` (+0,0112) bị nhóm `session` rò rỉ
 (mục 5, ý 4) nên F1 của nó phần lớn không đến từ kiến trúc. Và `benign` (+0,0451) lấy từ luồng
@@ -419,7 +419,7 @@ hẹp, và cái giá là 332.928 tham số cộng với điểm thấp hơn ở 
 chưa hội tụ, chưa bị weight decay ràng buộc** — đúng cái trạng thái mà 24 round sau đó đã tự
 phá huỷ. Không nên xây kết luận trên một con số mà run tạo ra nó không giữ nổi.
 
-![Confusion của build 4 ở round đỉnh](figures/confusion_build4_peak.png)
+![Confusion của build 4 ở round đỉnh](../figures/confusion_build4_peak.png)
 
 Confusion chuẩn hoá theo hàng ở round 5 chỉ ra chỗ lỗi thật sự còn lại, và nó **không** rải
 đều: `timeDelayAttack` bị đoán thành `benign` **76%** số lần (recall của chính nó chỉ 0,17),
@@ -900,7 +900,7 @@ từ 0,55 lên 1,68. Guard co gradient về norm 1, mà Adam bất biến với 
 hướng đã hỏng được áp dụng nguyên vẹn. Không tripwire nào trong dự án bắt được kiểu này.
 
 Đã thử bác bỏ giả thuyết "bf16 gỡ mất tripwire tình cờ của fp16" bằng
-[`bench/bf16repro.py`](papers/build2-paper-order/bench/bf16repro.py) — 900 step, dữ liệu
+[`bench/bf16repro.py`](../papers/build2-paper-order/bench/bf16repro.py) — 900 step, dữ liệu
 thật, batch 1.024, bốn nhánh: bf16+clip, fp16+GradScaler, bf16+clip+ngưỡng, fp32+clip.
 **Cả bốn đều khỏe**: loss 2,84 → 0,26, grad ~0,8, `|logit|max` chỉ 2,5 → 33, 0 step bị bỏ.
 Giả thuyết bị bác bỏ, và kết quả trùng với `bench/onset2.py` (9.000 step bf16 trên CUDA,

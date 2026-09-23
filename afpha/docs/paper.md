@@ -3,7 +3,7 @@
 Khan et al. (2025), *A secure and efficient deep learning-based intrusion detection
 framework for the internet of vehicles*, Scientific Reports 15, 12236.
 [Bài gốc](https://www.nature.com/articles/s41598-025-94445-9).
-Bản đọc trong repo: [s41598-025-94445-9.md](../../s41598-025-94445-9.md).
+Bản đọc trong repo: [s41598-025-94445-9.md](../s41598-025-94445-9.md).
 
 ## Nội dung có trong bài
 

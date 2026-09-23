@@ -1,7 +1,7 @@
 # pFedES trên VeReMi NextGen / DAGSNet — bản dựng
 
 Mọi lựa chọn dưới đây là của **bản dựng** (chủ dự án chốt 2026-09-11 → 13-09 hoặc tôi chọn và ghi
-rõ), không gán cho tác giả bài báo. Phương pháp gốc: [`paper.md`](paper.md). Mã: [`proj/`](proj/).
+rõ), không gán cho tác giả bài báo. Phương pháp gốc: [`paper.md`](paper.md). Mã: [`proj/`](../papers/pfedes-yi-2025/proj).
 
 > **Lưu ý lịch sử.** Trước bản này có một bản (12-09) chạy **LR hằng 1e-3** đã bị **thay thế hoàn toàn** và
 > không đóng góp con số nào cho report: LR hằng làm F_k overfit cục bộ rồi trôi xuống trên test toàn cục.
