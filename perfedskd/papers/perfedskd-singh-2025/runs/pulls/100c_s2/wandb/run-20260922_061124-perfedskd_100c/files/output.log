@@ -1,0 +1,72 @@
+W&B: https://wandb.ai/21522798-uit/perfedskd-veremi/runs/perfedskd_100c
+FL root    : /kaggle/input/datasets/odixe0502/veremi-fl-100client/100_client
+test root  : /kaggle/input/datasets/odixe0502/veremi-nextgen2026-centralized/upload/test
+data_id    : 4723f6dbf7fa5f2e
+fingerprint: f923c7feb193d427
+[resume] /kaggle/input/notebooks/minhtriethihi/perfed-skd-veremi-100-clients/runs/perfedskd_100c: 18 marker(s), verified to round 18, imported 1..18
+resume from round 18
+train (43045415, 66) max|x|=570.5
+test  (10761343, 66) max|x|=570.5
+content_id : db2bbb68760a82ee
+prepack 156.6s | 43,045,415 train / 10,761,343 test rows
+W0922 06:17:46.396000 87 torch/_inductor/utils.py:1679] [0/0] Not enough SMs to use max_autotune_gemm mode
+W0922 06:17:46.396000 88 torch/_inductor/utils.py:1679] [0/0] Not enough SMs to use max_autotune_gemm mode
+[rank1] compile OK | student max|dlogit|=7.93e-04 rel|dgrad|=6.17e-03 flips 1/256 (0/241 decisive) | teacher max|dlogit|=4.88e-04 rel|dgrad|=0.00e+00 flips 0/256 (0/241 decisive)
+[rank0] compile OK | student max|dlogit|=6.87e-04 rel|dgrad|=3.90e-03 flips 0/256 (0/244 decisive) | teacher max|dlogit|=4.88e-04 rel|dgrad|=0.00e+00 flips 0/256 (0/251 decisive)
+[rank1] eval compile OK | max|dlogit|=7.32e-04 rel|dgrad|=0.00e+00 flips 12/16384 (0/15176 decisive)
+[rank0] eval compile OK | max|dlogit|=7.32e-04 rel|dgrad|=0.00e+00 flips 7/16384 (0/15855 decisive)
+[driver] 2 workers ready: train compiled, eval compiled (505s into the session)
+[resume] /kaggle/input/notebooks/minhtriethihi/perfed-skd-veremi-100-clients/runs/perfedskd_100c: 18 marker(s), verified to round 18, imported 1..18
+[driver] resumed at round 19 with |S| = 48 selected devices
+[r019] f1_macro mean=0.424769 std=0.0592 min=0.2860 acc=0.465353 | global f1=0.577207 acc=0.530871 | |S|=48->47 tau=0.465353 | lr=7.05e-04 ce=0.0231 kd=0.0185 skip=41/168200 train=692s eval=1360s vram=7.01G 2055.1s | session 0.76h
+[r020] f1_macro mean=0.433924 std=0.0576 min=0.2921 acc=0.470460 | global f1=0.597549 acc=0.544191 | |S|=47->45 tau=0.470460 | lr=6.76e-04 ce=0.0232 kd=0.0190 skip=45/168200 train=611s eval=1359s vram=7.16G 1973.7s | session 1.31h
+[r021] f1_macro mean=0.434161 std=0.0579 min=0.2871 acc=0.469493 | global f1=0.553343 acc=0.515193 | |S|=45->46 tau=0.469493 | lr=6.46e-04 ce=0.0215 kd=0.0170 skip=43/168200 train=597s eval=1358s vram=7.15G 1958.4s | session 1.85h
+[r022] f1_macro mean=0.439308 std=0.0525 min=0.2879 acc=0.470217 | global f1=0.575043 acc=0.535070 | |S|=46->46 tau=0.470217 | lr=6.15e-04 ce=0.0217 kd=0.0177 skip=43/168200 train=565s eval=1358s vram=7.13G 1925.8s | session 2.39h
+[r023] f1_macro mean=0.443891 std=0.0500 min=0.2913 acc=0.472164 | global f1=0.579567 acc=0.530654 | |S|=46->47 tau=0.472164 | lr=5.84e-04 ce=0.0210 kd=0.0168 skip=33/168200 train=568s eval=1357s vram=7.05G 1928.7s | session 2.92h
+[r024] f1_macro mean=0.449131 std=0.0529 min=0.2928 acc=0.477693 | global f1=0.583308 acc=0.536050 | |S|=47->48 tau=0.477693 | lr=5.53e-04 ce=0.0201 kd=0.0159 skip=43/168200 train=570s eval=1357s vram=7.05G 1930.5s | session 3.46h
+[r025] f1_macro mean=0.452388 std=0.0545 min=0.2911 acc=0.477737 | global f1=0.577525 acc=0.529855 | |S|=48->47 tau=0.477737 | lr=5.21e-04 ce=0.0209 kd=0.0167 skip=54/168200 train=566s eval=1356s vram=7.05G 1925.0s | session 4.00h
+[r026] f1_macro mean=0.459362 std=0.0551 min=0.2898 acc=0.483060 | global f1=0.578447 acc=0.540616 | |S|=47->44 tau=0.483060 | lr=4.89e-04 ce=0.0194 kd=0.0153 skip=48/168200 train=569s eval=1355s vram=7.05G 1926.7s | session 4.53h
+[r027] f1_macro mean=0.457958 std=0.0533 min=0.3469 acc=0.481632 | global f1=0.540603 acc=0.515007 | |S|=44->45 tau=0.481632 | lr=4.57e-04 ce=0.0186 kd=0.0147 skip=45/168200 train=568s eval=1357s vram=7.05G 1927.3s | session 5.07h
+[r028] f1_macro mean=0.463494 std=0.0513 min=0.3398 acc=0.484872 | global f1=0.579280 acc=0.526273 | |S|=45->46 tau=0.484872 | lr=4.26e-04 ce=0.0198 kd=0.0160 skip=46/168200 train=569s eval=1356s vram=7.05G 1927.5s | session 5.60h
+[r029] f1_macro mean=0.468892 std=0.0564 min=0.3357 acc=0.488306 | global f1=0.571602 acc=0.529643 | |S|=46->46 tau=0.488306 | lr=3.95e-04 ce=0.0191 kd=0.0149 skip=42/168200 train=558s eval=1358s vram=7.05G 1919.4s | session 6.14h
+[r030] f1_macro mean=0.474463 std=0.0534 min=0.3407 acc=0.489974 | global f1=0.573727 acc=0.523568 | |S|=46->48 tau=0.489974 | lr=3.64e-04 ce=0.0188 kd=0.0147 skip=51/168200 train=556s eval=1359s vram=7.05G 1918.0s | session 6.67h
+[r031] f1_macro mean=0.482121 std=0.0520 min=0.3359 acc=0.494575 | global f1=0.586800 acc=0.541061 | |S|=48->44 tau=0.494575 | lr=3.34e-04 ce=0.0192 kd=0.0151 skip=53/168200 train=579s eval=1359s vram=7.05G 1941.0s | session 7.21h
+[r032] f1_macro mean=0.483756 std=0.0524 min=0.3401 acc=0.496942 | global f1=0.563339 acc=0.523684 | |S|=44->47 tau=0.496942 | lr=3.05e-04 ce=0.0171 kd=0.0130 skip=44/168200 train=582s eval=1359s vram=7.05G 1943.1s | session 7.75h
+[r033] f1_macro mean=0.489603 std=0.0562 min=0.3440 acc=0.500708 | global f1=0.554401 acc=0.526881 | |S|=47->47 tau=0.500708 | lr=2.76e-04 ce=0.0187 kd=0.0147 skip=46/168200 train=587s eval=1359s vram=7.05G 1948.3s | session 8.29h
+[r034] f1_macro mean=0.492400 std=0.0515 min=0.3385 acc=0.502354 | global f1=0.571407 acc=0.529300 | |S|=47->50 tau=0.502354 | lr=2.48e-04 ce=0.0199 kd=0.0155 skip=49/168200 train=567s eval=1359s vram=7.05G 1929.0s | session 8.82h
+[r035] f1_macro mean=0.505030 std=0.0580 min=0.3285 acc=0.511431 | global f1=0.591899 acc=0.550694 | |S|=50->47 tau=0.511431 | lr=2.22e-04 ce=0.0220 kd=0.0175 skip=67/168200 train=579s eval=1359s vram=7.05G 1940.6s | session 9.36h
+[r036] f1_macro mean=0.515434 std=0.0552 min=0.3571 acc=0.516942 | global f1=0.583607 acc=0.544635 | |S|=47->46 tau=0.516942 | lr=1.96e-04 ce=0.0197 kd=0.0147 skip=55/168200 train=578s eval=1359s vram=7.05G 1939.8s | session 9.90h
+[r037] f1_macro mean=0.513098 std=0.0580 min=0.3517 acc=0.515408 | global f1=0.575746 acc=0.536282 | |S|=46->45 tau=0.515408 | lr=1.72e-04 ce=0.0197 kd=0.0147 skip=56/168200 train=580s eval=1358s vram=7.05G 1941.5s | session 10.44h
+[r038] f1_macro mean=0.519293 std=0.0528 min=0.3498 acc=0.519741 | global f1=0.562249 acc=0.529631 | |S|=45->48 tau=0.519741 | lr=1.49e-04 ce=0.0226 kd=0.0184 skip=59/168200 train=557s eval=1359s vram=7.05G 1919.2s | session 10.97h
+[driver] stopping after round 38: the next round plus a 15 min finalize reserve would exceed the session budget (11.75 h)
+
+completed 20 rounds this session
+run      : /kaggle/working/runs/perfedskd_100c
+complete : rounds 1..38   (mode: full)
+artifacts: 0 prediction files, 38 client logs
+  all artifact checks passed
+
+rounds verified : 38 / 50
+  INCOMPLETE — attach this notebook's output (or a checkpoint dataset of it) to the next push and regenerate with --require-resume to continue at round 39
+
+result at round 38 (mean over 100 personalized models; std / min / max of f1_macro 0.0528 / 0.3498 / 0.6387):
+  accuracy             0.519741   server aggregate 0.529631
+  precision_macro      0.581923   server aggregate 0.544456
+  precision_micro      0.519741   server aggregate 0.529631
+  precision_weighted   0.664167   server aggregate 0.659930
+  recall_macro         0.600362   server aggregate 0.695610
+  recall_micro         0.519741   server aggregate 0.529631
+  recall_weighted      0.519741   server aggregate 0.529631
+  f1_macro             0.519293   server aggregate 0.562249
+  f1_micro             0.519741   server aggregate 0.529631
+  f1_weighted          0.504341   server aggregate 0.497943
+
+selection: |S| per round min 40 median 46 max 100 of 100; mean downlink+uplink saving 52.8% against broadcasting to every device
+
+[descriptive only] best mean f1_macro 0.519293 at round 38 — picked on test, not a reported result
+
+backend  : train compiled | eval compiled
+session  : 20 round(s) here | startup+prepack+compile 17.9 min | verify and W&B are outside this figure
+timing   : rounds [1940, 1942, 1919]s | steady 1935s/round = train 574s + eval 1358s (100 clients + aggregate) + commit
+VRAM     : train 7.16 GiB/GPU | eval 7.33 GiB/GPU (of 16)
+projected: 50 rounds = 27.17 h (26.87 h of rounds + 0.30 h startup)
