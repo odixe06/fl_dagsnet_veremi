@@ -25,14 +25,7 @@ dataset/
 !afpha/architecture/ckpt_round_005.pt
 
 # --- Luật riêng của các phương pháp cũ (trước đây nằm trong <method>/.gitignore) ---
-# Notebook sinh tự động có nhúng key W&B; dựng lại bằng script gen_notebook(s) của từng phương pháp.
-afpha/notebooks/
-fd_ids/papers/**/notebook/**/*.ipynb
-nilm_fl/papers/**/notebook/**/*.ipynb
-pfedes/papers/**/notebook/**/*.ipynb
-tinyproto/papers/tinyproto-lee-2026/notebook/**/*.ipynb
-tinyproto/papers/tinyproto-lee-2026/validation/**/*.ipynb
-tinyproto/papers/tinyproto-lee-2026/production/**/*.ipynb
+# Notebook của mọi phương pháp ĐƯỢC commit; key W&B đã được thay bằng os.environ["WANDB_API_KEY"].
 # Artifact run đã kéo về: hàng chục GB, không phải mã nguồn.
 fd_ids/papers/**/runs/
 nilm_fl/papers/**/runs/
