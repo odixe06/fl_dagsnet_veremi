@@ -1,6 +1,6 @@
 """DAGSNet — Khan et al. 2025 §4.10, Eq. (38)-(48). 395,024 learnable parameters.
 
-Copied verbatim from `knowledge/ARCHITECTURE.md` §6 so that a state_dict written by either
+Copied verbatim from `knowledge/architecture.md` §6 so that a state_dict written by either
 file loads in the other with `strict=True`. The only addition is the feature/classifier split
 that prototype-based FL needs: `forward_both` returns the penultimate activation alongside the
 logits, without changing any parameter name or shape.
@@ -115,7 +115,7 @@ class DAGSNet(nn.Module):
     """Four parallel backbones -> global average pool -> concat -> FC head.
 
     The head is kept as one `nn.Sequential` so parameter names stay `head.0`, `head.2`, `head.5`
-    exactly as in ARCHITECTURE.md. Prototype-based FL splits it at the ReLU:
+    exactly as in architecture.md. Prototype-based FL splits it at the ReLU:
 
         feature extractor f_i  =  trunk + head[0:4]   ->  (B, 256), post-ReLU, non-negative
         classifier       g_i  =  head[4:6]            ->  (B, 16) logits
@@ -168,7 +168,7 @@ class DAGSNet(nn.Module):
         return h, self.head[5](self.head[4](h))                           # (B, 16) logits
 
 
-# Configuration exactly as ARCHITECTURE.md freezes it. Changing any value here makes the
+# Configuration exactly as architecture.md freezes it. Changing any value here makes the
 # published DAGSNet state_dict unloadable -- that is the point.
 CFG = {
     "patch_len": 6, "stem_ch": 96, "dense_growth": 32, "dense_layers": 3,

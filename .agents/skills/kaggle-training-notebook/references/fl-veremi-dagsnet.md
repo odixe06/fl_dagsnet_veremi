@@ -82,7 +82,7 @@ and test suite. Copy the one closer to the method and change only the method mod
 | weights per round | 1.6 MB per full DAGSNet (0.2 MB pruned to 35.9 k params); per-client methods: N × that | |
 
 The lwfednids probe of 2026-09-22 (pruned DAGSNet, 20c) adds its own row to that project's
-`docs/TESTS.md` §4 — read it there, not here.
+`docs/tests.md` §4 — read it there, not here.
 
 ## 4. Operating sequence (copy-paste)
 

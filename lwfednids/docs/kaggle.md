@@ -1,4 +1,4 @@
-# KAGGLE.md — tài khoản, dữ liệu, kế hoạch phiên, và runbook vận hành
+# kaggle.md — tài khoản, dữ liệu, kế hoạch phiên, và runbook vận hành
 
 Mọi thứ liên quan đến việc **chạy** trên Kaggle. `CONTEXT.md` chỉ giữ bảng phân công tài khoản
 và trỏ về đây. Cập nhật: **2026-09-22 08:10Z**.
@@ -41,7 +41,7 @@ python $H/kaggle_account.py health   # refresh token còn sống không
 
 ## 2. Dữ liệu
 
-Bốn dataset **public** của `odixe0502` (`knowledge/KAGGLE_DATASETS.md`): `veremi-fl-{20,50,100}client`
+Bốn dataset **public** của `odixe0502` (`knowledge/kaggle-datasets.md`): `veremi-fl-{20,50,100}client`
 + `veremi-nextgen2026-centralized` (test + `scaler.json`). Mount đo được:
 `/kaggle/input/datasets/odixe0502/<slug>/…`; notebook phân giải bằng sentinel
 (`find_root("train/client_id=000")`, `find_root("upload/test")`), không hard-code.
@@ -55,7 +55,7 @@ bật cho W&B); validator chặn mọi lệnh cài lại `torch`.
 Dự báo trước probe ở [`rebuild.md` §5](rebuild.md): 20c/50c ≈ 4–5 h, 100c ≈ 8–9 h ⇒ **mỗi kịch
 bản một phiên 11,75 h**. Nếu 100c không kịp: phiên 2 cùng tài khoản qua `--session 2
 --require-resume --kernel-source trietbackup/lightweight-fed-nids-veremi-100-clients`
-(driver tự dừng trước hạn, `finalize_reserve_seconds = 900`). Số đo thật: [`TESTS.md` §4](TESTS.md).
+(driver tự dừng trước hạn, `finalize_reserve_seconds = 900`). Số đo thật: [`tests.md` §4](tests.md).
 
 ## 4. Runbook — phiên đầu của một kịch bản
 
@@ -133,7 +133,7 @@ Cách dừng: `kaggle_as.py <acct> -- kaggle kernels status`, rồi cancel qua M
 
 | ngày | tài khoản | kernel | vai trò | trạng thái |
 |---|---|---|---|---|
-| 22-09 07:32Z | `minhtran0601` | `lightweight-fed-nids-veremi-20-clients-probe` v1 | probe 2 vòng + calibration | **COMPLETE** 08:01Z, kéo về + verify pass (`TESTS.md` §4) |
+| 22-09 07:32Z | `minhtran0601` | `lightweight-fed-nids-veremi-20-clients-probe` v1 | probe 2 vòng + calibration | **COMPLETE** 08:01Z, kéo về + verify pass (`tests.md` §4) |
 | 22-09 08:02Z | `minhtran0601` | `lightweight-fed-nids-veremi-20-clients` v1 | production 20c, `--max-hours 11.75` | **COMPLETE 50/50, 3,62 h**, kéo về + verify pass ([`report.md`](report.md)) |
 | 22-09 08:02Z | `catbaochau` | `lightweight-fed-nids-veremi-50-clients` v1 | production 50c, `--max-hours 11.75` | **COMPLETE 50/50, 3,38 h**, kéo về + verify pass ([`report.md`](report.md)) |
 | 22-09 08:02Z | `trietbackup` | `lightweight-fed-nids-veremi-100-clients` v1 | production 100c, `--max-hours 11.75` | **COMPLETE 50/50 trong 1 phiên, 6,90 h**, kéo về + verify pass ([`report.md`](report.md)) |

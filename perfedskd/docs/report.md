@@ -5,7 +5,7 @@ Cập nhật 2026-09-23. Cả ba kịch bản đủ 50/50 round. Cây `runs/merg
 
 Mọi con số trong báo cáo được đọc từ artifact đã kéo về (`metrics/round_NNN.json`, `history.csv`,
 `clients.csv`, `confusion/*.npy`). Không có số nào lấy từ ảnh chụp W&B. Cách đọc từng loại bằng
-chứng (local, probe 2×T4, production) được trình bày ở [`TESTS.md`](TESTS.md).
+chứng (local, probe 2×T4, production) được trình bày ở [`tests.md`](tests.md).
 
 ---
 
@@ -72,7 +72,7 @@ Những điểm ảnh hưởng trực tiếp đến cách đọc:
 * **D5: λ = 1, KL(teacher ‖ student), T = 1.** Không có quét λ.
 * **D12: truyền tin được tính theo giao thức** (|S_t| lên + |S_t| xuống), không đo trên mạng.
 * **D13: một seed, một lần chạy.** `*_std` là độ lệch **giữa các device**, không phải giữa các lần chạy.
-* Caveat của dữ liệu ([`knowledge/DATASET.md` §6](../knowledge/DATASET.md)):
+* Caveat của dữ liệu ([`knowledge/dataset.md` §6](../knowledge/dataset.md)):
   * split theo thời gian mô phỏng, test chỉ có scenario `_7`;
   * `scaler.json` fit trên toàn bộ 43 M dòng train (rò rỉ thống kê toàn cục vào FL);
   * rò rỉ Sybil;
@@ -342,7 +342,7 @@ device thuộc S_t** (hàng cuối bảng). Cách đọc sau là suy luận, kh�
   test toàn cục, và device được chọn mang ω^t đó sang round sau.
 * Device ngoài S_t không nhận ω^{t-1}, nên ce của chúng tăng ít hơn nhiều (0,020–0,040 ở r50).
 
-**Số bước AMP bị skip mỗi round cũng tăng.** Đây là mẫu hình mà [`KAGGLE.md` §6](KAGGLE.md) liệt
+**Số bước AMP bị skip mỗi round cũng tăng.** Đây là mẫu hình mà [`kaggle.md` §6](kaggle.md) liệt
 kê là dấu hiệu dừng, nhưng ở đây không phải hỏng:
 
 | | 20c | 50c | 100c |
@@ -387,7 +387,7 @@ Cách đọc an toàn:
 
 ### 5.1 Calibration trên 2×T4 (probe)
 
-Nguồn: [`TESTS.md` §4](TESTS.md). Cả hai probe báo `compiled/compiled`. Bước SKD compiled đạt
+Nguồn: [`tests.md` §4](tests.md). Cả hai probe báo `compiled/compiled`. Bước SKD compiled đạt
 **7,85 ms** (batch 512) và **7,27 ms** (batch 256), so với eager 52,83 và 55,98 ms, tức tăng tốc
 **6,73× và 7,70×**. Mức này cao hơn hẳn 2,9× của bước DAGSNet đơn, vì bước SKD có ba graph
 (teacher fwd, student fwd, student bwd). Eval compiled-folded đạt ~400 nghìn dòng/s ở batch 16384.
@@ -428,7 +428,7 @@ lớn nhất còn lại). Không thể cache confusion của device không đổ
 | backend train / eval, mọi round | compiled / compiled | compiled / compiled | compiled / compiled |
 | τ và S_{t+1} dựng lại từ accuracy từng device | khớp 50/50 round | khớp 50/50 round | khớp 50/50 round |
 
-`verify_run.py` dựng lại **mọi** con số từ artifact ([`TESTS.md` §3.5](TESTS.md)):
+`verify_run.py` dựng lại **mọi** con số từ artifact ([`tests.md` §3.5](tests.md)):
 
 * metric trong json, ma trận nhầm lẫn, `history.csv` và `clients.csv` khớp nhau;
 * τ, `selected_next` và chuỗi S_t = S_{t+1} của round trước;

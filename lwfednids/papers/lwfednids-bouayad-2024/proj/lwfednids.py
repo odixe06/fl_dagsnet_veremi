@@ -26,7 +26,7 @@ the numbers (docs/rebuild.md):
     the 66 tabular VeReMi features enter the DAGSNet classifier directly;
   * the aggregate is the paper's UNWEIGHTED mean 1/N (Eq. 9), although this partition is
     non-IID with client sizes 870 k .. 5.9 M rows (the paper's IID shards were equal);
-  * the local step is AdamW (weight decay 1e-4, knowledge/ARCHITECTURE.md) at a per-ROUND
+  * the local step is AdamW (weight decay 1e-4, knowledge/architecture.md) at a per-ROUND
     cosine learning rate 1e-3 -> 1e-5 over the 50 rounds, constant within a round and
     re-created per client per round, where Algorithm 5 line 8 writes plain gradient
     descent and the paper names no rate;

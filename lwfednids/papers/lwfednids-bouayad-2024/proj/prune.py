@@ -1,7 +1,7 @@
 """The pruning mask of Lightweight-Fed-NIDS (Bouayad et al. 2024, §III-B-1-b), computed
 ONCE on the server at initialization and never again.
 
-    theta_0  <- seeded initialization of the unpruned DAGSNet (knowledge/ARCHITECTURE.md)
+    theta_0  <- seeded initialization of the unpruned DAGSNet (knowledge/architecture.md)
     M        <- zero-shot structured mask: DepGraph groups the layers by their inter- and
                 intra-layer dependencies (Fang et al. 2023), the importance of prunable
                 dimension k of group g is the L1 group norm (Eq. (7), I(theta) = ||theta||_1),

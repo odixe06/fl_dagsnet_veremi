@@ -61,7 +61,7 @@ Câu đầu tiên cho session mới:
 
 Dựng lại phương pháp của bài báo **Khan et al. 2025, *Scientific Reports*, DOI `10.1038/s41598-025-94445-9`** — "A Secure and Efficient Deep Learning-Based Intrusion Detection Framework for the Internet of Vehicles" — trên dataset VeReMi NextGen của tôi, rồi huấn luyện + đánh giá trên Kaggle 2×T4.
 
-Bài báo gốc: [`s41598-025-94445-9.md`](s41598-025-94445-9.md) · Mô tả dataset: [`dataset.md`](knowledge/DATASET.md)
+Bài báo gốc: [`s41598-025-94445-9.md`](s41598-025-94445-9.md) · Mô tả dataset: [`dataset.md`](knowledge/dataset.md)
 Dataset Kaggle: `odixe0502/veremi-nextgen2026-centralized`
 
 **Dựng lại stage 3–5 của bài báo:** DWT → ViT → GAT → fusion (Eq. 28) → CMSO feature selection (Eq. 29–37) → DAGSNet (DenseNet + GoogleNet + AlexNet + SqueezeNet, Eq. 38–48).
@@ -1587,7 +1587,7 @@ Muốn test lại: extract các module `%%writefile` ra rồi chạy trong env `
 
 ## 6. ⚠ Bắt buộc ghi kèm mọi con số công bố
 
-Lấy từ mục "Reporting results" của [`dataset.md`](knowledge/DATASET.md). Tôi đã xác nhận và chấp nhận điểm 4.
+Lấy từ mục "Reporting results" của [`dataset.md`](knowledge/dataset.md). Tôi đã xác nhận và chấp nhận điểm 4.
 
 1. Split theo **thời gian mô phỏng**, không theo xe — 64 điểm cắt, mỗi (class × scenario) một điểm.
 2. Lớp benign lấy từ luồng **không có tấn công**, khiến nhóm đặc trưng `rate` mạnh bất thường.

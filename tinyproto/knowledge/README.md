@@ -27,5 +27,5 @@ liệu** khi đang dựng phương pháp B, và không ai kiểm lại vì nó n
 kiểm. Đó là cách một lựa chọn thiết kế bị nhầm thành thuộc tính khách quan.
 
 Ví dụ đã xảy ra (đã sửa 2026-09-08): bảng "ước lượng μ" và bảng chi phí truyền tin theo `s = 50`
-từng nằm trong `DATASET.md`. Cả hai phụ thuộc TinyProto; đã chuyển sang
+từng nằm trong `dataset.md`. Cả hai phụ thuộc TinyProto; đã chuyển sang
 `docs/rebuild.md` §8. Thống kê `n_ij` gốc thì ở lại, vì đó là dữ liệu.

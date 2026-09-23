@@ -36,7 +36,7 @@ khả dụng** — hai cửa sổ VS Code ăn ~3,5 GB; đóng bớt một cửa 
 **Token (22-09):** token MCP `odixe0502` mới đã lưu + introspect OK. **Quét đĩa thấy KGAT của cả
 8 tài khoản và refresh token `minhtran0601` nằm trong transcript Claude Code** (do dán vào chat)
 ⇒ cần **xoay vòng toàn bộ** — việc của người (browser): chạy
-`scripts/rotate_kaggle_creds_wizard.sh` ([`docs/KAGGLE.md` §1.1](docs/KAGGLE.md)).
+`scripts/rotate_kaggle_creds_wizard.sh` ([`docs/kaggle.md` §1.1](docs/kaggle.md)).
 **Không dán token vào chat nữa.**
 
 ---
@@ -48,11 +48,11 @@ khả dụng** — hai cửa sổ VS Code ăn ~3,5 GB; đóng bớt một cửa 
 | **Bài báo nói gì**, và bài báo **để trống / tự mâu thuẫn** ở đâu (G1–G10) | [`docs/paper.md`](docs/paper.md) |
 | **Mọi lựa chọn của bản dựng**: 13 deviation, hợp đồng artifact, thiết kế tốc độ (và các tối ưu đã **loại** kèm số học), ngân sách, caveat bắt buộc | [`docs/rebuild.md`](docs/rebuild.md) |
 | **Kết quả** (chính thức, cả ba kịch bản 50/50) | [`docs/report.md`](docs/report.md) + `papers/perfedskd-singh-2025/report_data/` |
-| **Mọi con số đã đo**: 7 cây test kiểm gì, kết quả từng check, calibration 2×T4, ranh giới của từng loại bằng chứng | [`docs/TESTS.md`](docs/TESTS.md) |
-| **Chạy trên Kaggle**: tài khoản, quota, dataset, kế hoạch phiên, runbook push / theo dõi / kéo / verify / hop, bẫy vận hành | [`docs/KAGGLE.md`](docs/KAGGLE.md) |
-| **DAGSNet**: kiến trúc đầy đủ, Eq. (38)–(48), hợp đồng vào/ra, 66 cột đặc trưng | [`knowledge/ARCHITECTURE.md`](knowledge/ARCHITECTURE.md) |
-| **Dữ liệu**: train đã z-score / test chưa, nhãn ở đâu, ba kịch bản α = 0,5, steps/round | [`knowledge/DATASET.md`](knowledge/DATASET.md) |
-| **Máy local**: RAM 7,6 GiB, VRAM 4 GiB, sm_86 ≠ sm_75, cái gì kiểm được ở local | [`knowledge/LOCAL_ENV.md`](knowledge/LOCAL_ENV.md) |
+| **Mọi con số đã đo**: 7 cây test kiểm gì, kết quả từng check, calibration 2×T4, ranh giới của từng loại bằng chứng | [`docs/tests.md`](docs/tests.md) |
+| **Chạy trên Kaggle**: tài khoản, quota, dataset, kế hoạch phiên, runbook push / theo dõi / kéo / verify / hop, bẫy vận hành | [`docs/kaggle.md`](docs/kaggle.md) |
+| **DAGSNet**: kiến trúc đầy đủ, Eq. (38)–(48), hợp đồng vào/ra, 66 cột đặc trưng | [`knowledge/architecture.md`](knowledge/architecture.md) |
+| **Dữ liệu**: train đã z-score / test chưa, nhãn ở đâu, ba kịch bản α = 0,5, steps/round | [`knowledge/dataset.md`](knowledge/dataset.md) |
+| **Máy local**: RAM 7,6 GiB, VRAM 4 GiB, sm_86 ≠ sm_75, cái gì kiểm được ở local | [`knowledge/local-env.md`](knowledge/local-env.md) |
 | **Bài báo gốc** | [`Personalized_..._Approach.md`](Personalized_Federated_Learning_for_Heterogeneous_Edge_Device_Self-Knowledge_Distillation_Approach.md) |
 
 **Ranh giới tài liệu — giữ đúng, vì một con số đặt sai chỗ sẽ bị phiên sau đọc như sự thật đã kiểm:**
@@ -81,7 +81,7 @@ khả dụng** — hai cửa sổ VS Code ăn ~3,5 GB; đóng bớt một cửa 
 | [`scripts/validate_notebooks.py`](scripts/validate_notebooks.py) | gate tĩnh trước khi tốn một version Kaggle |
 | [`scripts/run_local_checked.py`](scripts/run_local_checked.py) | **watchdog RAM — mọi test local phải đi qua đây** |
 | [`scripts/verify_run.py`](scripts/verify_run.py) · [`pull_output.sh`](scripts/pull_output.sh) · [`stage_ckpt_dataset.py`](scripts/stage_ckpt_dataset.py) · [`gen_ckpt_probe.py`](scripts/gen_ckpt_probe.py) · [`report_data.py`](scripts/report_data.py) · [`poll_prod.sh`](scripts/poll_prod.sh) | verify offline · kéo output có retry · đóng gói checkpoint · probe cổng resume · số liệu báo cáo · theo dõi |
-| [`tests/`](tests/) | 7 cây test — bảng ở [`docs/TESTS.md` §2](docs/TESTS.md) |
+| [`tests/`](tests/) | 7 cây test — bảng ở [`docs/tests.md` §2](docs/tests.md) |
 | `papers/perfedskd-singh-2025/notebook/` | `.ipynb` **sinh tự động**, nhúng key W&B ⇒ mode 600, **gitignore**, không commit |
 | `papers/perfedskd-singh-2025/runs/` | `pulls/` · `merged/` (cây chuẩn) · `ckpt_ds/` (staging hop) |
 
@@ -139,14 +139,14 @@ này nuôi τ, nên quy tắc chọn device được đo trên đúng artifact �
 3. `|S|` **dao động quanh M/2**, `comm_saving ≈ 0,5`; round 1 có `|S| = M` và saving 0.
 4. `f1_macro` **giảm** ở một số round — model cá nhân hoá được đo trên test **toàn cục**.
 
-**Lý do thật sự phải dừng**: [`docs/KAGGLE.md` §6](docs/KAGGLE.md). Ngắn gọn: `backend = eager`
+**Lý do thật sự phải dừng**: [`docs/kaggle.md` §6](docs/kaggle.md). Ngắn gọn: `backend = eager`
 (chậm gần 7×), `skipped` tăng dần, f1 về 0/NaN, `train_sec` +30 %, VRAM > 14 GiB, kernel ERROR.
 
 ---
 
 ## 4. Kaggle — phân công tài khoản
 
-Chi tiết quota, dataset, runbook, bẫy: [`docs/KAGGLE.md`](docs/KAGGLE.md).
+Chi tiết quota, dataset, runbook, bẫy: [`docs/kaggle.md`](docs/kaggle.md).
 
 | kịch bản | tài khoản | phiên | trạng thái |
 |---|---|---|---|
@@ -154,7 +154,7 @@ Chi tiết quota, dataset, runbook, bẫy: [`docs/KAGGLE.md`](docs/KAGGLE.md).
 | 50c | `trietbackup` | 2 (10,46 + ~4,9 h đo) | **XONG**: phiên 1 34 + phiên 2 16 round, merge, **verify 50 pass** |
 | 100c | `minhtriethihi` (phiên 1–2) → **`khanhmay0304`** (phiên 3, dataset checkpoint) | 3 (11,19 + 11,09 + 6,75 h đo) | **XONG**: 18 + 20 + 12 round (phiên 3 qua dataset checkpoint), merge, **verify 50 pass** |
 
-**Ba quyết định của chủ dự án 21-09 ~17:00Z** (lý lẽ và số ở [`docs/KAGGLE.md` §3](docs/KAGGLE.md)):
+**Ba quyết định của chủ dự án 21-09 ~17:00Z** (lý lẽ và số ở [`docs/kaggle.md` §3](docs/kaggle.md)):
 `--max-hours` được **> 11 miễn < 12 h** · **tối thiểu số phiên** (3 là sàn của 100c: 25 round =
 13,7 h > 12 h) · **biên quota tổng 5–10 phút là đủ** ⇒ phiên 3 của 100c khai
 `--max-hours = quota còn lại − 0,15` để driver tự dừng thay vì bị Kaggle giết (mất cả output).

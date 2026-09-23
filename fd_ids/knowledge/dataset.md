@@ -160,7 +160,7 @@ root tương đối là `{20,50,100}_client/`. Luôn phân giải bằng sentine
 
 ## 6. Caveat bắt buộc kèm mọi con số công bố từ bộ dữ liệu này
 
-Kế thừa từ `ARCHITECTURE.md` §8, cộng thêm ba điểm riêng của bản FL:
+Kế thừa từ `architecture.md` §8, cộng thêm ba điểm riêng của bản FL:
 
 1. Split theo **thời gian mô phỏng**, không theo xe — 64 điểm cắt, mỗi (class × scenario) một điểm.
 2. Lớp `benign` lấy từ luồng **không có tấn công** → nhóm đặc trưng `rate` mạnh bất thường.

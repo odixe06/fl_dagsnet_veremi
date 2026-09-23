@@ -76,7 +76,7 @@ batch ghép ở bước ① là tự nhất quán.
 
 ## 3. Dữ liệu
 
-Số đo thật từ [`knowledge/DATASET.md`](../knowledge/DATASET.md) (audit 2026-09-07), không chép từ README.
+Số đo thật từ [`knowledge/dataset.md`](../knowledge/dataset.md) (audit 2026-09-07), không chép từ README.
 
 ### 3.1 Kích thước và phân mảnh
 

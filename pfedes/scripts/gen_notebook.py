@@ -19,7 +19,7 @@ RUNTIME = json.loads((ROOT / "knowledge/runtime.json").read_text())
 META = json.loads((ROOT / "knowledge/meta.json").read_text())
 MODULES = ("model", "ckpt", "metrics", "data", "pfedes", "evaluate", "driver", "verify")
 
-# batch from knowledge/DATASET.md §4. Participation is C = 100 % in EVERY scenario
+# batch from knowledge/dataset.md §4. Participation is C = 100 % in EVERY scenario
 # (owner's decision 2026-09-12, a deliberate departure from the paper's Tables 1-2, which
 # use C = 100 %/20 %/10 % for N = 10/50/100): every client trains and is re-evaluated in
 # every round, so the mean over clients is a mean over models that have all been trained
@@ -211,7 +211,7 @@ open("/kaggle/working/proj/__init__.py", "w").close()
 sys.path.insert(0, "/kaggle/working")"""),
 
     code(f'''CFG = dict(
-    # --- architecture: knowledge/ARCHITECTURE.md, frozen (F_k 395,024 / G 407,874 params)
+    # --- architecture: knowledge/architecture.md, frozen (F_k 395,024 / G 407,874 params)
     patch_len=6, stem_ch=96, dense_growth=32, dense_layers=3,
     incep_modules=2, fire_modules=3, dropout=0.1,
     num_classes=16, n_features=66,
@@ -222,7 +222,7 @@ sys.path.insert(0, "/kaggle/working")"""),
     local_epochs={PAPER["local_epochs"]}, proxy_epochs={PAPER["proxy_epochs"]},
     participation={sc["participation"]},        # owner 2026-09-12: C = 100 % in all scenarios
     rounds={rounds}, clip=1.0, seed=42,
-    # --- compute: knowledge/DATASET.md 4
+    # --- compute: knowledge/dataset.md 4
     n_clients={K}, batch={sc["batch"]}, eval_batch={eval_batch},
     device="cuda", world_size=2, compile=True,
     # Each client starts fresh GradScalers at 2**16 and spends a few steps calibrating.

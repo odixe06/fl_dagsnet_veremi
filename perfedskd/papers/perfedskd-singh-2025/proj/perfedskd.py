@@ -56,7 +56,7 @@ deviation to publish with the numbers; the reasoning is in docs/rebuild.md secti
   * round 1: S_1 = all M (no accuracies exist yet), and V_m = omega^0 for every m, so the
     distillation term starts at exactly 0 and grows as the student leaves its own
     initialization. From round 2 the teacher is a genuinely different model.
-  * AdamW, weight decay 1e-4 (knowledge/ARCHITECTURE.md), re-created per client per round,
+  * AdamW, weight decay 1e-4 (knowledge/architecture.md), re-created per client per round,
     so no optimizer state exists at a round boundary and a checkpoint is weights alone.
     The paper says only "Stochastic Gradient Descent" in Eq. (3) and names no rate.
   * the learning rate follows a per-ROUND cosine schedule (`lr_at`), constant within a

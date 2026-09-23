@@ -1,4 +1,4 @@
-# KAGGLE.md — tài khoản, dữ liệu, kế hoạch phiên, và runbook vận hành
+# kaggle.md — tài khoản, dữ liệu, kế hoạch phiên, và runbook vận hành
 
 Mọi thứ liên quan đến việc **chạy** trên Kaggle. `CONTEXT.md` chỉ giữ bảng phân công tài khoản
 và trỏ về đây. Cập nhật: **2026-09-23 02:10Z**.
@@ -87,7 +87,7 @@ python $H/kaggle_account.py plan --gpu-hours 28 --session-hours 11
 ## 2. Dữ liệu
 
 **Bốn dataset đầu vào đều PUBLIC**, chủ `odixe0502` ⇒ mọi tài khoản mount được, **không cần
-share tay** (`knowledge/KAGGLE_DATASETS.md`).
+share tay** (`knowledge/kaggle-datasets.md`).
 
 | kịch bản | Kaggle | local (WSL) |
 |---|---|---|
@@ -104,14 +104,14 @@ Từ Windows: `\\wsl.localhost\Ubuntu\home\odixe\nckh\veremi\dataset\fl_client` 
 `proj/data.py::find_root` phân giải bằng **sentinel** (`train/client_id=000`, `upload/test`).
 
 ⚠ **train/ ĐÃ z-score, test/ thì CHƯA.** Áp `scaler.json` **chỉ** cho test, **đúng một lần**.
-Cả hai lỗi ngược nhau đều **không báo lỗi gì** (`knowledge/DATASET.md` §1.1).
+Cả hai lỗi ngược nhau đều **không báo lỗi gì** (`knowledge/dataset.md` §1.1).
 
 ---
 
 ## 3. Kế hoạch phiên
 
 Giờ dưới đây suy từ **round thật** của production 20c/50c và probe 100c
-([`TESTS.md` §4.2–4.3](TESTS.md)), không phải từ micro-benchmark:
+([`tests.md` §4.2–4.3](tests.md)), không phải từ micro-benchmark:
 
 | kịch bản | tài khoản | phiên | `--max-hours` | round | giờ | trạng thái |
 |---|---|---|---|---|---:|---|
@@ -275,7 +275,7 @@ python $H/kaggle_as.py <acct> -- kaggle kernels output <owner>/<slug> -p <dest> 
 
 | dấu hiệu | vì sao |
 |---|---|
-| `backend = eager` (train hoặc eval) | chậm **gần 7×** — xem [`TESTS.md` §4](TESTS.md) |
+| `backend = eager` (train hoặc eval) | chậm **gần 7×** — xem [`tests.md` §4](tests.md) |
 | `skipped` tăng dần theo round | GradScaler không hội tụ, không phải calibration |
 | `f1_macro` về 0 hoặc NaN | phân kỳ |
 | `train_sec` tăng > 30 % | nghẽn CPU hoặc graph bị ghi lại |
@@ -311,8 +311,8 @@ thêm §5 "Chọn thiết bị và truyền tin" + `selection.png`. `--report do
 
 | kernel | tài khoản | mục đích | trạng thái |
 |---|---|---|---|
-| `catbaochau/perfed-skd-veremi-20-clients-probe` | catbaochau | 2 round + micro-benchmark T4, batch 512 | **COMPLETE** (2 round, [`TESTS.md` §4.2](TESTS.md)) |
-| `khanhmay0304/perfed-skd-veremi-100-clients-probe` | khanhmay0304 | 2 round + micro-benchmark T4, batch 256 | **COMPLETE** (2 round, 1,32 h quota, [`TESTS.md` §4.2](TESTS.md)) |
+| `catbaochau/perfed-skd-veremi-20-clients-probe` | catbaochau | 2 round + micro-benchmark T4, batch 512 | **COMPLETE** (2 round, [`tests.md` §4.2](tests.md)) |
+| `khanhmay0304/perfed-skd-veremi-100-clients-probe` | khanhmay0304 | 2 round + micro-benchmark T4, batch 256 | **COMPLETE** (2 round, 1,32 h quota, [`tests.md` §4.2](tests.md)) |
 | `catbaochau/perfed-skd-veremi-20-clients` | catbaochau | **production 20c**, 50 round, 1 phiên | pushed 13:16Z 21-09; **COMPLETE 50/50** (8,42 h; 593 s/round); output kéo đủ 06:20Z 22-09 (`runs/pulls/20c_s1`), merge → `runs/merged/perfedskd_20c`, **`verify_run --require-rounds 50` pass** (1 file preds ở round 50) |
 | `trietbackup/perfed-skd-veremi-50-clients` | trietbackup | **production 50c**, phiên 1/2, `--max-hours 11` | pushed 13:16Z 21-09; **COMPLETE 34/50** (10,46 h; 1.088 s/round); output kéo đủ 06:12Z 22-09 (`runs/pulls/50c_s1`, 269 file), merge → `runs/merged/perfedskd_50c`, **`verify_run --require-rounds 34` pass** |
 | `trietbackup/perfed-skd-veremi-50-clients-s2` | trietbackup | **production 50c**, phiên 2/2, `--max-hours 6.5`, `--require-resume --kernel-source …-50-clients` | pushed 06:16Z 22-09; **COMPLETE round 35–50**; kéo 01:50Z 23-09 (`runs/pulls/50c_s2`, `PULL_PATTERN` bỏ trọng số r1–34), merge s1+s2 → `runs/merged/perfedskd_50c`, **`verify_run --require-rounds 50` pass** |

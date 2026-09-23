@@ -142,4 +142,4 @@ Bài báo đo trên MNIST/EMNIST (ảnh xám 28×28, 10 hoặc 26 lớp, 60–70
 α = 0,001), 200 vòng × 20 epoch cục bộ, trên CPU. Bản dựng này đo trên VeReMi NextGen
 (66 đặc trưng dạng bảng, 16 lớp, 43 triệu dòng train, Dirichlet α = 0,5), 50 vòng × 1 epoch,
 trên 2×T4. Cái được kế thừa là **phương pháp** — Eq. (2), quy tắc chọn device, quy tắc tổng
-hợp — không phải con số. Xem thêm `knowledge/ARCHITECTURE.md` §8 điểm 10.
+hợp — không phải con số. Xem thêm `knowledge/architecture.md` §8 điểm 10.

@@ -1,6 +1,6 @@
 """Decode parquet once, keep everything resident on the GPU, delete the input pipeline.
 
-Facts this module relies on, all measured in `knowledge/DATASET.md`:
+Facts this module relies on, all measured in `knowledge/dataset.md`:
 
 * the 66 `f_*` columns of `train/` are ALREADY z-scored (|mean| ≤ 3.0e-8, std within 3e-8 of 1);
   `test/` is NOT, and needs `scaler.json` applied exactly once;
