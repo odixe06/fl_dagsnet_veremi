@@ -33,10 +33,10 @@ dừng (20c `f1_macro` 0,192 → 0,578 → 0,705; 50c 0,223 → 0,547 → 0,682)
 gì qua W&B.
 
 Rà soát lần 1–3 (§6, §11) đã đóng: **R01–R18** đều sửa xong, mỗi mục một ca chèn lỗi. Suite
-local **13 file, 88 phép kiểm**, pass toàn bộ. Tổng **41** lỗi ghi ở [`TEST_LOG.md`](docs/TEST_LOG.md)
+local **13 file, 88 phép kiểm**, pass toàn bộ. Tổng **41** lỗi ghi ở [`tests.md`](docs/tests.md)
 §2 — trong đó #36, #37, #38 chỉ lộ ra khi chạm phần cứng thật, sau khi mọi cổng local đã xanh.
 
-**Mục tiêu.** Dựng lại phương pháp huấn luyện của *FD-IDS* (Zhang et al., **Sensors** 2025,
+**Mục tiêu.** Dựng lại phương pháp huấn luyện của *FD-IDS* (Peng, Xiao, Wu, **Sensors** 2025,
 25, 4309 — `sensors-25-04309.md`) trên bộ dữ liệu VeReMi NextGen và bộ phân loại **DAGSNet**
 trong `knowledge/`, cho **ba cấu hình 20 / 50 / 100 client**, chạy trên Kaggle 2×T4.
 
@@ -47,11 +47,13 @@ trong `knowledge/`, cho **ba cấu hình 20 / 50 / 100 client**, chạy trên Ka
 | đường dẫn | nội dung | ai sửa |
 |---|---|---|
 | [`sensors-25-04309.md`](sensors-25-04309.md) | bài báo gốc FD-IDS | chỉ đọc |
+| [`docs/paper.md`](docs/paper.md) | phương pháp trích từ bài báo + 10 chỗ bài báo để trống (G1–G10) | chỉ sửa khi đọc lại bài báo |
+| [`docs/rebuild.md`](docs/rebuild.md) | mọi lựa chọn của bản dựng: cấu hình, deviation D1–D9, hiệu năng, hợp đồng artifact, caveat | |
 | [`knowledge/`](knowledge/) | **sự thật không đổi**: dữ liệu, kiến trúc, máy local, hạ tầng | sửa khi *đo lại*, không khi đổi phương pháp |
-| ├ [`DATASET.md`](knowledge/DATASET.md) | 43.045.415 train / 10.761.343 test, 3 phân mảnh α=0,5, ngân sách bước | |
-| ├ [`ARCHITECTURE.md`](knowledge/ARCHITECTURE.md) | DAGSNet 395.024 tham số, 66 cột, 16 lớp, mã nguồn đã kiểm | |
-| ├ [`LOCAL_ENV.md`](knowledge/LOCAL_ENV.md) | máy local + **ranh giới** local↔Kaggle | |
-| ├ [`KAGGLE_DATASETS.md`](knowledge/KAGGLE_DATASETS.md) | 4 dataset, đều **public** | |
+| ├ [`dataset.md`](knowledge/dataset.md) | 43.045.415 train / 10.761.343 test, 3 phân mảnh α=0,5, ngân sách bước | |
+| ├ [`architecture.md`](knowledge/architecture.md) | DAGSNet 395.024 tham số, 66 cột, 16 lớp, mã nguồn đã kiểm | |
+| ├ [`local-env.md`](knowledge/local-env.md) | máy local + **ranh giới** local↔Kaggle | |
+| ├ [`kaggle-datasets.md`](knowledge/kaggle-datasets.md) | 4 dataset, đều **public** | |
 | ├ [`runtime.json`](knowledge/runtime.json) | digest image Kaggle đã kiểm, `machine_shape` | |
 | └ `meta.json` / `scaler.json` | thứ tự 66 cột, tên 16 lớp, mean/std | |
 | [`papers/fd-ids-2025/`](papers/fd-ids-2025/) | **phương pháp này** — tham số đã chốt nằm ở §1 dưới đây | |
@@ -70,7 +72,7 @@ trong `knowledge/`, cho **ba cấu hình 20 / 50 / 100 client**, chạy trên Ka
 | ├ `test_verifier` · `test_data_cache` | R13 12 ca tamper · R14 loader thật + cache | |
 | ├ `test_teacher` · `test_budget` · `test_schedule` | R16 teacher cache · R17 đồng hồ · bất biến theo lịch | |
 | └ `test_smoke_real` · `test_validator` | end-to-end dữ liệu thật · R18 7 mutation | |
-| [`TEST_LOG.md`](docs/TEST_LOG.md) | **mọi kết quả đo** (local + Kaggle) | ghi thêm, không xoá |
+| [`tests.md`](docs/tests.md) | **mọi kết quả đo** (local + Kaggle) | ghi thêm, không xoá |
 | [`report.md`](docs/report.md) + [`figures/`](figures/) | **báo cáo** — sinh bởi `scripts/make_report.py` từ `runs/`; đủ 10 metric × 50 round/cấu hình, tự đối chiếu CSV↔JSON↔CM | ❌ không sửa tay: sửa generator rồi chạy lại |
 | `.claude/skills/` + `.agents/skills/` | skill `kaggle-training-notebook` — `.agents` là bản gốc, `.claude` là bản mirror; **sửa thì sửa cả hai** | |
 
@@ -109,12 +111,12 @@ w_G^{t+1} = Σ_k (n_k/n)·w_k^{t+1}                              Eq. (2)
 | Loss cứng | CrossEntropy | bài báo Table 3 |
 | KD interval | **round-wise** (mỗi round) | bài báo §4.3.2 — tốt nhất trong 3 lựa chọn |
 | Tham gia | **toàn bộ** client mỗi round (m = K) | Algorithm 1 dòng 4 |
-| **Batch** | **512 / 512 / 256** (20c/50c/100c) | `knowledge/DATASET.md` §4 |
-| **Round × epoch** | **50 × 1** | chủ dự án chốt 2026-09-10; khớp `DATASET.md` §4 |
-| Mô hình | **DAGSNet** 395.024 tham số | `knowledge/ARCHITECTURE.md` |
-| Seed | 42 | `knowledge/ARCHITECTURE.md` |
-| Clip grad-norm | 1,0 | `knowledge/ARCHITECTURE.md` §4.1 |
-| Precision | fp16 AMP, loss ở fp32 ngoài autocast | `knowledge/ARCHITECTURE.md` §4.1 |
+| **Batch** | **512 / 512 / 256** (20c/50c/100c) | `knowledge/dataset.md` §4 |
+| **Round × epoch** | **50 × 1** | chủ dự án chốt 2026-09-10; khớp `dataset.md` §4 |
+| Mô hình | **DAGSNet** 395.024 tham số | `knowledge/architecture.md` |
+| Seed | 42 | `knowledge/architecture.md` |
+| Clip grad-norm | 1,0 | `knowledge/architecture.md` §4.1 |
+| Precision | fp16 AMP, loss ở fp32 ngoài autocast | `knowledge/architecture.md` §4.1 |
 
 ### 1.1 Deviation so với bài báo — phải công bố kèm mọi con số
 
@@ -124,7 +126,7 @@ w_G^{t+1} = Σ_k (n_k/n)·w_k^{t+1}                              Eq. (2)
 | Dữ liệu | Edge-IIoT / N-BaIoT | **VeReMi NextGen**, 16 lớp, 66 đặc trưng | chủ dự án chỉ định |
 | Số client | 9 | **20 / 50 / 100** | chủ dự án chỉ định |
 | Non-IID | Dirichlet θ = 1 và θ = 0,1 | **α = 0,5 cố định** | phân mảnh đã dựng sẵn, không sinh lại |
-| Round × epoch | 40 × 2 | **50 × 1** | chốt 2026-09-10, khớp ngân sách `DATASET.md` §4 |
+| Round × epoch | 40 × 2 | **50 × 1** | chốt 2026-09-10, khớp ngân sách `dataset.md` §4 |
 | Batch | 128 | **512 / 512 / 256** | knowledge ưu tiên; batch 128 tốn ~75 h, vượt quota |
 | Tiền xử lý | one-hot + MI chọn top-k đặc trưng | **không** — dùng đủ 66 cột `f_*` đã z-score | dữ liệu giao ở trạng thái đã xử lý |
 | Metric | Accuracy/Precision/Recall/F1; FPR/FNR theo ma trận nhị phân ở §4.2 | **10 metric đa lớp** | vẫn định nghĩa được FPR/FNR bằng one-vs-rest hoặc gộp benign/attack, nhưng chưa chốt quy ước; không tự thêm |
@@ -208,9 +210,9 @@ runs/fdids_<K>c/
 
 **Xong:**
 - MCP dựng lại; skill sửa hợp đồng checkpoint **và** chính sách tài khoản (§4) ở cả
-  `.agents` và `.claude`; `knowledge/LOCAL_ENV.md` dọn sạch số liệu theo phiên.
+  `.agents` và `.claude`; `knowledge/local-env.md` dọn sạch số liệu theo phiên.
 - **R01–R10** (rà soát 1–2) và **R11–R18** (rà soát 3) đều đã sửa, mỗi mục có ca chèn lỗi
-  riêng. Quá trình sửa sinh thêm 2 lỗi mới, cũng đã sửa. Tổng **35** lỗi ở `TEST_LOG.md` §2.
+  riêng. Quá trình sửa sinh thêm 2 lỗi mới, cũng đã sửa. Tổng **35** lỗi ở `tests.md` §2.
 - Suite local: **13 file test, 86 phép kiểm, pass toàn bộ**. Validator kiểm 5 lớp (metadata,
   CFG qua AST, module ↔ nguồn **từng byte**, thứ tự luồng thực thi, tên biến qua các cell) và
   tự có **7 mutation** phải bị chặn.
@@ -263,7 +265,7 @@ trọn commit và W&B, và driver **từ chối bắt đầu** một round mà p
 
 ## 5. Caveat bắt buộc kèm mọi con số công bố
 
-Kế thừa `knowledge/DATASET.md` §6 và `ARCHITECTURE.md` §8:
+Kế thừa `knowledge/dataset.md` §6 và `architecture.md` §8:
 
 1. Split theo **thời gian mô phỏng**, không theo xe; test chỉ có scenario `_7`.
 2. Mất cân bằng **41:1** → đọc `f1_macro`, **không** đọc `accuracy`.
@@ -294,7 +296,7 @@ Số dòng/phân bố toàn bộ vẫn lấy từ audit đã lưu trong `knowled
 | Hạng mục | Kết luận và giới hạn |
 |---|---|
 | Notebook ↔ nguồn | Cả **18/18 module nhúng** (6 × 3 notebook) khớp `proj/*.py` sau bỏ newline cuối. Không phát hiện notebook stale ở lần rà soát này. |
-| Kiến trúc | **8 định nghĩa hàm/class chung** khớp AST với mã đầy đủ trong `ARCHITECTURE.md`; layout `(B,11,6) → transpose`, 395.024 tham số. Driver khởi tạo mới, không nạp checkpoint pretrained round 5 trong `knowledge/`. |
+| Kiến trúc | **8 định nghĩa hàm/class chung** khớp AST với mã đầy đủ trong `architecture.md`; layout `(B,11,6) → transpose`, 395.024 tham số. Driver khởi tạo mới, không nạp checkpoint pretrained round 5 trong `knowledge/`. |
 | Cấu hình | 20c/50c: batch 512; 100c: 256; cả ba 50 round × 1 epoch, toàn bộ client. Metadata trỏ đúng FL dataset tương ứng + centralized test; notebook chưa chứa execution output. |
 | Eq. (4), (6) | KL đúng chiều **teacher ‖ student**, có `T²`; CE/KD = 0,5/0,5; gradient proximal = `βμ(w−w_G)` = **0,001·(w−w_G)** trên learnable parameters. Không thiếu hay nhân thừa μ/β. |
 | FL round | Student reset về global; teacher giữ global cố định ở `eval()`, không gradient; aggregation sau đủ client, trọng số `n_k/N`, thứ tự cộng theo client id. Hai worker không dùng DDP để trộn gradient giữa client. |
@@ -304,7 +306,7 @@ Số dòng/phân bố toàn bộ vẫn lấy từ audit đã lưu trong `knowled
 
 - **`test_ckpt.py`:** kiểm `C.save_round` và `C.load_for_resume`, trong khi FD-IDS chạy
   `C.save_round_weights` và nhánh resume tự viết trong `D.run`. Con số **resume 3,25 MB** ở
-  `TEST_LOG.md` bao gồm **Adam state**, không phải dung lượng RNG-only của FD-IDS. Test
+  `tests.md` bao gồm **Adam state**, không phải dung lượng RNG-only của FD-IDS. Test
   `max|Δlogit|=0` là bằng chứng tốt cho dựng lại trọng số ở fixture, không chứng minh replay
   toàn bộ FL hay artifact của mọi round.
 - **`test_fdids.py`:** kiểm số học proximal/KD bằng công thức viết lại trong test; gọi thật
@@ -320,7 +322,7 @@ Số dòng/phân bố toàn bộ vẫn lấy từ audit đã lưu trong `knowled
   cell không thực hiện kiểm tra đúng thứ tự. Cell hiện có kiểm *checkpoint tồn tại* trước
   decode, nhưng fingerprint chỉ được driver kiểm **sau prepack và worker startup**.
 
-`TEST_LOG.md` giữ nguyên làm lịch sử. Phần rà soát này đính chính cách diễn giải các số đo cũ;
+`tests.md` giữ nguyên làm lịch sử. Phần rà soát này đính chính cách diễn giải các số đo cũ;
 không phủ nhận những assertion mà test thực sự đã kiểm.
 
 ### 6.3 Các phép tái hiện lỗi trong phiên rà soát
@@ -355,7 +357,7 @@ minh cần mở rộng phạm vi test; không chứng minh 20/50/100 client đã
 
 ## 7. R01–R10 — các bản sửa vòng 2 và bằng chứng đã có
 
-Mô tả đầy đủ từng lỗi (vị trí, cách tái hiện) nằm ở `TEST_LOG.md` §2, dòng #9–#18. Bảng này
+Mô tả đầy đủ từng lỗi (vị trí, cách tái hiện) nằm ở `tests.md` §2, dòng #9–#18. Bảng này
 là hồ sơ sửa ở đâu và bài nào đã chạy. **Không đọc “pass” ở đây như nghiệm thu toàn bộ
 hợp đồng**: §11–§12 bổ sung các ca chưa được test cũ bảo vệ.
 
@@ -386,7 +388,7 @@ Ngưỡng đã chốt không được nới để hợp thức hoá kết quả 
 ## 8. Những lựa chọn khoa học cần ghi rõ trước khi sửa thuật toán
 
 1. **Nguồn tham số có phân cấp.** Giữ quyết định đã ghi ở §1: FD-IDS Adam/lr cố định từ
-   Table 3; 50×1 và batch theo cấu hình đã chốt; DAGSNet từ knowledge. `ARCHITECTURE.md` §4.1
+   Table 3; 50×1 và batch theo cấu hình đã chốt; DAGSNet từ knowledge. `architecture.md` §4.1
    có AdamW + weight decay + cosine của **run DAGSNet cũ**, không tự động biến thành mặc định
    FD-IDS. Adam hiện dùng betas `(0.9,0.999)`, eps `1e-8`, weight_decay `0`, amsgrad `False`;
    các giá trị mặc định không được bài FD-IDS liệt kê hết, cần ghi là lựa chọn triển khai.
@@ -493,7 +495,7 @@ round 1 của 20c** sau khi đã trả tiền cho prepack và một round train 
 ### 10.1c ĐÃ ĐÓNG 2026-09-11 — compile rơi eager vì lỗi #39, không phải vì sm_75
 
 **LỊCH SỬ. Kết luận "compile đã rơi về eager" là ĐÚNG; đường đi tới nó thì SAI.** Nguyên nhân
-thật, số đo trên chính T4 và bản sửa: **§14.1–§14.2** và `TEST_LOG.md` §3.3. Giữ lại mục này
+thật, số đo trên chính T4 và bản sửa: **§14.1–§14.2** và `tests.md` §3.3. Giữ lại mục này
 vì hai giả thuyết bị loại bên dưới vẫn là số đo dùng được.
 
 Lập luận hỏng ở chỗ nào: nó so **13,4 phút** (dự đoán từ **thời gian/step thuần**) với
@@ -604,7 +606,7 @@ verifier, 3 test và **cả 5 notebook** (3 run thật + 2 probe). Không thay �
 test hoặc notebook trong lần rà soát này.
 
 * **35/35 module nhúng khớp nguồn** sau `rstrip()`. Cả 8 định nghĩa chung của mô hình khớp
-  AST với `ARCHITECTURE.md`; 395.024 tham số. Các notebook chưa có execution output.
+  AST với `architecture.md`; 395.024 tham số. Các notebook chưa có execution output.
 * Ba run thật vẫn 50 round, hai probe 2 round; tham số Eq. (2)–(6), batch và số client đúng
   cấu hình đã chốt. Metadata hiện trỏ đúng FL dataset của từng K và centralized dataset,
   image đã pin, notebook riêng tư và khai báo 2×T4. `kernel_sources=[]` ở cả 5 file:
@@ -634,7 +636,7 @@ Probe runtime **trích module từ chính notebook 20c** vào thư mục tạm r
 Cách chèn lỗi được ghi cụ thể bên dưới để chuyển thành test bền vững khi sửa.
 
 Không chạy lại `test_smoke_real.py` nguyên bản: bài này sinh 2 worker CPU và log gần nhất đã
-đạt 2.992/3.000 MiB. Bằng chứng smoke/bit-identical ở §7 vẫn lấy từ `TEST_LOG.md` §1b,
+đạt 2.992/3.000 MiB. Bằng chứng smoke/bit-identical ở §7 vẫn lấy từ `tests.md` §1b,
 **không gọi là phép đo mới**. Các probe mới dùng một tiến trình, không nới watchdog.
 
 MCP native `get_accelerator_quota` trả thành công ở phiên audit này. Chỉ xác nhận MCP có
@@ -871,7 +873,7 @@ trong TEST_LOG chỉ được **ghi thêm**, không sửa cho trông như đã p
 
 ## 13. R11–R18 — đã sửa, kèm bằng chứng
 
-Mô tả đầy đủ từng lỗi ở `TEST_LOG.md` §2 dòng #21–#35; số đo ở §1c.
+Mô tả đầy đủ từng lỗi ở `tests.md` §2 dòng #21–#35; số đo ở §1c.
 
 | ID | sửa ở đâu | bài kiểm chứng minh | số đo |
 |---|---|---|---|
@@ -901,8 +903,8 @@ chứ không phải push rồi bỏ đó.
 ## 14. Phiên 2026-09-11 — compile đã được mở khoá, relaunch cả ba
 
 **Kết quả lớn nhất của phiên: ba run T4 chạy chậm gấp đôi vì một lỗi trong GATE của tôi,
-không phải vì Triton hỏng trên sm_75.** Chi tiết ở lỗi **#39** (`TEST_LOG.md` §2) và số đo ở
-`TEST_LOG.md` §3.3.
+không phải vì Triton hỏng trên sm_75.** Chi tiết ở lỗi **#39** (`tests.md` §2) và số đo ở
+`tests.md` §3.3.
 
 ### 14.1 Vì sao compile bị tắt suốt — lỗi #39
 
@@ -962,7 +964,7 @@ viễn trong version history của Kaggle — không commit, không chia sẻ c�
 Suite local: **13 file, 86 phép kiểm, pass toàn bộ** (thêm `test_compile_gate.py` 6 và
 `test_proximal.py` 4). `scripts/gen_compile_probe.py` sinh notebook probe khi cần; thư mục
 `notebook/compile_probe/` đã **xoá** sau khi probe trả lời xong (regenerate được, kết quả đã
-ghi ở `TEST_LOG.md` §3.3). Validator **không** quét thư mục đó.
+ghi ở `tests.md` §3.3). Validator **không** quét thư mục đó.
 
 **`gen_notebook.py --run-tag`** (mới): hậu tố cho `run_name`. Cần cho mọi lần relaunch, vì
 `wandb.init(resume="allow", id=run_name)` sẽ **mở lại đúng run cũ**; run cũ đã có history tới
@@ -1002,7 +1004,7 @@ bộ nhớ** (`vram_train_gb` = 7,13 cố định, train+eval **không đơn đi
 định là đọc **util cùng với clock**: 20c/50c **100% util ở 1245–1290 MHz** (bão hoà, bị trần
 công suất ghì), còn 100c **58% util ở 1575/1590 MHz** — *boost được vì đang rảnh*, tức **đói
 CPU**. Batch 256 ⇒ **168.200 bước/round** (gấp đôi 84.083) trên cùng **4 vCPU**. Vì vậy 100c
-được **~23 round**, không phải 28. Chi tiết: `TEST_LOG.md` §3.4; bài học đã ghi vào skill
+được **~23 round**, không phải 28. Chi tiết: `tests.md` §3.4; bài học đã ghi vào skill
 `references/perf-federated.md` §2.
 
 ### ⚠⚠ PHÁT HIỆN KHOA HỌC: cả ba run ĐẠT ĐỈNH SỚM rồi THOÁI LUI
@@ -1039,7 +1041,7 @@ hình. 50c skip = 0 suốt. Mối lo này đóng lại.
 ✅ **`backend=compiled` trên cả ba**, đọc được khi run **còn sống** (nhờ bản vá #38).
 **17,9 → 8,7 ph/round = 2,06×**, tốt hơn dự đoán 10,5 ph. `ce` khớp đường eager tới 4 chữ số
 ở cả round 1 và 2 ⇒ thay đổi compile **không** làm lệch bài toán tối ưu. Chi tiết và bảng đối
-chiếu eager-vs-compiled: `TEST_LOG.md` §3.4.
+chiếu eager-vs-compiled: `tests.md` §3.4.
 
 `minhtran0601` (2,13 h) **để trống có chủ ý**: một session 2 h mất ~0,7 h cho prepack, gộp
 100c vào `khanhmay0304` (2 session đồng thời, 9,7 + 6,2 = 15,9 ≤ 16,09) cho nhiều round hơn.
@@ -1143,7 +1145,7 @@ vẫn giảm đơn điệu. 50c hội tụ hẳn quanh round 20 (`ce` dao độn
 0,67–0,69 suốt 30 round). Giả thuyết BN-under-FedAvg ở §14.6 **vẫn chưa kiểm** — không chép
 vào report như kết luận. Report phải neo vào đường cong + round đỉnh, không trích round 50.
 
-### 15.3 Continuation qua checkpoint dataset — đã làm, số đo ở `TEST_LOG.md` §3.7
+### 15.3 Continuation qua checkpoint dataset — đã làm, số đo ở `tests.md` §3.7
 
 Thủ tục chuẩn nay ở **§10.3**. Điểm mấu chốt: cây run phải nằm **dưới một cấp `runs/`** trong
 thư mục dataset (Kaggle bỏ một cấp khi giải nén); `-t` để `history.csv` không bị chuyển đổi;
@@ -1203,11 +1205,11 @@ history khớp 42/42 hàng, 50 round liên tục, `verify_run --require-rounds 5
 `f1_weighted` → 0,7297. **Round 44 tụt xuống 0,7294** (−3,75 điểm, gấp 2,6× cú tụt lớn nhất
 của phiên 1) rồi hồi 0,7499 → 0,7606 → … → 0,7655. Đã soi `logs/round_044.json`: không client
 nào bất thường (ce/gnorm/skip/nonfinite như r43, r45) ⇒ dao động một round của phép gộp, không
-phải lỗi continuation. Số liệu và bảng 10 metric r50 ở `TEST_LOG.md` §3.8.
+phải lỗi continuation. Số liệu và bảng 10 metric r50 ở `tests.md` §3.8.
 
 Skill `merge_sessions.py` đã sửa **chung** (cả hai cây) vì nó từ chối sai merge này: history ở
 gốc run, `manifest.json` là provenance từng phiên (nhóm `PER_SESSION` cùng `config.json`),
-`logs/round_*` là artifact từng round. Chi tiết `TEST_LOG.md` §3.8.
+`logs/round_*` là artifact từng round. Chi tiết `tests.md` §3.8.
 
 ### 15.5 Lỗ hổng còn mở — cổng GPU không kiểm `last == expected`
 
@@ -1220,7 +1222,7 @@ production giữa chừng là điều `pull-outputs.md` khuyên tránh. Làm sau
 
 ### 15.6 Việc còn lại
 
-1. ~~Khi 100c `COMPLETE`: pull, verify, merge, xoá pull~~ **ĐÃ XONG** (§15.7, `TEST_LOG.md` §3.9).
+1. ~~Khi 100c `COMPLETE`: pull, verify, merge, xoá pull~~ **ĐÃ XONG** (§15.7, `tests.md` §3.9).
 2. ~~Kernel phiên 2 dừng sớm~~ không xảy ra: 100c chạy trọn 25 round còn lại trong một phiên.
 3. **Report** — **HOÀN TẤT** (§15.7). Lịch sử: bản interim `report.md` (gốc repo, theo yêu cầu chủ dự án 04:00Z) từ
    `scripts/make_report.py`: đọc `runs/fdids_{20c,50c}_v2`, kiểm CSV↔JSON↔confusion↔per-class từng
@@ -1254,7 +1256,7 @@ production giữa chừng là điều `pull-outputs.md` khuyên tránh. Làm sau
 * `scripts/make_report.py`: điền giờ kết thúc 100c; **bỏ prose hardcode hai kịch bản** — caption §0
   (plateau từng cấu hình, đơn điệu theo số client), §8 (dải đỉnh/xói mòn tính từ dữ liệu, continuation
   liệt kê mọi cấu hình nhiều phiên), caption hình hội tụ + tiêu đề panel phải nêu **CE đi ngang, KD
-  tăng dần** (số đo: `TEST_LOG.md` §3.9). `report.md` 649 dòng, HOÀN TẤT, cổng độc lập pass.
+  tăng dần** (số đo: `tests.md` §3.9). `report.md` 649 dòng, HOÀN TẤT, cổng độc lập pass.
 * 10 metric r50 ba cấu hình (accuracy / F1 macro / F1 weighted): 20c 0,7327 / 0,7655 / 0,7297;
   50c 0,6714 / 0,6815 / 0,6423; 100c 0,6552 / 0,6606 / 0,6223. Đỉnh F1 macro hậu kiểm 0,7822 @r7 /
   0,7205 @r6 / 0,6870 @r9. Chi tiết và per-class: `report.md` §4–§6, §8.
