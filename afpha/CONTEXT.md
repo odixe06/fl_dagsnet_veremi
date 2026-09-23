@@ -129,7 +129,7 @@ mục 7) — phân cấp là mô tả hệ thống chứ không phải khác bi�
 ## 5. Code đã viết
 
 ```
-src/dagsnet.py     model, 395.024 params, chép nguyên từ ARCHITECTURE.md §6
+src/dagsnet.py     model, 395.024 params, chép nguyên từ architecture.md §6
 src/metrics.py     10 metrics tính từ confusion matrix
 src/flatpack.py    state_dict <-> flat vector (params đứng đầu)
 src/afpha.py       cụm, LR, adaptive mu, aggregation phân cấp, drift

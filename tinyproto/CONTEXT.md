@@ -45,16 +45,16 @@ Số client và k **bị lẫn**. Báo cáo nêu cả round đỉnh lẫn round 
 |---|---|
 | **BÁO CÁO KẾT QUẢ HOÀN CHỈNH** (phương pháp, 23 bảng, cơ chế phân kỳ) | [`report.md`](docs/report.md) |
 | CSV per-client + mean-over-clients, `summary.json` | `papers/tinyproto-lee-2026/report/` |
-| **Mọi kết quả test** (local + Kaggle), số đo, đính chính | [`docs/TESTLOG.md`](docs/TESTLOG.md) |
+| **Mọi kết quả test** (local + Kaggle), số đo, đính chính | [`docs/tests.md`](docs/tests.md) |
 | Log thô từng lần chạy | [`papers/tinyproto-lee-2026/review-logs/INDEX.md`](papers/tinyproto-lee-2026/review-logs/INDEX.md) |
 | Thuật toán, công thức, mọi lựa chọn triển khai và lý do | [`docs/rebuild.md`](docs/rebuild.md) |
 | Chi phí truyền tin + ước lượng μ ban đầu (đã tách khỏi `knowledge/`) | [`rebuild.md` §8](docs/rebuild.md) |
 | **Quy tắc: cái gì được ghi vào `knowledge/`** | [`knowledge/README.md`](knowledge/README.md) |
 | Tóm tắt bài báo gốc | [`docs/paper.md`](docs/paper.md) |
-| DAGSNet: kiến trúc, tham số khởi tạo, hợp đồng input | [`knowledge/ARCHITECTURE.md`](knowledge/ARCHITECTURE.md) |
-| Dataset: cột, scaler, số dòng, phân bố lớp (đã audit thật) | [`knowledge/DATASET.md`](knowledge/DATASET.md) |
-| **4 dataset VeReMi trên Kaggle đều public** (nên chạy chéo tài khoản được) | [`knowledge/KAGGLE_DATASETS.md`](knowledge/KAGGLE_DATASETS.md) |
-| Máy local: RAM/GPU, sự cố đã gặp, cách chạy test an toàn | [`knowledge/LOCAL_ENV.md`](knowledge/LOCAL_ENV.md) |
+| DAGSNet: kiến trúc, tham số khởi tạo, hợp đồng input | [`knowledge/architecture.md`](knowledge/architecture.md) |
+| Dataset: cột, scaler, số dòng, phân bố lớp (đã audit thật) | [`knowledge/dataset.md`](knowledge/dataset.md) |
+| **4 dataset VeReMi trên Kaggle đều public** (nên chạy chéo tài khoản được) | [`knowledge/kaggle-datasets.md`](knowledge/kaggle-datasets.md) |
+| Máy local: RAM/GPU, sự cố đã gặp, cách chạy test an toàn | [`knowledge/local-env.md`](knowledge/local-env.md) |
 | Image/runtime Kaggle đã kiểm chứng (digest + xuất xứ) | [`knowledge/runtime.json`](knowledge/runtime.json) |
 | Quy trình làm việc với Kaggle nói chung | `.agents/skills/kaggle-training-notebook/SKILL.md` |
 | **Bẫy thư viện/runtime đã gặp** (torch, vmap, AMP, image) | `.agents/skills/kaggle-training-notebook/references/library-runtime.md` |
@@ -65,7 +65,7 @@ Số client và k **bị lẫn**. Báo cáo nêu cả round đỉnh lẫn round 
 | **Session 3+4 của 100 client, bàn giao s3→s4, cơ chế τ, báo cáo** | §12 ngay trong file này |
 | **Kế hoạch production 4 tài khoản**, phân công, ranh giới session | §5d ngay trong file này |
 | **Notebook production sẽ push** (7 bản chia session) | `papers/tinyproto-lee-2026/production/` |
-| **Review trực tiếp bộ production, μ và các điểm cần sửa** | [`docs/PRODUCTION_REVIEW.md`](docs/PRODUCTION_REVIEW.md) + §8 |
+| **Review trực tiếp bộ production, μ và các điểm cần sửa** | [`docs/production-review.md`](docs/production-review.md) + §8 |
 
 **Mã nguồn:** `src/*.py` là nguồn thuật toán duy nhất. `scripts/gen_notebooks.py` nhúng nguyên
 module vào notebook qua `%%writefile`. **Sửa `src/` → phải regenerate → phải validate.**
@@ -126,7 +126,7 @@ Chi tiết công thức ở `rebuild.md`. Tóm tắt để không phải mở fi
 - Một cây kiểm thử tại một thời điểm; local 1 worker, `compile=False`.
 - Không `ulimit -v` với CUDA; không đọc toàn bộ train vào RAM; không chạy Inductor local.
 - Bộ test local **chạy trên CPU 1 worker** — nó **không** kiểm chứng đường hai GPU.
-- Chi tiết và lệnh an toàn: `knowledge/LOCAL_ENV.md`.
+- Chi tiết và lệnh an toàn: `knowledge/local-env.md`.
 
 ---
 
@@ -137,7 +137,7 @@ Chi tiết công thức ở `rebuild.md`. Tóm tắt để không phải mở fi
 - Kaggle: `odixe0502/veremi-fl-{20,50,100}client` + `odixe0502/veremi-nextgen2026-centralized`.
 - Mỗi kịch bản 43.045.415 dòng train; fixed test 10.761.343; 66 cột `f_*`; 16 lớp.
 - **Train đã z-score sẵn; test là raw và phải áp scaler fit-trên-train đúng một lần.**
-  Không bao giờ chuẩn hoá lại train. Kiểm chứng số liệu: `knowledge/DATASET.md`.
+  Không bao giờ chuẩn hoá lại train. Kiểm chứng số liệu: `knowledge/dataset.md`.
 
 ---
 
@@ -437,7 +437,7 @@ Lưu ý vận hành:
 
 ## 8. Đã thực hiện review P1–P6 và đã push production s1 — 2026-09-08
 
-Review ở [PRODUCTION_REVIEW.md](docs/PRODUCTION_REVIEW.md) (P1–P6) đã được
+Review ở [production-review.md](docs/production-review.md) (P1–P6) đã được
 thực hiện. Trạng thái từng mục:
 
 | Mục | Đã làm | Bằng chứng |
@@ -472,7 +472,7 @@ Log: `review-logs/kaggle-smoke-{khanhmay0304,minhtrit06}.log`. Bài học `khanh
 ### Bốn dataset VeReMi vốn đã PUBLIC
 
 Kiểm 2026-09-08: cả bốn `veremi-*` đều public → mọi tài khoản mount được, **không cần share tay**.
-Chi tiết: [`knowledge/KAGGLE_DATASETS.md`](knowledge/KAGGLE_DATASETS.md). Phần P2 lo về quyền đọc
+Chi tiết: [`knowledge/kaggle-datasets.md`](knowledge/kaggle-datasets.md). Phần P2 lo về quyền đọc
 dataset vì thế đã khép lại. **Còn lại chưa nghiệm thu:** bàn giao output notebook riêng tư
 `khanhmay0304/…-s3` → `minhtrit06/…-s4` (chỉ tới lượt ở session 4).
 

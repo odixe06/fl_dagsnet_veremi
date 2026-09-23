@@ -128,7 +128,7 @@ class DAGSNet(nn.Module):
         return self.head(torch.cat(pooled, dim=1))              # Eq. (47) -> (48)
 
 
-# Cấu hình ĐÚNG như knowledge/ARCHITECTURE.md. Đổi bất kỳ giá trị nào ở đây thì
+# Cấu hình ĐÚNG như knowledge/architecture.md. Đổi bất kỳ giá trị nào ở đây thì
 # state_dict sẽ không nạp được — đó là chủ ý.
 CFG = {
     "patch_len": 6, "stem_ch": 96, "dense_growth": 32, "dense_layers": 3,

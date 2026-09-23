@@ -1,6 +1,6 @@
 """Per-round metric tables for report.md mục 2.8, straight from each run's history.csv.
 
-Writes docs/tables_2_8.md and, with --apply, splices it into docs/report.md between the
+Writes docs/tables-2-8.md and, with --apply, splices it into docs/report.md between the
 markers so the report's tables stay derivable from artifacts rather than hand-maintained.
 
     python make_tables.py            # regenerate the block, print a summary
@@ -114,7 +114,7 @@ for title, d, note in BUILDS:
     out.append("")
 
 block = "\n".join(out)
-Path("docs/tables_2_8.md").write_text(block)
+Path("docs/tables-2-8.md").write_text(block)
 if problems_all:
     print("\n⚠ metrics.md publication checks FAILED:")
     for t, b in problems_all[:20]:

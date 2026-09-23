@@ -1,6 +1,6 @@
 """Parquet -> resident fp16 tensors. One pass per session, then no input pipeline at all.
 
-Two facts from knowledge/DATASET.md that produce silent corruption if ignored:
+Two facts from knowledge/dataset.md that produce silent corruption if ignored:
   * train/ is ALREADY z-scored; test/ is NOT. Applying scaler.json to train a second time
     destroys it and raises nothing.
   * the integer label is in column `label` (int8, 0..15). Decoding `attack_type` strings
@@ -102,7 +102,7 @@ def load_test(test_root, feature_cols, scaler, dtype=np.float16):
 
 
 def assert_fp16_safe(X, name):
-    """knowledge/DATASET.md measured max|x| = 570.44 on both splits, two orders below the
+    """knowledge/dataset.md measured max|x| = 570.44 on both splits, two orders below the
     fp16 ceiling. Assert it rather than inherit the assumption."""
     m = float(np.abs(X).max())
     if not np.isfinite(m) or m >= 65504:

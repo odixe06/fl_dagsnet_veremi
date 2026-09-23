@@ -19,14 +19,14 @@ RUNTIME = json.loads((ROOT / "knowledge/runtime.json").read_text())
 META = json.loads((ROOT / "knowledge/meta.json").read_text())
 MODULES = ("model", "ckpt", "metrics", "data", "perfedskd", "evaluate", "driver", "verify")
 
-# batch from knowledge/DATASET.md §4 and the owner's instruction of 2026-09-21. Every
+# batch from knowledge/dataset.md §4 and the owner's instruction of 2026-09-21. Every
 # client trains in every round (Algorithm 2 line 2 runs over all M in parallel), so the
 # mean over clients is always a mean over models trained this round.
 SCENARIOS = {20: dict(batch=512, dataset="veremi-fl-20client"),
              50: dict(batch=512, dataset="veremi-fl-50client"),
              100: dict(batch=256, dataset="veremi-fl-100client")}
 # Owner's decisions of 2026-09-21 (CONTEXT.md §1): AdamW / wd 1e-4 as in
-# knowledge/ARCHITECTURE.md, 50 rounds x 1 local epoch, per-round cosine LR 1e-3 -> 1e-5
+# knowledge/architecture.md, 50 rounds x 1 local epoch, per-round cosine LR 1e-3 -> 1e-5
 # (proj/perfedskd.py::lr_at). The paper names no optimizer, no rate, no lambda and no
 # divergence family; Eq. (3) says only "Stochastic Gradient Descent".
 PAPER = dict(lr=1e-3, lr_schedule="cosine", lr_min=1e-5, weight_decay=1e-4,
@@ -215,7 +215,7 @@ open("/kaggle/working/proj/__init__.py", "w").close()
 sys.path.insert(0, "/kaggle/working")"""),
 
     code(f'''CFG = dict(
-    # --- architecture: knowledge/ARCHITECTURE.md, frozen (395,024 params, every model)
+    # --- architecture: knowledge/architecture.md, frozen (395,024 params, every model)
     patch_len=6, stem_ch=96, dense_growth=32, dense_layers=3,
     incep_modules=2, fire_modules=3, dropout=0.1,
     num_classes=16, n_features=66,
@@ -228,7 +228,7 @@ sys.path.insert(0, "/kaggle/working")"""),
     lr={PAPER["lr"]}, lr_schedule="{PAPER["lr_schedule"]}", lr_min={PAPER["lr_min"]},
     weight_decay={PAPER["weight_decay"]}, local_epochs={PAPER["local_epochs"]},
     rounds={rounds}, clip=1.0, seed=42,
-    # --- compute: knowledge/DATASET.md §4
+    # --- compute: knowledge/dataset.md §4
     n_clients={K}, batch={sc["batch"]}, eval_batch={eval_batch},
     device="cuda", world_size=2, compile=True,
     # Each client starts a fresh GradScaler at 2**16 and spends a few steps calibrating.

@@ -33,12 +33,12 @@ Việc còn mở: [§5](#5-việc-tiếp-theo).
 |---|---|
 | **Bài báo nói gì**, và **để trống** ở đâu (G1–G8) | [`docs/paper.md`](docs/paper.md) |
 | **Mọi lựa chọn của bản dựng**: cấu hình chốt, 13 deviation, thiết kế tốc độ, ngân sách, hợp đồng artifact, caveat | [`docs/rebuild.md`](docs/rebuild.md) |
-| **Mọi con số đã đo**: 7 cây test kiểm gì, kết quả từng check, calibration 2×T4 | [`docs/TESTS.md`](docs/TESTS.md) |
+| **Mọi con số đã đo**: 7 cây test kiểm gì, kết quả từng check, calibration 2×T4 | [`docs/tests.md`](docs/tests.md) |
 | **Kết quả cuối**: 10 metric × 50 round × 3 kịch bản, per-class, TA/IA, phân tích | [`docs/report.md`](docs/report.md) |
-| **Chạy trên Kaggle**: tài khoản, quota, dataset, kế hoạch phiên, runbook push/theo dõi/kéo/verify/hop, bẫy | [`docs/KAGGLE.md`](docs/KAGGLE.md) |
-| **DAGSNet**: kiến trúc, Eq. (38)–(48), hợp đồng vào/ra, 66 cột | [`knowledge/ARCHITECTURE.md`](knowledge/ARCHITECTURE.md) |
-| **Dữ liệu**: train đã z-score / test chưa, nhãn, ba kịch bản α = 0,5, steps/round | [`knowledge/DATASET.md`](knowledge/DATASET.md) |
-| **Máy local**: RAM 7,6 GiB, VRAM 4 GiB, sm_86 ≠ sm_75, cái gì kiểm được ở local | [`knowledge/LOCAL_ENV.md`](knowledge/LOCAL_ENV.md) |
+| **Chạy trên Kaggle**: tài khoản, quota, dataset, kế hoạch phiên, runbook push/theo dõi/kéo/verify/hop, bẫy | [`docs/kaggle.md`](docs/kaggle.md) |
+| **DAGSNet**: kiến trúc, Eq. (38)–(48), hợp đồng vào/ra, 66 cột | [`knowledge/architecture.md`](knowledge/architecture.md) |
+| **Dữ liệu**: train đã z-score / test chưa, nhãn, ba kịch bản α = 0,5, steps/round | [`knowledge/dataset.md`](knowledge/dataset.md) |
+| **Máy local**: RAM 7,6 GiB, VRAM 4 GiB, sm_86 ≠ sm_75, cái gì kiểm được ở local | [`knowledge/local-env.md`](knowledge/local-env.md) |
 | **Bài báo gốc** | [`Lightweight_FL.md`](Lightweight_FL.md) |
 
 **Ranh giới tài liệu — giữ đúng, vì một con số đặt sai chỗ sẽ bị phiên sau đọc như sự thật đã kiểm:**
@@ -69,7 +69,7 @@ Việc còn mở: [§5](#5-việc-tiếp-theo).
 | [`scripts/run_local_checked.py`](scripts/run_local_checked.py) | **watchdog RAM — mọi test local phải đi qua đây** |
 | [`scripts/verify_run.py`](scripts/verify_run.py) · [`pull_output.sh`](scripts/pull_output.sh) · [`poll_prod.sh`](scripts/poll_prod.sh) · [`watch_prod.py`](scripts/watch_prod.py) · [`stage_ckpt_dataset.py`](scripts/stage_ckpt_dataset.py) · [`gen_ckpt_probe.py`](scripts/gen_ckpt_probe.py) | verify offline · kéo output có retry · theo dõi · đóng gói checkpoint · probe cổng resume |
 | [`scripts/rotate_kaggle_creds_wizard.sh`](scripts/rotate_kaggle_creds_wizard.sh) | xoay vòng token Kaggle (việc của người, browser) |
-| [`tests/`](tests/) | 7 cây test — bảng ở [`docs/TESTS.md` §2](docs/TESTS.md) |
+| [`tests/`](tests/) | 7 cây test — bảng ở [`docs/tests.md` §2](docs/tests.md) |
 | `papers/lwfednids-bouayad-2024/notebook/` | `.ipynb` **sinh tự động**, nhúng key W&B ⇒ mode 600, **gitignore**; thư mục đã push có file `PUSHED` |
 | `papers/lwfednids-bouayad-2024/runs/` | `pulls/` · `merged/` · `logs/` (poll) |
 
@@ -109,11 +109,11 @@ lr_t cosine 1e-3 → 1e-5 trên T = 50, hằng trong round. Batch **512 / 512 / 
 
 Ở [`docs/rebuild.md` §3](docs/rebuild.md): vòng 1 thấp; `loss_client_std` lớn (α = 0,5); mô hình
 35,9 k tham số có thể kém DAGSNet đầy đủ (đó là câu hỏi của bài báo); `skipped` ~1–2/client.
-**Lý do thật sự phải dừng**: [`docs/KAGGLE.md` §6](docs/KAGGLE.md).
+**Lý do thật sự phải dừng**: [`docs/kaggle.md` §6](docs/kaggle.md).
 
 ## 4. Kaggle — phân công tài khoản
 
-Chi tiết quota, dataset, runbook, bẫy: [`docs/KAGGLE.md`](docs/KAGGLE.md).
+Chi tiết quota, dataset, runbook, bẫy: [`docs/kaggle.md`](docs/kaggle.md).
 
 | kịch bản | tài khoản | phiên dự kiến | trạng thái |
 |---|---|---|---|

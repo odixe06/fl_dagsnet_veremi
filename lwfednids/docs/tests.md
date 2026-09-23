@@ -1,8 +1,8 @@
-# TESTS.md — cách kiểm và mọi số đã đo
+# tests.md — cách kiểm và mọi số đã đo
 
 Mọi con số ở đây **đo thật** và ghi kèm ngày, môi trường. Tách hai loại bằng chứng: **local**
 (RTX 3050 sm_86, 4 GiB, WSL 7,6 GiB RAM — chứng minh đúng/sai) và **2×T4 sm_75** (Kaggle —
-chứng minh tốc độ và compile). Cái trước không chứng minh cái sau (`knowledge/LOCAL_ENV.md` §5).
+chứng minh tốc độ và compile). Cái trước không chứng minh cái sau (`knowledge/local-env.md` §5).
 
 ---
 
@@ -133,7 +133,7 @@ local (torch 2.13)** — mask tất định qua phiên bản torch. `data_id 29f
 Cả ba: backend `compiled/compiled` lúc 08:08Z (startup 5–6 phút). Round 1 luôn chậm hơn round 2
 (warm-up CUDA graph theo client: probe 325 → 255 s). Dự báo: 20c ≈ 50 × 297 s ≈ **4,1 h**, 50c ≈
 **3,9 h**; 100c ổn định ở ~650 s ⇒ ≈ **9,1 h** (một phiên; nếu trôi quá 815 s/round thì
-driver tự dừng trước hạn và phiên 2 đi qua `--require-resume`, `KAGGLE.md` §5). Điểm round 2 của production cao hơn probe (0,650 vs 0,583) vì probe có
+driver tự dừng trước hạn và phiên 2 đi qua `--require-resume`, `kaggle.md` §5). Điểm round 2 của production cao hơn probe (0,650 vs 0,583) vì probe có
 T = 2 ⇒ lr round 2 = 1e-5; production T = 50 ⇒ lr ≈ 1e-3.
 
 **Kết thúc (23-09):** cả ba run COMPLETE 50/50 trong một phiên, backend compiled suốt 50 round,

@@ -4,7 +4,7 @@ Vào: (B, 66) đặc trưng đã z-score.  Ra: (B, 16) logit (CHƯA softmax).
 Lightweight-Fed-NIDS (Bouayad et al. 2024) uses ONE global model for every client. The
 paper's ResNet/VGG feature extractor on packet-byte images is deliberately absent (owner's
 decision, 2026-09-22): the 66 tabular features enter DAGSNet directly, exactly as in
-knowledge/ARCHITECTURE.md. `build_model(cfg)` builds that DAGSNet and, when cfg carries a
+knowledge/architecture.md. `build_model(cfg)` builds that DAGSNet and, when cfg carries a
 pruning plan (proj/prune.py), slices it to the pruned architecture the server computed
 once at initialization -- so a checkpoint's weights rebuild from cfg alone, without
 torch-pruning installed.
@@ -130,7 +130,7 @@ class DAGSNet(nn.Module):
         return self.head(torch.cat(pooled, dim=1))              # Eq. (47) -> (48)
 
 
-# Cấu hình ĐÚNG như knowledge/ARCHITECTURE.md. Đổi bất kỳ giá trị nào ở đây thì
+# Cấu hình ĐÚNG như knowledge/architecture.md. Đổi bất kỳ giá trị nào ở đây thì
 # state_dict sẽ không nạp được — đó là chủ ý.
 CFG = {
     "patch_len": 6, "stem_ch": 96, "dense_growth": 32, "dense_layers": 3,
@@ -140,7 +140,7 @@ N_PARAMS_FULL = 395_024       # the unpruned DAGSNet, head 256 -> 16
 
 
 def build_full(cfg):
-    """The unpruned DAGSNet of knowledge/ARCHITECTURE.md. Consumes the default RNG in the
+    """The unpruned DAGSNet of knowledge/architecture.md. Consumes the default RNG in the
     same order every time, so `torch.manual_seed(seed); build_full(cfg)` is theta_0."""
     return DAGSNet({k: cfg[k] for k in CFG}, n_features=cfg["n_features"],
                    out_dim=cfg["num_classes"])

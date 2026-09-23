@@ -98,7 +98,7 @@ USTC-TFC2016 100 client).
 | G4 | Lớp nào được miễn cắt (lớp phân loại cuối?) | miễn lớp Linear cuối để giữ đủ 16 logit |
 | G5 | Eq. (9) chia đều 1/N; với IID chia đều thì bằng FedAvg có trọng số. Với phân hoạch lệch thì hai công thức khác nhau | giữ **1/N** đúng chữ bài báo (D4) |
 | G6 | Algorithm 5 dòng 5 áp mask mỗi vòng, nhưng nếu tham số đã bị **xoá vật lý** thì bước này là đồng nhất; nếu chỉ zero-hoá thì gradient sẽ làm tham số bị cắt mọc lại **trong** vòng và mask chỉ được áp lại ở đầu vòng sau | xoá vật lý (đúng như bài báo làm với DepGraph) ⇒ dòng 5 là đồng nhất |
-| G7 | Kaiming He init: bài báo không nói dạng (normal/uniform, fan_in/fan_out) | mặc định PyTorch = Kaiming uniform a=√5 (`knowledge/ARCHITECTURE.md` §3.2) |
+| G7 | Kaiming He init: bài báo không nói dạng (normal/uniform, fan_in/fan_out) | mặc định PyTorch = Kaiming uniform a=√5 (`knowledge/architecture.md` §3.2) |
 | G8 | Eq. (5) là cross-entropy **nhị phân**; Eq. (5) và (6) trộn softmax đa lớp với công thức BCE | CE đa lớp 16 lớp (softmax); dạng nhị phân là trường hợp C = 2 |
 
 ## 8. Vì sao không so số của bản dựng này với số của bài báo

@@ -1,7 +1,7 @@
 # Báo cáo tái dựng FD-IDS trên VeReMi NextGen với DAGSNet — HOÀN TẤT
 
 Sinh tự động bởi `scripts/make_report.py` lúc 2026-09-11 09:55Z từ artifact đã pull và verify.
-Không sửa tay; sửa generator rồi chạy lại. Ngữ cảnh đầy đủ: [`CONTEXT.md`](../CONTEXT.md); mọi số đo kỹ thuật: [`TEST_LOG.md`](TEST_LOG.md).
+Không sửa tay; sửa generator rồi chạy lại. Ngữ cảnh đầy đủ: [`CONTEXT.md`](../CONTEXT.md); mọi số đo kỹ thuật: [`tests.md`](tests.md).
 
 ## 0. Tóm tắt
 
@@ -26,8 +26,8 @@ client, bộ metric.
 |---|---|
 | Bài báo | Peng, Xiao, Wu — *FD-IDS: A Federated Learning and Knowledge Distillation-Based Intrusion Detection System for Non-IID IoT Environments*, **Sensors 2025, 25, 4309** ([`sensors-25-04309.md`](../sensors-25-04309.md)) |
 | Phương pháp lấy từ bài báo | FedProx + knowledge distillation **round-wise** (Algorithm 1, Eq. 2–6): L = λ·CE + (1−λ)·T²·KL(teacher‖student) + β·(μ/2)‖w−w_G‖²; Adam lr 0,001, μ = 0,01, λ = 0,5, β = 0,1, T = 3 (Table 3); toàn bộ client mỗi round |
-| Dữ liệu | VeReMi NextGen, phân mảnh Dirichlet α = 0,5: `odixe0502/veremi-fl-{20,50,100}client` (train) + `odixe0502/veremi-nextgen2026-centralized` (test), 66 đặc trưng `f_*` đã z-score, 16 lớp ([`knowledge/DATASET.md`](../knowledge/DATASET.md)) |
-| Bộ phân loại | **DAGSNet**, 395.024 tham số ([`knowledge/ARCHITECTURE.md`](../knowledge/ARCHITECTURE.md)) thay cho DNN 5 lớp 22.095 tham số của bài báo |
+| Dữ liệu | VeReMi NextGen, phân mảnh Dirichlet α = 0,5: `odixe0502/veremi-fl-{20,50,100}client` (train) + `odixe0502/veremi-nextgen2026-centralized` (test), 66 đặc trưng `f_*` đã z-score, 16 lớp ([`knowledge/dataset.md`](../knowledge/dataset.md)) |
+| Bộ phân loại | **DAGSNet**, 395.024 tham số ([`knowledge/architecture.md`](../knowledge/architecture.md)) thay cho DNN 5 lớp 22.095 tham số của bài báo |
 | Phần cứng | Kaggle 2 × Tesla T4 (sm_75, 14,6 GB), 4 vCPU; image `sha256:37c64f7dd9c5…`; torch 2.10.0+cu128, CUDA 12.8; mỗi worker một GPU, mỗi client train tuần tự trên một GPU, không DDP |
 | Kế hoạch | 3 cấu hình × 50 round × 1 epoch local; batch 512/512/256 (20c/50c/100c); seed 42; fp16 AMP; `torch.compile` chứng nhận trên T4 (`compile OK`, `max|Δlogit| ≤ 9,8e-04`) |
 | Kernel / phiên | xem bảng phiên ở từng mục; mỗi phiên là một kernel Kaggle riêng, tiếp nối qua checkpoint đã verify (§9) |
@@ -60,7 +60,7 @@ weighted: trọng số n_c/N. Vì mỗi dòng có đúng một dự đoán, Σ_c
 ## 3. Dữ liệu và caveat bắt buộc
 
 Train 43,045,415 dòng / test 10,761,343 dòng; 16 lớp; mất cân bằng **41:1** (`trafficCongestionSybil` 2.393.335 dòng
-test so với `suddenConstantSpeed` 57.757). Từ [`knowledge/DATASET.md`](../knowledge/DATASET.md) §6, phải đọc cùng mọi bảng ở đây:
+test so với `suddenConstantSpeed` 57.757). Từ [`knowledge/dataset.md`](../knowledge/dataset.md) §6, phải đọc cùng mọi bảng ở đây:
 
 1. Split theo **thời gian mô phỏng**, không theo xe; test chỉ có scenario `highway_7`/`urban_7`.
 2. `benign` lấy từ luồng không có tấn công ⇒ nhóm đặc trưng `rate` mạnh bất thường.
@@ -240,7 +240,7 @@ Nguồn: `papers/fd-ids-2025/runs/fdids_20c_v2/history.csv`, đối chiếu từ
 | `feignedBraking` | 118,605 | 0.9452 | 0.9703 | 0.9576 |
 | `suddenConstantSpeed` | 57,757 | 0.8872 | 0.6447 | 0.7468 |
 
-Lớp khó ở round 50 (F1 < 0,4): `timeDelayAttack` (0.1801), `positionMirroring` (0.2823), `benign` (0.3368). `timeDelayAttack` cũng là lớp yếu nhất của DAGSNet centralized (`knowledge/ARCHITECTURE.md` §8: F1 0,2281, 76 % bị gán thành `benign`); `benign` khó ở đây vì cơ chế báo động giả nói trên.
+Lớp khó ở round 50 (F1 < 0,4): `timeDelayAttack` (0.1801), `positionMirroring` (0.2823), `benign` (0.3368). `timeDelayAttack` cũng là lớp yếu nhất của DAGSNet centralized (`knowledge/architecture.md` §8: F1 0,2281, 76 % bị gán thành `benign`); `benign` khó ở đây vì cơ chế báo động giả nói trên.
 
 ![](../figures/confusion_20c_r050.png)
 
@@ -412,7 +412,7 @@ Nguồn: `papers/fd-ids-2025/runs/fdids_50c_v2/history.csv`, đối chiếu từ
 | `feignedBraking` | 118,605 | 0.9331 | 0.9680 | 0.9502 |
 | `suddenConstantSpeed` | 57,757 | 0.7379 | 0.6500 | 0.6912 |
 
-Lớp khó ở round 50 (F1 < 0,4): `positionMirroring` (0.1199), `timeDelayAttack` (0.1321), `benign` (0.1461), `constantSpeedOffset` (0.3678), `dataReplay` (0.3870). `timeDelayAttack` cũng là lớp yếu nhất của DAGSNet centralized (`knowledge/ARCHITECTURE.md` §8: F1 0,2281, 76 % bị gán thành `benign`); `benign` khó ở đây vì cơ chế báo động giả nói trên.
+Lớp khó ở round 50 (F1 < 0,4): `positionMirroring` (0.1199), `timeDelayAttack` (0.1321), `benign` (0.1461), `constantSpeedOffset` (0.3678), `dataReplay` (0.3870). `timeDelayAttack` cũng là lớp yếu nhất của DAGSNet centralized (`knowledge/architecture.md` §8: F1 0,2281, 76 % bị gán thành `benign`); `benign` khó ở đây vì cơ chế báo động giả nói trên.
 
 ![](../figures/confusion_50c_r050.png)
 
@@ -585,7 +585,7 @@ Nguồn: `papers/fd-ids-2025/runs/fdids_100c_v2/history.csv`, đối chiếu t�
 | `feignedBraking` | 118,605 | 0.9176 | 0.9664 | 0.9414 |
 | `suddenConstantSpeed` | 57,757 | 0.8007 | 0.5977 | 0.6845 |
 
-Lớp khó ở round 50 (F1 < 0,4): `positionMirroring` (0.0995), `timeDelayAttack` (0.1051), `benign` (0.1123), `dataReplay` (0.2968). `timeDelayAttack` cũng là lớp yếu nhất của DAGSNet centralized (`knowledge/ARCHITECTURE.md` §8: F1 0,2281, 76 % bị gán thành `benign`); `benign` khó ở đây vì cơ chế báo động giả nói trên.
+Lớp khó ở round 50 (F1 < 0,4): `positionMirroring` (0.0995), `timeDelayAttack` (0.1051), `benign` (0.1123), `dataReplay` (0.2968). `timeDelayAttack` cũng là lớp yếu nhất của DAGSNet centralized (`knowledge/architecture.md` §8: F1 0,2281, 76 % bị gán thành `benign`); `benign` khó ở đây vì cơ chế báo động giả nói trên.
 
 ![](../figures/confusion_100c_r050.png)
 
@@ -629,7 +629,7 @@ bản này kế thừa phương pháp, không kế thừa con số.
   mọi round chồng lấn giống hệt từng byte giữa hai pull (`merge_sessions.py` từ chối nếu khác), fingerprint cấu hình
   khớp, W&B nối cùng run. Round 44 của 20c tụt
   0,7669 → 0,7294 rồi hồi về 0,7655; log từng client của round 43–45 không có client bất thường (ce, grad norm, skip,
-  non-finite), nên đó là dao động một round của phép gộp, không phải lỗi tiếp nối (`TEST_LOG.md` §3.8).
+  non-finite), nên đó là dao động một round của phép gộp, không phải lỗi tiếp nối (`tests.md` §3.8).
 * **Rò rỉ phải nhớ khi đọc lớp `trafficCongestionSybil`** (caveat 4) và **scaler toàn cục** (caveat 7).
 
 ## 9. Tái lập

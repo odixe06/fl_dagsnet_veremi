@@ -4,7 +4,7 @@
 local thật và 15 config/metric đã pull. 20 regression pass (peak 620 MiB); diagnostic pass
 (peak 645 MiB), tái hiện lỗi W&B log, bốn thiếu sót validator và cổng AMP có thể pass khi không
 có hàng decisive. Log `review-logs/production-review-{regressions,checks}.log`.
-Xem [PRODUCTION_REVIEW.md](PRODUCTION_REVIEW.md) và CONTEXT §8: các câu lịch sử bên dưới về
+Xem [production-review.md](production-review.md) và CONTEXT §8: các câu lịch sử bên dưới về
 “mọi lỗi W&B đều bị nuốt”, “AMP an toàn toàn bộ” hoặc “đã kiểm resume chéo tài khoản” cần đọc
 với giới hạn mới. Chưa sửa mã thực thi hoặc chạy Kaggle trong review này.
 
@@ -105,7 +105,7 @@ Chạy hết **3.430 s** (~57 phút), COMPLETE. torch 2.10.0+cu128, 2 × Tesla T
 **Đọc dữ liệu.** train 818.144 dòng/s (4,65 M dòng trong 5,7 s); test 10.761.343 dòng trong 14,9 s.
 Một worker nạp 21,9 M dòng train + toàn bộ test = **4,02 GiB** thường trú trong **54 s**.
 `abs_max` 535,5 (train) / 570,4 (test) → fp16 an toàn. `raw_mean_f_snd_spd` = 7,4493, khớp
-`knowledge/DATASET.md` — scaler đã áp đúng cho test và **không** áp lại cho train.
+`knowledge/dataset.md` — scaler đã áp đúng cho test và **không** áp lại cho train.
 
 **Thời gian một step (ms).** `torch.compile(reduce-overhead)` là thắng lợi lớn nhất:
 

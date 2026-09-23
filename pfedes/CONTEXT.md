@@ -32,10 +32,10 @@ cầu chủ dự án và không còn được nhắc trong report/rebuild.
 |---|---|---|
 | [`00121-YiL.md`](00121-YiL.md) | bài báo pFedES (Yi et al.) — **không có phụ lục** (μ, E_fe, Algorithm 1 thiếu) | chỉ đọc |
 | [`knowledge/`](knowledge/) | **sự thật không đổi** dùng chung nhiều phương pháp | sửa khi *đo lại* |
-| ├ [`ARCHITECTURE.md`](knowledge/ARCHITECTURE.md) | DAGSNet 395.024 tham số, 66 cột, 16 lớp, mã nguồn đã kiểm | |
-| ├ [`DATASET.md`](knowledge/DATASET.md) | 43.045.415 train / 10.761.343 test, 3 phân mảnh α=0,5, ngân sách bước | |
-| ├ [`LOCAL_ENV.md`](knowledge/LOCAL_ENV.md) | máy local (8 GB WSL, RTX 3050 4 GB, sm_86) + **ranh giới** local↔Kaggle | |
-| ├ [`KAGGLE_DATASETS.md`](knowledge/KAGGLE_DATASETS.md) | 4 dataset Kaggle, đều public | |
+| ├ [`architecture.md`](knowledge/architecture.md) | DAGSNet 395.024 tham số, 66 cột, 16 lớp, mã nguồn đã kiểm | |
+| ├ [`dataset.md`](knowledge/dataset.md) | 43.045.415 train / 10.761.343 test, 3 phân mảnh α=0,5, ngân sách bước | |
+| ├ [`local-env.md`](knowledge/local-env.md) | máy local (8 GB WSL, RTX 3050 4 GB, sm_86) + **ranh giới** local↔Kaggle | |
+| ├ [`kaggle-datasets.md`](knowledge/kaggle-datasets.md) | 4 dataset Kaggle, đều public | |
 | └ [`runtime.json`](knowledge/runtime.json), `meta.json`, `scaler.json` | digest image đã kiểm, thứ tự cột, tên lớp, mean/std | |
 | [`papers/pfedes-yi-2025/`](papers/pfedes-yi-2025/) | **phương pháp này** | |
 | ├ [`paper.md`](docs/paper.md) | trích xuất phương pháp + những chỗ bài báo để trống | |
@@ -253,7 +253,7 @@ Một cây test một lúc; watchdog dừng thì giảm bài test, **không nớ
 
 ## 8. Caveat bắt buộc kèm mọi con số công bố
 
-Kế thừa `knowledge/DATASET.md` §6, `ARCHITECTURE.md` §8: split theo thời gian mô phỏng;
+Kế thừa `knowledge/dataset.md` §6, `architecture.md` §8: split theo thời gian mô phỏng;
 41:1 mất cân bằng → đọc `f1_macro`; rò rỉ Sybil; scaler fit trên toàn bộ train (rò rỉ
 thống kê toàn cục trong FL); fp16 lượng tử hoá đặc trưng; test không chia theo client
 (điểm đo tổng quát hoá toàn cục của mô hình cá thể hoá, khác bài báo — test riêng từng
@@ -293,7 +293,7 @@ Các đường dẫn notebook ở bảng tương đối với `papers/pfedes-yi-
 
 | quyết định đã ghi nhận | notebook/code thực tế | kết luận |
 |---|---|---|
-| F_k = DAGSNet, 395.024 tham số, trọng số riêng từng client, cùng init seed 42 | `build_model` đúng cấu hình `knowledge/ARCHITECTURE.md`; driver tạo F0 sau seed 42, sao chép init cho N client, giữ và cập nhật từng F_k | **Đã ổn — khớp** |
+| F_k = DAGSNet, 395.024 tham số, trọng số riêng từng client, cùng init seed 42 | `build_model` đúng cấu hình `knowledge/architecture.md`; driver tạo F0 sau seed 42, sao chép init cho N client, giữ và cập nhật từng F_k | **Đã ổn — khớp** |
 | G = DAGSNet với head ra 66, 407.874 tham số | `build_proxy` dùng backbone DAGSNet, `out_dim=n_features=66` | **Đã ổn — khớp** |
 | thuật toán server chỉ tổng hợp G | `aggregate` nhận vector G của các client được chọn; F_k không bị FedAvg | **Đã ổn — khớp**; driver trung tâm giữ các F_k để mô phỏng và lưu checkpoint theo yêu cầu |
 | VeReMi NextGen, 66 feature, 16 lớp, phân hoạch α=0,5 tương ứng 20/50/100c | metadata gắn dataset tương ứng; feature/class order lấy từ `knowledge/meta.json`; kiểm tổng 43.045.415 train và 10.761.343 test | **Đã ổn — khớp trong mã** |
@@ -670,7 +670,7 @@ Dự kiến s3: startup ~16 phút (import 4 GB từ dataset + prepack + compile)
 `.agents/skills/kaggle-training-notebook/SKILL.md`, `references/{federated-afpha,per-client-fl-veremi,
 multi-account}.md` (+ mirror `.claude/skills`), `tests/test_smoke_real.py`, `knowledge/{audit_dataset,
 fl_class_stats}.py` (đường dẫn dataset/tinyproto + output nay ghi cạnh script thay vì scratchpad cũ),
-`knowledge/DATASET.md`, `.codex/config.toml` (header helper trỏ về `scripts/kaggle_mcp_headers.py`
+`knowledge/dataset.md`, `.codex/config.toml` (header helper trỏ về `scripts/kaggle_mcp_headers.py`
 của chính repo), CONTEXT.md. Memory Claude Code: chép 3 file từ
 `~/.claude/projects/-home-odixe-nckh-pfedes/memory/` sang `-home-odixe-nckh-veremi-pfedes/memory/`.
 Hook SessionStart dùng `$CLAUDE_PROJECT_DIR` nên không đổi. `.mcp.json`/`.vscode/mcp.json` không chứa
@@ -739,7 +739,7 @@ README §1 nay ghi 50c **HOÀN TẤT 3 phiên (21/21/8)**, round-time trung vị
 
 ### 15.5 `report.md` bản tạm (viết 11:40–12:00Z 15-09, yêu cầu chủ dự án "viết trước một phần")
 
-`docs/report.md`: thân bài viết tay từ `report_data/` + `rebuild.md` + `DATASET.md` + CONTEXT §12;
+`docs/report.md`: thân bài viết tay từ `report_data/` + `rebuild.md` + `dataset.md` + CONTEXT §12;
 phụ lục A/B/C nối nguyên bảng `rounds_{20,50,100}c.md` (bỏ 4 dòng đầu). Cổng kiểm đã chạy: 10 metric round cuối
 khớp `summary.json` (0 lệch), phụ lục 50/50/39 hàng, mọi hình tồn tại. Phân tích thêm ngoài README (tính từ CSV,
 script scratchpad không lưu): Spearman(số dòng client, f1_macro) = 0,69 / 0,53 / 0,44; số client f1 < 0,30 =

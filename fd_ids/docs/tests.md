@@ -5,7 +5,7 @@ lượng. File này tách khỏi `CONTEXT.md` để `CONTEXT.md` giữ được 
 *bằng chứng*.
 
 Quy ước bắt buộc: **"đã kiểm ở local" và "đã kiểm trên 2×T4" là hai cột khác nhau.** Cái trước
-không chứng minh cái sau (`knowledge/LOCAL_ENV.md` §5).
+không chứng minh cái sau (`knowledge/local-env.md` §5).
 
 Chạy lại toàn bộ suite local:
 
@@ -29,7 +29,7 @@ CPU, WSL 8 GB, watchdog bật.
 
 | # | bài kiểm | file | kết quả |
 |---:|---|---|---|
-| 1 | DAGSNet đúng kiến trúc | `proj/model.py` | **395.024** learnable + **3.295** buffer, khớp `ARCHITECTURE.md` |
+| 1 | DAGSNet đúng kiến trúc | `proj/model.py` | **395.024** learnable + **3.295** buffer, khớp `architecture.md` |
 | 2 | Checkpoint weights-only | `tests/test_ckpt.py` | **10/10 pass** |
 | 3 | Toán FD-IDS | `tests/test_fdids.py` | **5/5 pass** |
 | 4 | 10 metric vs sklearn | inline | `max|Δ| = 1,110 × 10⁻¹⁶` |
@@ -411,8 +411,8 @@ Tổng chi phí: **0,08 h quota**. Rẻ vì nó chết ở prepack, không phả
 | `data_id` / `fingerprint` (20c) | `29f492a531052d2b` / `569ba49f98b498b2` |
 | resume gate | `resume from round None` — đúng cho lần chạy đầu |
 
-`max|x| = 570.5` khớp `knowledge/DATASET.md` (570,44) và xác nhận fp16 an toàn trên **toàn bộ**
-43 M dòng, không phải trên mẫu. Đây là điều local **không** kiểm được (§5 `LOCAL_ENV.md`).
+`max|x| = 570.5` khớp `knowledge/dataset.md` (570,44) và xác nhận fp16 an toàn trên **toàn bộ**
+43 M dòng, không phải trên mẫu. Đây là điều local **không** kiểm được (§5 `local-env.md`).
 
 **Chưa đo được** vì chết trước khi tới đó: gate compile trên sm_75, backend hai rank,
 thời gian round, peak VRAM, và do đó ngân sách thật.
@@ -686,6 +686,6 @@ panel phải và §8 nêu CE/KD tách bạch, số tính từ artifact.
 | quota tiêu | giây |
 ```
 
-Những thứ **chỉ** kết luận được ở đây, không phải ở local (`LOCAL_ENV.md` §5):
+Những thứ **chỉ** kết luận được ở đây, không phải ở local (`local-env.md` §5):
 `torch.compile(reduce-overhead)` trên sm_75, topology 2 worker/2 GPU, mọi con số thời gian
 tuyệt đối, prepack đủ 43 M dòng, peak VRAM thật, và do đó `max_seconds`.

@@ -1,4 +1,4 @@
-# TESTS.md — cách kiểm và mọi số đã đo
+# tests.md — cách kiểm và mọi số đã đo
 
 Bằng chứng của dự án. `CONTEXT.md` chỉ giữ 3–4 con số đầu bảng và trỏ về đây.
 
@@ -29,7 +29,7 @@ cd ~/nckh/veremi/perfedskd
 | `CUDA_VISIBLE_DEVICES="" python scripts/run_local_checked.py python tests/test_notebook_sim.py` | ~3 phút (`--gpu` để chạy cell calibration) |
 | `CUDA_VISIBLE_DEVICES="" python scripts/validate_notebooks.py` | vài giây |
 
-⚠ **Ba quy tắc cứng của máy local** (`knowledge/LOCAL_ENV.md`): mọi test đi qua
+⚠ **Ba quy tắc cứng của máy local** (`knowledge/local-env.md`): mọi test đi qua
 `scripts/run_local_checked.py` (watchdog RAM); **một cây test một lúc**; watchdog dừng thì
 **giảm bài test, không nới ngưỡng**. RAM WSL 7,6 GiB — vượt RAM làm đơ cả WSL, không phải
 `MemoryError` sạch sẽ.
@@ -245,7 +245,7 @@ bước = **8,54 ms @512**; eval thật ≈ **28,5 s/model/GPU**):
 +20 % cho **nghẽn CPU** mà dự án anh em đo được ở 100c trên 4 vCPU.
 
 ⚠ **100c rơi đúng vào vùng 29–31 h, tức sát hoặc vượt trần quota 30 h của một tài khoản.**
-Probe 100c là số chốt — xem quy tắc quyết định ở [`KAGGLE.md` §3](KAGGLE.md).
+Probe 100c là số chốt — xem quy tắc quyết định ở [`kaggle.md` §3](kaggle.md).
 
 **100c — COMPLETE, 2 round** (`khanhmay0304/perfed-skd-veremi-100-clients-probe`, 21-09):
 
@@ -291,10 +291,10 @@ run `compiled/compiled`, `skipped` ≤ 29/84.083 và ≤ 19/84.098, không tăng
 | 100c phiên 1 (`minhtriethihi`, đang chạy) | 14+ | **2.560** | **2.345** | **2.199** / 2.249 | 9,30 (r14) | — | 48 / 168.200 | 7,15 GiB |
 
 Cả ba `compiled/compiled`; `skipped` dao động, không tăng dần; không có dấu hiệu dừng nào ở
-[`KAGGLE.md` §6](KAGGLE.md). 50c dừng đúng như cổng driver dự tính (34 round ở 10,46 h, 33
+[`kaggle.md` §6](kaggle.md). 50c dừng đúng như cổng driver dự tính (34 round ở 10,46 h, 33
 dự kiến). **100c chậm hơn probe 11 %** (2.199 vs 1.974 s) — chênh nằm ở **eval** (1.586 vs 1.359
 s/round), `train_sec` 611 s **khớp** probe 612 s ⇒ không phải nghẽn CPU; khởi động 43 phút thay
-vì 30 ⇒ 17 round/phiên thay vì 19. Hệ quả cho kế hoạch: [`KAGGLE.md` §3](KAGGLE.md).
+vì 30 ⇒ 17 round/phiên thay vì 19. Hệ quả cho kế hoạch: [`kaggle.md` §3](kaggle.md).
 
 Chất lượng ở round cuối của phiên (mean qua M model cá nhân hoá trên test toàn cục / model tổng hợp):
 

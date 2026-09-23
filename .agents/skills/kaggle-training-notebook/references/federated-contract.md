@@ -7,7 +7,7 @@ and are never taken from here. User decisions override anything below.
 
 ## Sources every project shares
 
-- Model: `knowledge/ARCHITECTURE.md` — standalone DAGSNet, 66 features, 16 logits, 395,024
+- Model: `knowledge/architecture.md` — standalone DAGSNet, 66 features, 16 logits, 395,024
   learnable parameters, PyTorch default initialization, seed 42. Fresh initialization unless
   the project says otherwise.
 - Train: `/home/odixe/nckh/veremi/dataset/fl_client/alpha05/{20,50,100}_client/train/client_id=NNN/`;
@@ -18,7 +18,7 @@ and are never taken from here. User decisions override anything below.
 - Train is standardized; test is raw. Reuse the matching `scaler.json`, feature order and
   labels; verify against `knowledge/meta.json`. Only `f_*` columns enter the model.
 - 43,045,415 train rows per scenario and 10,761,343 test rows, 16 classes, Dirichlet α = 0.5
-  (`knowledge/DATASET.md`). Disclose global train-scaler access, receiver-unit clients and the
+  (`knowledge/dataset.md`). Disclose global train-scaler access, receiver-unit clients and the
   dataset caveats in every report.
 
 ## What the project must fix before training

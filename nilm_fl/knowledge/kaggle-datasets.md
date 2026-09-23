@@ -1,7 +1,7 @@
 # Dataset VeReMi trên Kaggle — bốn bộ, đều PUBLIC
 
 Bốn bộ dữ liệu đầu vào dùng chung cho **mọi phương pháp** xây trên VeReMi NextGen 2026.
-Nội dung, cột, scaler, số dòng và phân bố lớp: [`DATASET.md`](DATASET.md).
+Nội dung, cột, scaler, số dòng và phân bố lớp: [`dataset.md`](dataset.md).
 
 **Kiểm ngày 2026-09-08 bằng CLI của `odixe0502`.** Cách kiểm: dataset xuất hiện trong tìm kiếm
 **không** có cờ `-m` thì là public.

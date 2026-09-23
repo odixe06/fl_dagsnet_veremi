@@ -60,7 +60,7 @@ the filename — the reader arrives with a question, not a path.
 ```markdown
 | want to know | open |
 |---|---|
-| every number measured, and what each test proves | `docs/TESTS.md` |
+| every number measured, and what each test proves | `docs/tests.md` |
 | why the build deviates from the source, and where | `docs/REBUILD.md` |
 | how to run, monitor and recover a job | `docs/OPERATIONS.md` |
 ```

@@ -192,7 +192,7 @@ python $K B -- kaggle kernels push -p $NB/100c_sN+1                        # ghi
 
 ## 7. Caveat bắt buộc kèm mọi con số công bố
 
-Kế thừa `knowledge/DATASET.md` §6, `ARCHITECTURE.md` §8: split theo thời gian mô phỏng; mất cân bằng
+Kế thừa `knowledge/dataset.md` §6, `architecture.md` §8: split theo thời gian mô phỏng; mất cân bằng
 41:1 → đọc `f1_macro`; rò rỉ Sybil; scaler fit trên toàn bộ train (rò rỉ thống kê toàn cục trong FL);
 fp16 lượng tử hoá đặc trưng; test không chia theo client (điểm đo **tổng quát hoá toàn cục** của model
 cá nhân hoá — khác bài báo, vốn đo MAE trên test riêng từng hộ); một seed; không đặt số cạnh số của

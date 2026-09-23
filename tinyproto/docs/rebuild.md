@@ -51,7 +51,7 @@ Mỗi dòng dưới đây là **lựa chọn của bản dựng**, phải công 
 | **Feature layer d** | 500 | **256** — đầu ra `head[3]` (ReLU sau `Linear(544,256)`) của DAGSNet | Bị kiến trúc quy định, không phải tham số tự do. |
 | **CPS dimension s** | 50 (nén 90% ở d = 500) | **50** (nén **80,5%** ở d = 256) | Giữ đúng **giá trị** bài báo công bố. Ở d = 256 hai phát biểu "s = 50" và "nén 90%" của bài báo mâu thuẫn nhau; bản này giữ giá trị. Muốn giữ tỉ lệ nén thì `s = 26`. |
 | **Cách sinh mask** | "random allocation … optimizing for maximum inter-class Hamming distance separation" — không có thuật toán | **Cấp phát tham lam cân bằng** (mỗi lớp lấy s chiều đang ít dùng nhất) rồi **local search** đổi chỗ để hạ overlap lớn nhất | Đo được: overlap max **10** = ngưỡng dừng heuristic `⌈s²/d⌉` (làm tròn kỳ vọng overlap ngẫu nhiên, **không phải cận dưới lý thuyết**, chưa chứng minh tối ưu), mean 7,28 so với kỳ vọng ngẫu nhiên 9,77, Hamming min **80**. Ghi vào `config.json["mask_stats"]`. |
-| **Optimizer** | không nêu tên; lr **0,01**, batch 32 | **AdamW**, lr **1e-3**, weight_decay **1e-4**, betas (0,9, 0,999), eps 1e-8 | Quyết định của người dùng 2026-09-07. Batch ở đây lớn hơn 8–16 lần batch của bài báo; đây đúng là cấu hình đã cho DAGSNet f1_macro 0,853 trên chính bộ dữ liệu này (`knowledge/ARCHITECTURE.md` §4.1). Code gốc FedProto/FedTGP dùng SGD — **đây là deviation**. |
+| **Optimizer** | không nêu tên; lr **0,01**, batch 32 | **AdamW**, lr **1e-3**, weight_decay **1e-4**, betas (0,9, 0,999), eps 1e-8 | Quyết định của người dùng 2026-09-07. Batch ở đây lớn hơn 8–16 lần batch của bài báo; đây đúng là cấu hình đã cho DAGSNet f1_macro 0,853 trên chính bộ dữ liệu này (`knowledge/architecture.md` §4.1). Code gốc FedProto/FedTGP dùng SGD — **đây là deviation**. |
 | **Trạng thái optimizer giữa các round** | không nêu | **giữ liên tục theo từng client** | Mô hình của client là liên tục qua các round (FL cá thể hoá không bao giờ ghi đè bằng trung bình toàn cục), nên moment estimate vẫn còn giá trị. Reset mỗi round sẽ khởi động lại bias correction 50 lần. |
 | **ρ(·,·)** | "Euclidean distance" | **Bình phương sai số trung bình trên s chiều được mask**: `‖(h − μ ĉ_G) ⊙ m‖² / s` | Khi s = d, công thức này **đúng bằng** `nn.MSELoss()` mà code FedProto dùng, nên nó suy biến về FedProto khi tắt CPS; và chia cho s giữ cho λ = 1 có cùng ý nghĩa ở mọi s. |
 | **R_i theo lớp hay theo mẫu** | Eq. (11) tổng theo lớp | **theo mẫu**: mỗi hàng bị kéo về prototype toàn cục của lớp của chính nó | Là hành vi của code FedProto đã phát hành. Theo lớp chỉ cho một gradient trên mỗi trung bình lớp của batch. |
@@ -151,7 +151,7 @@ Chỉ giữ **một** blob resume: blob của round trước bị xoá **sau khi
 
 ## 6. Những gì đã kiểm chứng, và ở đâu
 
-Xem [TESTLOG.md](TESTLOG.md) để biết chi tiết từng lần chạy. Tóm tắt phân biệt rõ hai mức:
+Xem [tests.md](tests.md) để biết chi tiết từng lần chạy. Tóm tắt phân biệt rõ hai mức:
 
 **Đã kiểm ở local (CPU, **1 worker**, `compile=False`) — đúng/sai:**
 mask CPS, 10 metric so với sklearn, gộp prototype, hợp đồng commit/resume mô phỏng crash,
@@ -211,9 +211,9 @@ Kiểm tra CUDA/AMP/compile và hai GPU được chuyển sang Kaggle; xem TESTL
 
 ## 8. Số liệu suy từ dữ liệu, riêng cho TinyProto
 
-Chuyển từ `knowledge/DATASET.md` ngày 2026-09-08: `knowledge/` chỉ giữ những gì đúng cho **mọi**
+Chuyển từ `knowledge/dataset.md` ngày 2026-09-08: `knowledge/` chỉ giữ những gì đúng cho **mọi**
 phương pháp dựng trên VeReMi, còn hai bảng dưới đây phụ thuộc TinyProto (s, d, Eq. 11) nên
-thuộc về hồ sơ phương pháp này. Thống kê `n_ij` gốc vẫn ở `knowledge/DATASET.md` §3.
+thuộc về hồ sơ phương pháp này. Thống kê `n_ij` gốc vẫn ở `knowledge/dataset.md` §3.
 
 ### 8.1 Chi phí truyền tin mỗi round
 
@@ -225,7 +225,7 @@ Theo công thức Table 2 của bài báo, `Σᵢ (K_i + K) × chiều`:
 | 50 | 0,4081 M | 0,0797 M | 5,1× |
 | 100 | 0,8151 M | 0,1592 M | 5,1× |
 
-`d = 256` là chiều feature layer của DAGSNet (`knowledge/ARCHITECTURE.md` §2.6: `head[3]` = ReLU
+`d = 256` là chiều feature layer của DAGSNet (`knowledge/architecture.md` §2.6: `head[3]` = ReLU
 sau `Linear(544, 256)`). Bài báo dùng `d = 500` nên `s = 50` ở đó là nén 90%; ở đây `s = 50` chỉ
 là nén 80,5%. Muốn giữ **đúng tỉ lệ nén 90%** của bài báo thì `s = 26`.
 

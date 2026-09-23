@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Kéo output kernel Kaggle với vòng retry (CLI hay chết/treo giữa chừng — docs/KAGGLE.md).
+# Kéo output kernel Kaggle với vòng retry (CLI hay chết/treo giữa chừng — docs/kaggle.md).
 # usage: scripts/pull_output.sh <acct> <owner/slug> <dest-dir> [max-attempts]
 # Mỗi lượt: xoá file 0 byte (trừ *.done, __init__.py — hợp lệ 0 byte) → chạy `kaggle kernels output` (CLI bỏ qua file đã đủ
 # kích thước) → giết khi KHÔNG nhận byte nào qua mạng > 4 phút, hoặc lượt vượt 3 giờ.

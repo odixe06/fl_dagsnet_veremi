@@ -7,7 +7,7 @@
 
 One block per run per poll: the last rows of the W&B history (round = `_step`; the history
 has no `round` key), the summary backend, and the kernel status when --kernel is given.
-Stop signals to watch for (docs/KAGGLE.md): backend `eager`, skips growing round over round,
+Stop signals to watch for (docs/kaggle.md): backend `eager`, skips growing round over round,
 f1_macro falling towards 0 or NaN, train_sec +30 % over the previous round, VRAM > 14 GiB,
 kernel ERROR.
 """

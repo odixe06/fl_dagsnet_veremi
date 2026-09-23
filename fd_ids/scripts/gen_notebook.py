@@ -14,7 +14,7 @@ RUNTIME = json.loads((ROOT / "knowledge/runtime.json").read_text())
 META = json.loads((ROOT / "knowledge/meta.json").read_text())
 MODULES = ("model", "ckpt", "metrics", "data", "fdids", "driver", "verify")
 
-# batch from knowledge/DATASET.md 4; every other hyperparameter from the paper's Table 3.
+# batch from knowledge/dataset.md 4; every other hyperparameter from the paper's Table 3.
 SCENARIOS = {20: dict(batch=512, dataset="veremi-fl-20client"),
              50: dict(batch=512, dataset="veremi-fl-50client"),
              100: dict(batch=256, dataset="veremi-fl-100client")}
@@ -85,7 +85,7 @@ open("/kaggle/working/proj/__init__.py", "w").close()
 sys.path.insert(0, "/kaggle/working")"""),
 
     code(f'''CFG = dict(
-    # --- architecture: knowledge/ARCHITECTURE.md, frozen (395,024 params)
+    # --- architecture: knowledge/architecture.md, frozen (395,024 params)
     patch_len=6, stem_ch=96, dense_growth=32, dense_layers=3,
     incep_modules=2, fire_modules=3, dropout=0.1,
     num_classes=16, n_features=66,
@@ -93,7 +93,7 @@ sys.path.insert(0, "/kaggle/working")"""),
     lr={PAPER["lr"]}, lam={PAPER["lam"]}, beta={PAPER["beta"]},
     mu={PAPER["mu"]}, temperature={PAPER["temperature"]},
     rounds={rounds}, local_epochs=1, clip=1.0, seed=42,
-    # --- compute: knowledge/DATASET.md 4
+    # --- compute: knowledge/dataset.md 4
     n_clients={K}, batch={sc["batch"]}, eval_batch=16384,
     device="cuda", world_size=2, compile=True,
     # Each client starts a fresh GradScaler at 2**16 and spends a few steps calibrating.
