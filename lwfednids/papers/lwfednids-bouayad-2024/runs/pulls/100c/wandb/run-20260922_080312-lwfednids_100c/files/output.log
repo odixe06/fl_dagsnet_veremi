@@ -1,0 +1,96 @@
+W&B: https://wandb.ai/21522798-uit/lwfednids-veremi/runs/lwfednids_100c
+FL root    : /kaggle/input/datasets/odixe0502/veremi-fl-100client/100_client
+test root  : /kaggle/input/datasets/odixe0502/veremi-nextgen2026-centralized/upload/test
+data_id    : 4723f6dbf7fa5f2e
+fingerprint: b250bfc29a569c05
+resume from round None
+train (43045415, 66) max|x|=570.5
+test  (10761343, 66) max|x|=570.5
+content_id : db2bbb68760a82ee
+prepack 129.8s | 43,045,415 train / 10,761,343 test rows
+W0922 08:05:51.711000 95 torch/_inductor/utils.py:1679] [0/0] Not enough SMs to use max_autotune_gemm mode
+W0922 08:05:51.711000 94 torch/_inductor/utils.py:1679] [0/0] Not enough SMs to use max_autotune_gemm mode
+[rank0] compile OK | max|dlogit|=2.44e-04 rel|dgrad|=3.12e-03 flips 0/256 (0/236 decisive)
+[rank1] compile OK | max|dlogit|=1.83e-04 rel|dgrad|=1.66e-03 flips 0/256 (0/239 decisive)
+[rank0] eval compile OK | max|dlogit|=2.44e-04 rel|dgrad|=0.00e+00 flips 9/16384 (0/15038 decisive)
+[rank1] eval compile OK | max|dlogit|=2.44e-04 rel|dgrad|=0.00e+00 flips 8/16384 (0/15615 decisive)
+[driver] 2 workers ready: train compiled, eval compiled (273s into the session)
+[r001] f1_macro=0.193269 acc=0.531428 f1_w=0.470324 | lr=1.00e-03 loss=0.3629±0.1415 gnorm=1.753 skip=40/168200 | train=809s eval=6s vram=6.74G 815.3s | session 0.30h
+[r002] f1_macro=0.571409 acc=0.662189 f1_w=0.670495 | lr=9.99e-04 loss=0.2358±0.0869 gnorm=1.848 skip=38/168200 | train=646s eval=5s vram=6.74G 650.7s | session 0.48h
+[r003] f1_macro=0.642352 acc=0.656932 f1_w=0.665784 | lr=9.96e-04 loss=0.1876±0.0667 gnorm=1.680 skip=86/168200 | train=507s eval=5s vram=6.74G 512.4s | session 0.63h
+[r004] f1_macro=0.662142 acc=0.673834 f1_w=0.676412 | lr=9.91e-04 loss=0.1630±0.0574 gnorm=1.550 skip=91/168200 | train=491s eval=5s vram=6.74G 496.1s | session 0.76h
+[r005] f1_macro=0.669395 acc=0.673676 f1_w=0.673999 | lr=9.84e-04 loss=0.1465±0.0514 gnorm=1.454 skip=98/168200 | train=500s eval=4s vram=6.74G 504.9s | session 0.90h
+[r006] f1_macro=0.673583 acc=0.680418 f1_w=0.680798 | lr=9.75e-04 loss=0.1351±0.0473 gnorm=1.391 skip=109/168200 | train=483s eval=4s vram=6.74G 487.6s | session 1.04h
+[r007] f1_macro=0.679743 acc=0.683311 f1_w=0.683370 | lr=9.64e-04 loss=0.1266±0.0442 gnorm=1.347 skip=111/168200 | train=469s eval=4s vram=6.74G 473.8s | session 1.17h
+[r008] f1_macro=0.685377 acc=0.683115 f1_w=0.682667 | lr=9.51e-04 loss=0.1199±0.0417 gnorm=1.312 skip=126/168200 | train=467s eval=4s vram=6.74G 471.7s | session 1.30h
+[r009] f1_macro=0.688256 acc=0.684117 f1_w=0.682091 | lr=9.36e-04 loss=0.1142±0.0398 gnorm=1.287 skip=126/168200 | train=467s eval=4s vram=6.74G 471.0s | session 1.43h
+[r010] f1_macro=0.689873 acc=0.681871 f1_w=0.677988 | lr=9.20e-04 loss=0.1092±0.0378 gnorm=1.271 skip=149/168200 | train=469s eval=4s vram=6.74G 473.8s | session 1.56h
+[r011] f1_macro=0.693941 acc=0.682565 f1_w=0.677060 | lr=9.02e-04 loss=0.1045±0.0360 gnorm=1.267 skip=159/168200 | train=474s eval=4s vram=6.74G 478.3s | session 1.70h
+[r012] f1_macro=0.695340 acc=0.681176 f1_w=0.673375 | lr=8.82e-04 loss=0.1001±0.0345 gnorm=1.268 skip=158/168200 | train=467s eval=4s vram=6.74G 471.8s | session 1.83h
+[r013] f1_macro=0.702361 acc=0.683395 f1_w=0.675980 | lr=8.61e-04 loss=0.0964±0.0331 gnorm=1.270 skip=170/168200 | train=471s eval=4s vram=6.74G 475.9s | session 1.96h
+[r014] f1_macro=0.704558 acc=0.688515 f1_w=0.682617 | lr=8.38e-04 loss=0.0933±0.0323 gnorm=1.268 skip=175/168200 | train=469s eval=4s vram=6.74G 473.2s | session 2.09h
+[r015] f1_macro=0.705147 acc=0.684096 f1_w=0.676095 | lr=8.14e-04 loss=0.0908±0.0313 gnorm=1.261 skip=174/168200 | train=463s eval=4s vram=6.74G 467.3s | session 2.22h
+[r016] f1_macro=0.709148 acc=0.690165 f1_w=0.683828 | lr=7.88e-04 loss=0.0886±0.0305 gnorm=1.257 skip=183/168200 | train=473s eval=4s vram=6.74G 477.4s | session 2.35h
+[r017] f1_macro=0.710835 acc=0.691547 f1_w=0.684804 | lr=7.62e-04 loss=0.0868±0.0300 gnorm=1.256 skip=188/168200 | train=507s eval=4s vram=6.74G 511.5s | session 2.50h
+[r018] f1_macro=0.709679 acc=0.687800 f1_w=0.678202 | lr=7.34e-04 loss=0.0850±0.0294 gnorm=1.254 skip=199/168200 | train=507s eval=4s vram=6.74G 511.9s | session 2.64h
+[r019] f1_macro=0.711352 acc=0.690125 f1_w=0.682730 | lr=7.05e-04 loss=0.0836±0.0292 gnorm=1.257 skip=203/168200 | train=487s eval=4s vram=6.74G 491.6s | session 2.78h
+[r020] f1_macro=0.714111 acc=0.693846 f1_w=0.687608 | lr=6.76e-04 loss=0.0823±0.0288 gnorm=1.263 skip=206/168200 | train=485s eval=4s vram=6.74G 489.4s | session 2.91h
+[r021] f1_macro=0.711039 acc=0.689403 f1_w=0.680692 | lr=6.46e-04 loss=0.0814±0.0286 gnorm=1.268 skip=207/168200 | train=476s eval=4s vram=6.74G 480.4s | session 3.04h
+[r022] f1_macro=0.715699 acc=0.692845 f1_w=0.686232 | lr=6.15e-04 loss=0.0803±0.0284 gnorm=1.282 skip=206/168200 | train=476s eval=4s vram=6.74G 480.7s | session 3.18h
+[r023] f1_macro=0.714156 acc=0.690831 f1_w=0.681256 | lr=5.84e-04 loss=0.0796±0.0283 gnorm=1.291 skip=222/168200 | train=475s eval=4s vram=6.74G 479.7s | session 3.31h
+[r024] f1_macro=0.714025 acc=0.690047 f1_w=0.680555 | lr=5.53e-04 loss=0.0791±0.0284 gnorm=1.309 skip=222/168200 | train=479s eval=5s vram=6.74G 483.7s | session 3.45h
+[r025] f1_macro=0.714422 acc=0.691058 f1_w=0.681772 | lr=5.21e-04 loss=0.0785±0.0281 gnorm=1.330 skip=229/168200 | train=482s eval=4s vram=6.74G 487.0s | session 3.58h
+[r026] f1_macro=0.713034 acc=0.689737 f1_w=0.679332 | lr=4.89e-04 loss=0.0784±0.0284 gnorm=1.355 skip=230/168200 | train=494s eval=4s vram=6.74G 498.3s | session 3.72h
+[r027] f1_macro=0.712483 acc=0.690693 f1_w=0.680500 | lr=4.57e-04 loss=0.0781±0.0284 gnorm=1.382 skip=236/168200 | train=494s eval=4s vram=6.74G 498.2s | session 3.86h
+[r028] f1_macro=0.714875 acc=0.692743 f1_w=0.682359 | lr=4.26e-04 loss=0.0782±0.0286 gnorm=1.409 skip=241/168200 | train=496s eval=4s vram=6.74G 500.2s | session 4.00h
+[r029] f1_macro=0.714105 acc=0.692691 f1_w=0.682627 | lr=3.95e-04 loss=0.0785±0.0289 gnorm=1.445 skip=249/168200 | train=494s eval=4s vram=6.74G 498.7s | session 4.14h
+[r030] f1_macro=0.715069 acc=0.692174 f1_w=0.681621 | lr=3.64e-04 loss=0.0790±0.0292 gnorm=1.482 skip=254/168200 | train=478s eval=4s vram=6.74G 482.5s | session 4.27h
+[r031] f1_macro=0.715641 acc=0.692977 f1_w=0.682909 | lr=3.34e-04 loss=0.0797±0.0299 gnorm=1.523 skip=255/168200 | train=470s eval=4s vram=6.74G 474.9s | session 4.40h
+[r032] f1_macro=0.714064 acc=0.692884 f1_w=0.681726 | lr=3.05e-04 loss=0.0806±0.0303 gnorm=1.572 skip=264/168200 | train=480s eval=4s vram=6.74G 484.5s | session 4.54h
+[r033] f1_macro=0.713687 acc=0.692715 f1_w=0.681707 | lr=2.76e-04 loss=0.0819±0.0311 gnorm=1.628 skip=275/168200 | train=484s eval=4s vram=6.74G 488.5s | session 4.67h
+[r034] f1_macro=0.715711 acc=0.693081 f1_w=0.681740 | lr=2.48e-04 loss=0.0835±0.0319 gnorm=1.692 skip=276/168200 | train=485s eval=4s vram=6.74G 489.4s | session 4.81h
+[r035] f1_macro=0.717216 acc=0.694756 f1_w=0.683855 | lr=2.22e-04 loss=0.0855±0.0330 gnorm=1.760 skip=273/168200 | train=488s eval=4s vram=6.74G 492.4s | session 4.94h
+[r036] f1_macro=0.717628 acc=0.695774 f1_w=0.684743 | lr=1.96e-04 loss=0.0878±0.0341 gnorm=1.838 skip=282/168200 | train=503s eval=4s vram=6.74G 507.1s | session 5.09h
+[r037] f1_macro=0.706004 acc=0.693124 f1_w=0.680347 | lr=1.72e-04 loss=0.0906±0.0355 gnorm=1.921 skip=288/168200 | train=482s eval=4s vram=6.74G 486.1s | session 5.22h
+[r038] f1_macro=0.716439 acc=0.697044 f1_w=0.685967 | lr=1.49e-04 loss=0.0942±0.0372 gnorm=2.025 skip=300/168200 | train=474s eval=4s vram=6.74G 478.9s | session 5.35h
+[r039] f1_macro=0.721319 acc=0.699888 f1_w=0.690327 | lr=1.28e-04 loss=0.0985±0.0394 gnorm=2.130 skip=297/168200 | train=475s eval=4s vram=6.74G 479.5s | session 5.49h
+[r040] f1_macro=0.722792 acc=0.700555 f1_w=0.690223 | lr=1.08e-04 loss=0.1037±0.0419 gnorm=2.255 skip=305/168200 | train=488s eval=4s vram=6.74G 493.0s | session 5.62h
+[r041] f1_macro=0.723881 acc=0.702743 f1_w=0.693470 | lr=9.01e-05 loss=0.1102±0.0448 gnorm=2.396 skip=306/168200 | train=480s eval=4s vram=6.74G 484.7s | session 5.76h
+[r042] f1_macro=0.725102 acc=0.703151 f1_w=0.694118 | lr=7.37e-05 loss=0.1180±0.0486 gnorm=2.566 skip=310/168200 | train=481s eval=4s vram=6.74G 485.5s | session 5.89h
+[r043] f1_macro=0.729466 acc=0.707780 f1_w=0.700553 | lr=5.90e-05 loss=0.1277±0.0532 gnorm=2.765 skip=310/168200 | train=475s eval=4s vram=6.74G 479.8s | session 6.03h
+[r044] f1_macro=0.726940 acc=0.708180 f1_w=0.701623 | lr=4.62e-05 loss=0.1394±0.0584 gnorm=2.997 skip=311/168200 | train=472s eval=4s vram=6.74G 476.9s | session 6.16h
+[r045] f1_macro=0.736649 acc=0.714555 f1_w=0.710184 | lr=3.52e-05 loss=0.1544±0.0654 gnorm=3.276 skip=317/168200 | train=472s eval=4s vram=6.74G 476.9s | session 6.29h
+[r046] f1_macro=0.737509 acc=0.716439 f1_w=0.713899 | lr=2.62e-05 loss=0.1727±0.0741 gnorm=3.613 skip=328/168200 | train=474s eval=4s vram=6.74G 478.3s | session 6.42h
+[r047] f1_macro=0.744907 acc=0.722630 f1_w=0.722691 | lr=1.91e-05 loss=0.1946±0.0840 gnorm=4.015 skip=316/168200 | train=474s eval=4s vram=6.74G 478.5s | session 6.56h
+[r048] f1_macro=0.745604 acc=0.725456 f1_w=0.727697 | lr=1.41e-05 loss=0.2187±0.0956 gnorm=4.446 skip=316/168200 | train=501s eval=4s vram=6.74G 505.6s | session 6.70h
+[r049] f1_macro=0.753656 acc=0.731818 f1_w=0.736478 | lr=1.10e-05 loss=0.2388±0.1048 gnorm=4.774 skip=318/168200 | train=497s eval=4s vram=6.74G 501.2s | session 6.84h
+[r050] f1_macro=0.755749 acc=0.733878 f1_w=0.739149 | lr=1.00e-05 loss=0.2446±0.1072 gnorm=4.823 skip=315/168200 | train=486s eval=4s vram=6.74G 490.4s | session 6.97h
+
+completed 50 rounds this session
+run      : /kaggle/working/runs/lwfednids_100c
+complete : rounds 1..50   (mode: full)
+artifacts: 1 prediction files, 50 client logs
+  all artifact checks passed
+
+rounds verified : 50 / 50
+
+result at round 50 (global model, sparsity 0.7, 35,891 params, 0.141 MiB on the wire):
+  accuracy             0.733878
+  precision_macro      0.760004
+  precision_micro      0.733878
+  precision_weighted   0.780432
+  recall_macro         0.772124
+  recall_micro         0.733878
+  recall_weighted      0.733878
+  f1_macro             0.755749
+  f1_micro             0.733878
+  f1_weighted          0.739149
+  loss over clients    mean 0.2446 std 0.1072 min 0.0673 max 0.6748
+
+[descriptive only] best f1_macro 0.755749 at round 50 — picked on test, not a reported result
+
+backend  : train compiled | eval compiled
+session  : 50 round(s) here | startup+prepack+compile 4.8 min | verify and W&B are outside this figure
+timing   : rounds [506, 501, 490]s | steady 490s/round = train 486s + eval 4s + commit
+VRAM     : train 6.74 GiB/GPU | eval 6.97 GiB/GPU (of 16)
+projected: 50 rounds = 6.89 h (6.81 h of rounds + 0.08 h startup)

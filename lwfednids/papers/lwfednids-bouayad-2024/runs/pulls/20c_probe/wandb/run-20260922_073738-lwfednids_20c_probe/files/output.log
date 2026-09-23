@@ -1,0 +1,69 @@
+W&B: https://wandb.ai/21522798-uit/lwfednids-veremi/runs/lwfednids_20c_probe
+FL root    : /kaggle/input/datasets/odixe0502/veremi-fl-20client/20_client
+test root  : /kaggle/input/datasets/odixe0502/veremi-nextgen2026-centralized/upload/test
+data_id    : 29f492a531052d2b
+fingerprint: 967b6effdb53ccba
+resume from round None
+train (43045415, 66) max|x|=570.5
+test  (10761343, 66) max|x|=570.5
+content_id : 3aa70a5c51aacd51
+prepack 143.0s | 43,045,415 train / 10,761,343 test rows
+  pruned train eager   : 59.29 ms/step (400 steps, 0 skipped) at batch 512, 35,891 params
+W0922 07:40:49.791000 23 torch/_inductor/utils.py:1679] [0/0] Not enough SMs to use max_autotune_gemm mode
+[rank0] compile OK | max|dlogit|=2.44e-04 rel|dgrad|=1.60e-03 flips 0/512 (0/472 decisive)
+  pruned train compiled: 5.85 ms/step (400 steps, 0 skipped) | 10.13x | compile+gate 95s
+  pruned eval eager-folded  batch 16384: 1,031,642 rows/s
+[rank0] eval compile OK | max|dlogit|=7.81e-03 rel|dgrad|=0.00e+00 flips 3/16384 (0/16221 decisive)
+  pruned eval compiled-folded batch 16384: 1,468,885 rows/s | |dCM|=652 cells of 10761343
+  pruned eval eager-folded  batch 32768: 1,013,171 rows/s
+[rank0] eval compile OK | max|dlogit|=1.95e-02 rel|dgrad|=0.00e+00 flips 15/32768 (0/31782 decisive)
+  pruned eval compiled-folded batch 32768: 1,519,366 rows/s | |dCM|=8592 cells of 10761343
+unpruned train eager   : 30.94 ms/step (400 steps, 0 skipped) at batch 512, 395,024 params
+[rank0] compile OK | max|dlogit|=7.32e-04 rel|dgrad|=2.83e-03 flips 0/512 (0/486 decisive)
+unpruned train compiled: 6.78 ms/step (400 steps, 0 skipped) | 4.56x | compile+gate 87s
+unpruned eval eager-folded  batch 16384: 293,139 rows/s
+[rank0] eval compile OK | max|dlogit|=7.81e-03 rel|dgrad|=0.00e+00 flips 2/16384 (0/16128 decisive)
+unpruned eval compiled-folded batch 16384: 397,276 rows/s | |dCM|=420 cells of 10761343
+unpruned eval eager-folded  batch 32768: 298,732 rows/s
+[rank0] eval compile OK | max|dlogit|=2.34e-02 rel|dgrad|=0.00e+00 flips 9/32768 (0/31216 decisive)
+unpruned eval compiled-folded batch 32768: 384,660 rows/s | |dCM|=3342 cells of 10761343
+TA/IA (unpruned time / pruned time): {'TA_train_compiled_ms_per_step': 1.159, 'TA_train_eager_ms_per_step': 0.522, 'IA_eval_compiled_folded_16384': 3.697, 'IA_eval_eager_folded_16384': 3.519, 'IA_eval_compiled_folded_32768': 3.95, 'IA_eval_eager_folded_32768': 3.392}
+projected round: train 246s (84,083 steps / 2 GPUs) + eval 4s (1 model, rows split over 2 GPUs) = 4.2 min; 2 rounds = 0.1 h
+calibration: {"pruned_params": 35891, "pruned_train_eager_ms_per_step": 59.288, "pruned_compile_seconds": 95.112, "pruned_train_backend": "compiled", "pruned_train_compiled_ms_per_step": 5.854, "pruned_eval_eager_folded_16384": 1031642.374, "pruned_eval_compiled_folded_16384": 1468884.698, "pruned_eval_eager_folded_32768": 1013170.567, "pruned_eval_compiled_folded_32768": 1519365.775, "unpruned_params": 395024, "unpruned_train_eager_ms_per_step": 30.944, "unpruned_compile_seconds": 86.814, "unpruned_train_backend": "compiled", "unpruned_train_compiled_ms_per_step": 6.783, "unpruned_eval_eager_folded_16384": 293138.829, "unpruned_eval_compiled_folded_16384": 397276.446, "unpruned_eval_eager_folded_32768": 298731.796, "unpruned_eval_compiled_folded_32768": 384659.721, "TA_train_compiled_ms_per_step": 1.159, "TA_train_eager_ms_per_step": 0.522, "IA_eval_compiled_folded_16384": 3.697, "IA_eval_eager_folded_16384": 3.519, "IA_eval_compiled_folded_32768": 3.95, "IA_eval_eager_folded_32768": 3.392, "projected_train_sec": 246.131, "projected_eval_sec": 3.663, "projected_round_sec": 249.794, "vram_after_free_gb": 0.009}
+W0922 07:48:10.573000 780 torch/_inductor/utils.py:1679] [0/0] Not enough SMs to use max_autotune_gemm mode
+[rank0] compile OK | max|dlogit|=2.44e-04 rel|dgrad|=2.56e-03 flips 0/512 (0/483 decisive)
+[rank0] eval compile OK | max|dlogit|=2.44e-04 rel|dgrad|=0.00e+00 flips 9/16384 (0/15038 decisive)
+[rank1] compile OK | max|dlogit|=1.83e-04 rel|dgrad|=2.58e-03 flips 0/512 (0/488 decisive)
+[rank1] eval compile OK | max|dlogit|=2.44e-04 rel|dgrad|=0.00e+00 flips 8/16384 (0/15615 decisive)
+[driver] 2 workers ready: train compiled, eval compiled (717s into the session)
+[r001] f1_macro=0.084302 acc=0.262697 f1_w=0.222282 | lr=1.00e-03 loss=0.3158±0.1121 gnorm=1.311 skip=36/84083 | train=319s eval=5s vram=6.94G 325.0s | session 0.29h
+[r002] f1_macro=0.582700 acc=0.768310 f1_w=0.724287 | lr=1.00e-05 loss=0.6167±0.2628 gnorm=1.419 skip=23/84083 | train=250s eval=4s vram=6.94G 254.6s | session 0.36h
+
+completed 2 rounds this session
+run      : /kaggle/working/runs/lwfednids_20c_probe
+complete : rounds 1..2   (mode: full)
+artifacts: 0 prediction files, 2 client logs
+  all artifact checks passed
+
+rounds verified : 2 / 2
+
+result at round 2 (global model, sparsity 0.7, 35,891 params, 0.141 MiB on the wire):
+  accuracy             0.768310
+  precision_macro      0.668886
+  precision_micro      0.768310
+  precision_weighted   0.732212
+  recall_macro         0.570664
+  recall_micro         0.768310
+  recall_weighted      0.768310
+  f1_macro             0.582700
+  f1_micro             0.768310
+  f1_weighted          0.724287
+  loss over clients    mean 0.6167 std 0.2628 min 0.2103 max 1.1818
+
+[descriptive only] best f1_macro 0.582700 at round 2 — picked on test, not a reported result
+
+backend  : train compiled | eval compiled
+session  : 2 round(s) here | startup+prepack+compile 12.0 min | verify and W&B are outside this figure
+timing   : rounds [325, 255]s | steady 255s/round = train 250s + eval 4s + commit
+VRAM     : train 6.94 GiB/GPU | eval 6.97 GiB/GPU (of 16)
+projected: 2 rounds = 0.34 h (0.14 h of rounds + 0.20 h startup)
