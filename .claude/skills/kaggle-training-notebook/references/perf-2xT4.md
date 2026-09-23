@@ -1,6 +1,6 @@
 # Squeezing the 2× T4 box
 
-For federated training, first read [federated-afpha.md](federated-afpha.md) for the
+For federated training, first read [federated-contract.md](federated-contract.md) for the
 scientific contract and [perf-federated.md](perf-federated.md) for the speed playbook — many
 short independent client jobs are launch-bound, and several rules below invert for them.
 The DDP batch multiplication, equal-step and rank-0-only evaluation examples below apply

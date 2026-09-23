@@ -37,9 +37,9 @@ from pathlib import Path
 
 # Every per-round directory any project here writes. Absent ones are skipped, so listing a
 # name costs nothing -- but OMITTING one is not free: the merge then quietly produces a run
-# directory without the weights in it and still reports success. TinyProto names its
-# checkpoints weights/ and also writes protos/, client_log/, complete/ and resume/; a merge
-# that dropped those would lose the models, the prototypes and the round markers.
+# directory without the weights in it and still reports success. Older drivers here wrote
+# protos/ and client_log/ next to weights/, complete/ and resume/; a merge that dropped any
+# of them would lose models or round markers, so every name stays listed.
 ROUND_DIRS = ("checkpoints", "weights", "protos", "resume", "complete", "client_log",
               "metrics", "preds", "confusion", "reports")
 # Files that legitimately differ between sessions because each session rewrites them from

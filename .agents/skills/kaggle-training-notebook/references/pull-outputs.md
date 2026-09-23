@@ -131,7 +131,7 @@ kaggle kernels output <owner>/<slug> -p <pull_dir> -o --file-pattern '<regex for
 ```
 
 **Not every 0-byte file is debris.** Drivers that commit rounds atomically write an empty
-completion marker last (`complete/round_NNN.done` in pFedES), and a copied package carries an
+completion marker last (`complete/round_NNN.done` in the projects here), and a copied package carries an
 empty `__init__.py`. A blanket `find -size 0 -delete` erases the markers and the verifier then
 reports every round as incomplete (seen 2026-09-14: 29 and 22 zero-byte files in two clean
 pulls, all markers/`__init__.py`). Match the deletion to the artifact types that are never

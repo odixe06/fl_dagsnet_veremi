@@ -71,7 +71,7 @@ from dataclasses import dataclass, asdict, field
 
 @dataclass
 class CFG:
-    run_name: str = "edl_cmso_v1"
+    run_name: str = "<method>_<K>c"
 
     # --- knobs the user retunes per task ------------------------------
     rounds: int            = 10     # checkpoints produced = rounds
@@ -536,8 +536,8 @@ Three things measured by pushing, not read from documentation:
    but it does burn a version and a round trip. Assert kernelspec in the notebook validator.
 
 2. **The slug comes from the title, not from the metadata `id`.** Pushing a notebook titled
-   "AFPHA DAGSNet calibration" with `id: <owner>/afpha-calibration` creates
-   `<owner>/afpha-dagsnet-calibration` and prints only a soft warning. Every later status,
+   "Method X DAGSNet calibration" with `id: <owner>/method-x-calibration` creates
+   `<owner>/method-x-dagsnet-calibration` and prints only a soft warning. Every later status,
    output and session call then addresses a slug that does not exist. Choose titles that
    slugify to exactly the id, and check it in the generator.
 

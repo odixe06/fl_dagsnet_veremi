@@ -1,6 +1,6 @@
 # Making federated rounds fast on 2× T4
 
-Read with [`federated-afpha.md`](federated-afpha.md) (the scientific contract) and
+Read with [`federated-contract.md`](federated-contract.md) (the scientific contract) and
 [`perf-2xT4.md`](perf-2xT4.md) (the hardware budget). This file covers the case those two
 do not: **many short, independent single-client training jobs**, where the per-step cost is
 dominated by kernel launches rather than by arithmetic. Every optimization below preserves

@@ -22,7 +22,7 @@ credential files or token values; report only filenames, account names and verif
 As of 2026-09-08 this repository has its own copies of `scripts/kaggle_mcp_headers.py`,
 `scripts/sync_kaggle_mcp.py` and `scripts/probe_kaggle_mcp.py`, its own `.mcp.json`, and a
 `.codex/config.toml` helper path pointing inside this repository. Before that date the Codex
-helper path pointed at the AFPHA checkout and there was no `.mcp.json` here at all, which made
+helper path pointed at an older sibling checkout and there was no `.mcp.json` here at all, which made
 `use` fail rather than switch. `.mcp.json` and `.vscode/mcp.json` carry a bearer, are mode 0600
 and are in `.gitignore`.
 
@@ -67,6 +67,36 @@ req = IntrospectTokenRequest(); req.token = tok
 with api:
     r = api.security.oauth_client.introspect_token(req)   # r.active, r.username
 ```
+
+**Accounts added 2026-09-21: `catbaochau` and `trietbackup`.** Both were saved as
+`.mcp-token` first and introspected `active` with the matching username the same minute; the
+owner then completed the browser login for each, so both now have an OAuth snapshot as well and
+`list`, `quota`, `health`, `plan`, `ensure` and `use` all work for them. The MCP token of
+`minhtran0601` was rotated the same day (the old value was replaced in place, mode 0600).
+Which account may run which work is a per-project decision and belongs in that project's
+`CONTEXT.md`, not here.
+
+**Rotation, 2026-09-22.** The MCP token of `odixe0502` was replaced (old value introspected
+`active=False` before it was discarded; new value `active=True`, username confirmed). A byte
+scan of `~/.claude`, `~/.vscode-server` and `~/nckh` that day found **every saved KGAT value
+inside Claude Code transcripts** (`~/.claude/projects/*/*.jsonl`, and the VS Code extension log
+that mirrors them) — because each token had been pasted into a chat message when the account
+was added — and the **refresh token of `minhtran0601`** in one transcript. Two rules follow:
+
+- **Never paste a credential into a chat window.** Write it to the file yourself (`read -s`
+  or an editor), or run the project's rotation wizard, which reads it with hidden input:
+  `scripts/rotate_kaggle_creds_wizard.sh` (copied into this project's `scripts/`) drives
+  `scripts/rotate_kaggle_creds.py`,
+  which introspects the new value, installs it mode 0600, revokes the old one through
+  `POST /api/v1/tokens/revoke` (`ExpireApiTokenRequest`, the call behind `kaggle auth revoke`)
+  and re-points every `.mcp.json` / `.vscode/mcp.json` under `~/nckh`.
+- **`KaggleCredentials.revoke_token()` deletes `~/.kaggle/credentials.json`** whatever file
+  the credentials were loaded from (`delete()` defaults to the live path). Revoke a snapshot's
+  refresh token with `expire_api_token` directly, never through that method.
+
+A refresh token is only replaced by a new browser login (`kaggle auth login --force`, as that
+account), so a rotation of all accounts is a human procedure; the wizard sequences it so the
+old grant is revoked only after the new one has introspected with the right username.
 
 **Token-only account added 2026-09-17: `odixeuit`.** Its `.mcp-token` introspected active with
 username `odixeuit` the same minute it was saved. Until the owner runs the browser login
