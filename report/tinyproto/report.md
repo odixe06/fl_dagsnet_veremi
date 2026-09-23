@@ -2,7 +2,7 @@
 
 **Ngày:** 2026-09-11 · **Nguồn số liệu:** `papers/tinyproto-lee-2026/runs/` (artifact đã kéo về
 và verify) · **Bảng chi tiết:** `papers/tinyproto-lee-2026/report/` · **Ngữ cảnh vận hành:**
-`CONTEXT.md` · **Đặc tả triển khai:** `papers/tinyproto-lee-2026/rebuild.md`
+`CONTEXT.md` · **Đặc tả triển khai:** `docs/rebuild.md`
 
 > Mọi con số trong báo cáo này được sinh tự động từ artifact bằng
 > `scripts/make_report_tables.py`, không có con số nào gõ tay. Script kiểm tra chéo mỗi giá trị

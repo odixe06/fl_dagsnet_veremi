@@ -1,7 +1,7 @@
 # Báo cáo tái dựng FD-IDS trên VeReMi NextGen với DAGSNet — HOÀN TẤT
 
 Sinh tự động bởi `scripts/make_report.py` lúc 2026-09-11 09:55Z từ artifact đã pull và verify.
-Không sửa tay; sửa generator rồi chạy lại. Ngữ cảnh đầy đủ: [`CONTEXT.md`](CONTEXT.md); mọi số đo kỹ thuật: [`TEST_LOG.md`](TEST_LOG.md).
+Không sửa tay; sửa generator rồi chạy lại. Ngữ cảnh đầy đủ: [`CONTEXT.md`](../../fd_ids/CONTEXT.md); mọi số đo kỹ thuật: [`tests.md`](../../fd_ids/docs/tests.md).
 
 ## 0. Tóm tắt
 
@@ -11,7 +11,7 @@ Không sửa tay; sửa generator rồi chạy lại. Ngữ cảnh đầy đủ:
 | 50c | 50/50 | 0.6714 | 0.6815 | 0.6423 | 0.7205 @r6 | 7.37 h |
 | 100c | 50/50 | 0.6552 | 0.6606 | 0.6223 | 0.6870 @r9 | 10.54 h |
 
-![](figures/f1_macro_all.png)
+![](../../fd_ids/figures/f1_macro_all.png)
 
 *Hình: F1 macro của global model theo round, các cấu hình đã có. Điều cần thấy: mọi đường bão hoà trước round 10 (đỉnh ở round 6–9) rồi giữ một plateau nhiễu thấp hơn đỉnh; mức plateau (trung bình 10 round cuối): 20c ≈ 0.76 (đỉnh 0.7822 @r7); 50c ≈ 0.68 (đỉnh 0.7205 @r6); 100c ≈ 0.66 (đỉnh 0.6870 @r9) — nhiều client hơn, plateau thấp hơn, đơn điệu.*
 
@@ -26,8 +26,8 @@ client, bộ metric.
 |---|---|
 | Bài báo | Peng, Xiao, Wu — *FD-IDS: A Federated Learning and Knowledge Distillation-Based Intrusion Detection System for Non-IID IoT Environments*, **Sensors 2025, 25, 4309** ([`sensors-25-04309.md`](sensors-25-04309.md)) |
 | Phương pháp lấy từ bài báo | FedProx + knowledge distillation **round-wise** (Algorithm 1, Eq. 2–6): L = λ·CE + (1−λ)·T²·KL(teacher‖student) + β·(μ/2)‖w−w_G‖²; Adam lr 0,001, μ = 0,01, λ = 0,5, β = 0,1, T = 3 (Table 3); toàn bộ client mỗi round |
-| Dữ liệu | VeReMi NextGen, phân mảnh Dirichlet α = 0,5: `odixe0502/veremi-fl-{20,50,100}client` (train) + `odixe0502/veremi-nextgen2026-centralized` (test), 66 đặc trưng `f_*` đã z-score, 16 lớp ([`knowledge/DATASET.md`](knowledge/DATASET.md)) |
-| Bộ phân loại | **DAGSNet**, 395.024 tham số ([`knowledge/ARCHITECTURE.md`](knowledge/ARCHITECTURE.md)) thay cho DNN 5 lớp 22.095 tham số của bài báo |
+| Dữ liệu | VeReMi NextGen, phân mảnh Dirichlet α = 0,5: `odixe0502/veremi-fl-{20,50,100}client` (train) + `odixe0502/veremi-nextgen2026-centralized` (test), 66 đặc trưng `f_*` đã z-score, 16 lớp ([`knowledge/dataset.md`](../../fd_ids/knowledge/dataset.md)) |
+| Bộ phân loại | **DAGSNet**, 395.024 tham số ([`knowledge/architecture.md`](../../fd_ids/knowledge/architecture.md)) thay cho DNN 5 lớp 22.095 tham số của bài báo |
 | Phần cứng | Kaggle 2 × Tesla T4 (sm_75, 14,6 GB), 4 vCPU; image `sha256:37c64f7dd9c5…`; torch 2.10.0+cu128, CUDA 12.8; mỗi worker một GPU, mỗi client train tuần tự trên một GPU, không DDP |
 | Kế hoạch | 3 cấu hình × 50 round × 1 epoch local; batch 512/512/256 (20c/50c/100c); seed 42; fp16 AMP; `torch.compile` chứng nhận trên T4 (`compile OK`, `max|Δlogit| ≤ 9,8e-04`) |
 | Kernel / phiên | xem bảng phiên ở từng mục; mỗi phiên là một kernel Kaggle riêng, tiếp nối qua checkpoint đã verify (§9) |
@@ -60,7 +60,7 @@ weighted: trọng số n_c/N. Vì mỗi dòng có đúng một dự đoán, Σ_c
 ## 3. Dữ liệu và caveat bắt buộc
 
 Train 43,045,415 dòng / test 10,761,343 dòng; 16 lớp; mất cân bằng **41:1** (`trafficCongestionSybil` 2.393.335 dòng
-test so với `suddenConstantSpeed` 57.757). Từ [`knowledge/DATASET.md`](knowledge/DATASET.md) §6, phải đọc cùng mọi bảng ở đây:
+test so với `suddenConstantSpeed` 57.757). Từ [`knowledge/dataset.md`](../../fd_ids/knowledge/dataset.md) §6, phải đọc cùng mọi bảng ở đây:
 
 1. Split theo **thời gian mô phỏng**, không theo xe; test chỉ có scenario `highway_7`/`urban_7`.
 2. `benign` lấy từ luồng không có tấn công ⇒ nhóm đặc trưng `rate` mạnh bất thường.
@@ -91,7 +91,7 @@ lr=0.001, μ=0.01, λ=0.5, β=0.1, T=3.0, clip=1.0, seed=42, dropout=0.1,
 world_size=2, compile=True; fingerprint `5f74ba70f2c0af90`, data_id `29f492a531052d2b`, content_id `3aa70a5c51aacd51`;
 torch 2.10.0+cu128, CUDA 12.8.
 
-![](figures/convergence_20c.png)
+![](../../fd_ids/figures/convergence_20c.png)
 
 *Hình: trái — năm metric phân biệt được của global model trên toàn bộ tập test theo round (đường chấm xám: round đỉnh F1 macro, hậu kiểm; đường đứt đỏ: ranh giới phiên Kaggle); phải — loss huấn luyện trung bình phía client. Điều cần thấy: CE train giảm rồi đi ngang ở mức thấp (cực tiểu 0.2177 @r41, round cuối 0.2196); số hạng KD chạm cực tiểu sớm (0.1298 @r8) rồi tăng dần tới 0.1585 — teacher (global model round trước) và student cách nhau dần; trong khi đó metric test bão hoà từ round 7 và accuracy/F1 weighted đi xuống.*
 
@@ -217,7 +217,7 @@ Nguồn: `papers/fd-ids-2025/runs/fdids_20c_v2/history.csv`, đối chiếu từ
 
 ### 4.3 Từng lớp ở round cuối 50
 
-![](figures/per_class_f1_20c.png)
+![](../../fd_ids/figures/per_class_f1_20c.png)
 
 *Hình: F1 từng lớp ở round cuối (đậm) và ở round đỉnh 7 (nhạt), xếp theo support giảm dần. Điều cần thấy (ΔF1 = cuối − đỉnh, tính từ artifact): mất nhiều nhất `benign` (-0.282), `constantPositionOffset` (-0.096), `dataReplay` (-0.081); được nhiều nhất `suddenConstantSpeed` (+0.101), `suddenStop` (+0.054), `positionMirroring` (+0.052). `benign` — lớp lớn thứ hai — là nơi mất lớn nhất hoặc nhì: recall `benign` 0.5771 ở round 7 → **0.2216** ở round 50, precision 0.7021: global model ngày càng gán lưu lượng lành tính thành tấn công (tỉ lệ báo động giả tăng), đổi lấy recall ở các lớp hiếm.*
 
@@ -240,9 +240,9 @@ Nguồn: `papers/fd-ids-2025/runs/fdids_20c_v2/history.csv`, đối chiếu từ
 | `feignedBraking` | 118,605 | 0.9452 | 0.9703 | 0.9576 |
 | `suddenConstantSpeed` | 57,757 | 0.8872 | 0.6447 | 0.7468 |
 
-Lớp khó ở round 50 (F1 < 0,4): `timeDelayAttack` (0.1801), `positionMirroring` (0.2823), `benign` (0.3368). `timeDelayAttack` cũng là lớp yếu nhất của DAGSNet centralized (`knowledge/ARCHITECTURE.md` §8: F1 0,2281, 76 % bị gán thành `benign`); `benign` khó ở đây vì cơ chế báo động giả nói trên.
+Lớp khó ở round 50 (F1 < 0,4): `timeDelayAttack` (0.1801), `positionMirroring` (0.2823), `benign` (0.3368). `timeDelayAttack` cũng là lớp yếu nhất của DAGSNet centralized (`knowledge/architecture.md` §8: F1 0,2281, 76 % bị gán thành `benign`); `benign` khó ở đây vì cơ chế báo động giả nói trên.
 
-![](figures/confusion_20c_r050.png)
+![](../../fd_ids/figures/confusion_20c_r050.png)
 
 *Hình: ma trận nhầm lẫn round 50 chuẩn hoá theo hàng (mỗi hàng = một lớp thật, tổng 1). Điều cần thấy: hàng `benign` trải sang các cột tấn công — recall `benign` chỉ 0.2216 trên 2,391,136 dòng; vì `benign` chiếm 22 % tập test, riêng nó kéo accuracy và F1 weighted xuống trong khi F1 macro (mỗi lớp nặng như nhau) gần như giữ nguyên. `trafficCongestionSybil` (F1 0.9739) ổn định nhưng nhớ caveat rò rỉ Sybil (§3).*
 
@@ -263,7 +263,7 @@ lr=0.001, μ=0.01, λ=0.5, β=0.1, T=3.0, clip=1.0, seed=42, dropout=0.1,
 world_size=2, compile=True; fingerprint `fe7a1e77b5df2b66`, data_id `c9b541a243f82282`, content_id `fe175b442db619fe`;
 torch 2.10.0+cu128, CUDA 12.8.
 
-![](figures/convergence_50c.png)
+![](../../fd_ids/figures/convergence_50c.png)
 
 *Hình: trái — năm metric phân biệt được của global model trên toàn bộ tập test theo round (đường chấm xám: round đỉnh F1 macro, hậu kiểm; đường đứt đỏ: ranh giới phiên Kaggle); phải — loss huấn luyện trung bình phía client. Điều cần thấy: CE train giảm rồi đi ngang ở mức thấp (cực tiểu 0.2403 @r45, round cuối 0.2482); số hạng KD chạm cực tiểu sớm (0.1577 @r7) rồi tăng dần tới 0.2099 — teacher (global model round trước) và student cách nhau dần; trong khi đó metric test bão hoà từ round 6 và accuracy/F1 weighted đi xuống.*
 
@@ -389,7 +389,7 @@ Nguồn: `papers/fd-ids-2025/runs/fdids_50c_v2/history.csv`, đối chiếu từ
 
 ### 5.3 Từng lớp ở round cuối 50
 
-![](figures/per_class_f1_50c.png)
+![](../../fd_ids/figures/per_class_f1_50c.png)
 
 *Hình: F1 từng lớp ở round cuối (đậm) và ở round đỉnh 6 (nhạt), xếp theo support giảm dần. Điều cần thấy (ΔF1 = cuối − đỉnh, tính từ artifact): mất nhiều nhất `constantSpeedOffset` (-0.347), `benign` (-0.309), `constantPositionOffset` (-0.077); được nhiều nhất `suddenConstantSpeed` (+0.101), `suddenStop` (+0.055), `zeroSpeedReport` (+0.033). `benign` — lớp lớn thứ hai — là nơi mất lớn nhất hoặc nhì: recall `benign` 0.3549 ở round 6 → **0.0822** ở round 50, precision 0.6544: global model ngày càng gán lưu lượng lành tính thành tấn công (tỉ lệ báo động giả tăng), đổi lấy recall ở các lớp hiếm.*
 
@@ -412,9 +412,9 @@ Nguồn: `papers/fd-ids-2025/runs/fdids_50c_v2/history.csv`, đối chiếu từ
 | `feignedBraking` | 118,605 | 0.9331 | 0.9680 | 0.9502 |
 | `suddenConstantSpeed` | 57,757 | 0.7379 | 0.6500 | 0.6912 |
 
-Lớp khó ở round 50 (F1 < 0,4): `positionMirroring` (0.1199), `timeDelayAttack` (0.1321), `benign` (0.1461), `constantSpeedOffset` (0.3678), `dataReplay` (0.3870). `timeDelayAttack` cũng là lớp yếu nhất của DAGSNet centralized (`knowledge/ARCHITECTURE.md` §8: F1 0,2281, 76 % bị gán thành `benign`); `benign` khó ở đây vì cơ chế báo động giả nói trên.
+Lớp khó ở round 50 (F1 < 0,4): `positionMirroring` (0.1199), `timeDelayAttack` (0.1321), `benign` (0.1461), `constantSpeedOffset` (0.3678), `dataReplay` (0.3870). `timeDelayAttack` cũng là lớp yếu nhất của DAGSNet centralized (`knowledge/architecture.md` §8: F1 0,2281, 76 % bị gán thành `benign`); `benign` khó ở đây vì cơ chế báo động giả nói trên.
 
-![](figures/confusion_50c_r050.png)
+![](../../fd_ids/figures/confusion_50c_r050.png)
 
 *Hình: ma trận nhầm lẫn round 50 chuẩn hoá theo hàng (mỗi hàng = một lớp thật, tổng 1). Điều cần thấy: hàng `benign` trải sang các cột tấn công — recall `benign` chỉ 0.0822 trên 2,391,136 dòng; vì `benign` chiếm 22 % tập test, riêng nó kéo accuracy và F1 weighted xuống trong khi F1 macro (mỗi lớp nặng như nhau) gần như giữ nguyên. `trafficCongestionSybil` (F1 0.9725) ổn định nhưng nhớ caveat rò rỉ Sybil (§3).*
 
@@ -436,7 +436,7 @@ lr=0.001, μ=0.01, λ=0.5, β=0.1, T=3.0, clip=1.0, seed=42, dropout=0.1,
 world_size=2, compile=True; fingerprint `43fb1276b4aa83b1`, data_id `4723f6dbf7fa5f2e`, content_id `db2bbb68760a82ee`;
 torch 2.10.0+cu128, CUDA 12.8.
 
-![](figures/convergence_100c.png)
+![](../../fd_ids/figures/convergence_100c.png)
 
 *Hình: trái — năm metric phân biệt được của global model trên toàn bộ tập test theo round (đường chấm xám: round đỉnh F1 macro, hậu kiểm; đường đứt đỏ: ranh giới phiên Kaggle); phải — loss huấn luyện trung bình phía client. Điều cần thấy: CE train giảm rồi đi ngang ở mức thấp (cực tiểu 0.2633 @r32, round cuối 0.2676); số hạng KD chạm cực tiểu sớm (0.1901 @r8) rồi tăng dần tới 0.2341 — teacher (global model round trước) và student cách nhau dần; trong khi đó metric test bão hoà từ round 9 và accuracy/F1 weighted đi xuống.*
 
@@ -562,7 +562,7 @@ Nguồn: `papers/fd-ids-2025/runs/fdids_100c_v2/history.csv`, đối chiếu t�
 
 ### 6.3 Từng lớp ở round cuối 50
 
-![](figures/per_class_f1_100c.png)
+![](../../fd_ids/figures/per_class_f1_100c.png)
 
 *Hình: F1 từng lớp ở round cuối (đậm) và ở round đỉnh 9 (nhạt), xếp theo support giảm dần. Điều cần thấy (ΔF1 = cuối − đỉnh, tính từ artifact): mất nhiều nhất `benign` (-0.224), `constantSpeedOffset` (-0.173), `constantPositionOffset` (-0.170); được nhiều nhất `suddenStop` (+0.100), `suddenConstantSpeed` (+0.098), `zeroSpeedReport` (+0.036). `benign` — lớp lớn thứ hai — là nơi mất lớn nhất hoặc nhì: recall `benign` 0.2297 ở round 9 → **0.0614** ở round 50, precision 0.6539: global model ngày càng gán lưu lượng lành tính thành tấn công (tỉ lệ báo động giả tăng), đổi lấy recall ở các lớp hiếm.*
 
@@ -585,9 +585,9 @@ Nguồn: `papers/fd-ids-2025/runs/fdids_100c_v2/history.csv`, đối chiếu t�
 | `feignedBraking` | 118,605 | 0.9176 | 0.9664 | 0.9414 |
 | `suddenConstantSpeed` | 57,757 | 0.8007 | 0.5977 | 0.6845 |
 
-Lớp khó ở round 50 (F1 < 0,4): `positionMirroring` (0.0995), `timeDelayAttack` (0.1051), `benign` (0.1123), `dataReplay` (0.2968). `timeDelayAttack` cũng là lớp yếu nhất của DAGSNet centralized (`knowledge/ARCHITECTURE.md` §8: F1 0,2281, 76 % bị gán thành `benign`); `benign` khó ở đây vì cơ chế báo động giả nói trên.
+Lớp khó ở round 50 (F1 < 0,4): `positionMirroring` (0.0995), `timeDelayAttack` (0.1051), `benign` (0.1123), `dataReplay` (0.2968). `timeDelayAttack` cũng là lớp yếu nhất của DAGSNet centralized (`knowledge/architecture.md` §8: F1 0,2281, 76 % bị gán thành `benign`); `benign` khó ở đây vì cơ chế báo động giả nói trên.
 
-![](figures/confusion_100c_r050.png)
+![](../../fd_ids/figures/confusion_100c_r050.png)
 
 *Hình: ma trận nhầm lẫn round 50 chuẩn hoá theo hàng (mỗi hàng = một lớp thật, tổng 1). Điều cần thấy: hàng `benign` trải sang các cột tấn công — recall `benign` chỉ 0.0614 trên 2,391,136 dòng; vì `benign` chiếm 22 % tập test, riêng nó kéo accuracy và F1 weighted xuống trong khi F1 macro (mỗi lớp nặng như nhau) gần như giữ nguyên. `trafficCongestionSybil` (F1 0.9672) ổn định nhưng nhớ caveat rò rỉ Sybil (§3).*
 
@@ -629,7 +629,7 @@ bản này kế thừa phương pháp, không kế thừa con số.
   mọi round chồng lấn giống hệt từng byte giữa hai pull (`merge_sessions.py` từ chối nếu khác), fingerprint cấu hình
   khớp, W&B nối cùng run. Round 44 của 20c tụt
   0,7669 → 0,7294 rồi hồi về 0,7655; log từng client của round 43–45 không có client bất thường (ce, grad norm, skip,
-  non-finite), nên đó là dao động một round của phép gộp, không phải lỗi tiếp nối (`TEST_LOG.md` §3.8).
+  non-finite), nên đó là dao động một round của phép gộp, không phải lỗi tiếp nối (`tests.md` §3.8).
 * **Rò rỉ phải nhớ khi đọc lớp `trafficCongestionSybil`** (caveat 4) và **scaler toàn cục** (caveat 7).
 
 ## 9. Tái lập

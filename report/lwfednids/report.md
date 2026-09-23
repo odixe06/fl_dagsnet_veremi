@@ -52,7 +52,7 @@ Những điểm ảnh hưởng trực tiếp đến cách đọc:
   5,9 M dòng.
 * **D8, D12: một seed, một mask zero-shot** chọn trên trọng số ngẫu nhiên. Không có khoảng ±
   giữa các lần chạy; `*_client_std` là độ lệch **giữa các client**, không phải giữa các lần chạy.
-* Caveat của dữ liệu ([`knowledge/DATASET.md` §6](../../lwfednids/knowledge/DATASET.md)):
+* Caveat của dữ liệu ([`knowledge/dataset.md` §6](../../lwfednids/knowledge/dataset.md)):
   * split theo thời gian mô phỏng, test chỉ có scenario `_7`;
   * scaler fit trên toàn bộ train (rò rỉ thống kê toàn cục vào FL);
   * rò rỉ Sybil;
@@ -84,7 +84,7 @@ Chung cho cả ba kịch bản ([`rebuild.md` §1](rebuild.md)):
 * **Môi trường:** torch 2.10.0+cu128, 2 × Tesla T4. Backend `compiled` cho train và eval ở **cả 50
   round** của cả ba run.
 
-`data_id` của 20c production trùng với probe (`TESTS.md` §4.2), tức cùng dữ liệu.
+`data_id` của 20c production trùng với probe (`tests.md` §4.2), tức cùng dữ liệu.
 
 ## 3. Kết quả
 
@@ -188,7 +188,7 @@ luận, không phải điều đã đo trực tiếp:
 Hai dấu hiệu khớp với cách đọc này: độ tăng loss và gnorm lớn nhất ở 50c/100c, nơi client lệch
 nhất, và đó cũng là nơi f1_macro tăng nhiều nhất ở cuối.
 
-**`skipped` tăng theo round.** Đây là mẫu hình mà [`KAGGLE.md` §6](../../lwfednids/docs/KAGGLE.md) liệt kê là dấu hiệu
+**`skipped` tăng theo round.** Đây là mẫu hình mà [`kaggle.md` §6](../../lwfednids/docs/kaggle.md) liệt kê là dấu hiệu
 dừng, nhưng ở đây không phải hỏng:
 
 * Theo từng client, `skipped` bão hoà ở **≈ 3 bước/client/round** từ r40 (62/20, 152/50,
@@ -266,7 +266,7 @@ Chiều ngược lại: 43 % / 29 % / 29 % dòng `timeDelayAttack` bị dự đo
 | **Lightweight-Fed-NIDS (bản này)**: cắt 70 % kênh, FedAvg 1/N, AdamW wd 1e-4 | **35.891** | **0,7917** | **0,7526** | **0,7557** | §3.1 |
 | AFPHA: DAGSNet đầy đủ, FedAvg + prox thích nghi, Adam wd 0, trọng số n_i/N | 395.024 | 0,7752 | 0,7162 | 0,6949 | `fl_dagsnet_veremi1/afpha/report.md` §3 |
 | FD-IDS: DAGSNet đầy đủ, FedProx + KD theo round | 395.024 | 0,7655 | 0,6815 | 0,6606 | `fl_dagsnet_veremi1/fd_ids/report.md` §0 |
-| DAGSNet **centralized**: không FL, round cuối (r49) / round đỉnh chọn hậu nghiệm (r5) | 395.024 | 0,8365 / 0,8532 | | | [`knowledge/ARCHITECTURE.md`](../../lwfednids/knowledge/ARCHITECTURE.md) |
+| DAGSNet **centralized**: không FL, round cuối (r49) / round đỉnh chọn hậu nghiệm (r5) | 395.024 | 0,8365 / 0,8532 | | | [`knowledge/architecture.md`](../../lwfednids/knowledge/architecture.md) |
 
 Tất cả các số trên là f1_macro ở round cuối (round 50 với FL).
 
