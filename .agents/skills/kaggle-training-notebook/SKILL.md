@@ -1,15 +1,27 @@
 ---
 name: kaggle-training-notebook
-description: Build, validate, resume, and operate PyTorch training notebooks on Kaggle; retrieve artifacts and write training reports with all 10 classification metrics. Use for paper reproduction, Kaggle training/evaluation, or reporting its results. Do not use for ordinary local notebooks or data exploration without training.
+description: Build, validate, resume, and operate PyTorch training notebooks on Kaggle; retrieve artifacts and report all 10 classification metrics. Use for paper reproduction or Kaggle training/evaluation, not ordinary local data exploration.
 ---
+
+## Paths
+
+This file is the skill. Resolve every relative path below from this directory: helper scripts
+are in `scripts/` next to it (`kaggle_account.py`, `kaggle_as.py`, `embed_wandb_key.py`,
+`merge_sessions.py`, …) and the supporting notes in `references/`. Paths labelled as
+repository-root paths belong to the calling project, not here.
+
+Read the calling project's `CONTEXT.md` for its decisions, account roster, run status and
+outstanding work. Nothing in this skill is project state: the historical build numbers,
+accounts and results in the references are evidence from past runs, never authorization or
+defaults for the project you are in.
 
 # Kaggle training notebooks
 
-Read the nearest AGENTS.md, current paper, architecture specification and dataset documentation.
+Read the calling project's agent instructions (CLAUDE.md / AGENTS.md), its paper, architecture specification and dataset documentation.
 Use `conda run -n nckh` for Python and Kaggle CLI in this repository. State assumptions and
 verifiable success criteria. User decisions in this session govern the work.
 Read current `CONTEXT.md` for approved settings, account policy and unresolved review findings.
-This `.agents/skills` tree is the maintained Codex source; `.claude/skills` entrypoints link here.
+Keep any mirrored copy of this skill in another tree synchronized instead of maintaining a second workflow.
 Paths under `references/` and `scripts/` resolve from the skill directory unless labelled
 repository-root paths. Keep mirrored references/helpers synchronized when modifying them.
 
@@ -32,12 +44,12 @@ Check referenced paths/scripts exist. Never infer completed training from copied
    see [paper-dossier.md](references/paper-dossier.md). Do not invent missing equations,
    optimizer settings or adaptive rules and attribute them to the paper. Resolve scientific
    choices with the user before implementing dependent training code when requested.
-3. For any FL method on VeReMi/DAGSNet read [per-client-fl-veremi.md](references/per-client-fl-veremi.md)
-   FIRST: it names the module set to copy from `~/nckh/veremi/pfedes` (or `fd_ids` for a
-   global-model method), the measured T4 numbers, the two CUDA-graph traps of multi-module
-   steps, the exact eval cache for unchanged clients, and the push/pull command sequence, so
-   no sibling project has to be re-read.
-   For FL read [federated-afpha.md](references/federated-afpha.md) before using any DDP template,
+3. For any FL method on VeReMi/DAGSNet read [fl-veremi-dagsnet.md](references/fl-veremi-dagsnet.md)
+   FIRST: it names the template to copy (`~/nckh/veremi/lwfednids` for a global-model method,
+   `~/nckh/veremi/perfedskd` for per-client models), the measured T4 numbers, the CUDA-graph
+   traps of multi-module steps, the sharded / cached eval, and the push/pull command sequence,
+   so no sibling project has to be re-read.
+   For FL read [federated-contract.md](references/federated-contract.md) before using any DDP template,
    and [perf-federated.md](references/perf-federated.md) before optimizing its speed: measure
    whether the loop is launch-bound before applying centralized AMP/DataLoader advice, and keep
    each speed change within justified numerical tolerances against an eager reference.

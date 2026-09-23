@@ -1,5 +1,41 @@
-dataset/
+# Một .gitignore duy nhất cho cả repo (gộp từ .gitignore riêng của từng phương pháp, 2026-09-23).
+
+# --- Secrets: không bao giờ commit ---
+# W&B API key nằm trong .env (WANDB_API_KEY); notebook đọc nó từ biến môi trường.
 .env
+# Cấu hình MCP cục bộ chứa bearer token Kaggle.
+.mcp.json
+**/.vscode/mcp.json
+
+# --- Python / Jupyter ---
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
+
+# --- Dữ liệu gốc ---
+dataset/
+
+# --- Trọng số và dự đoán của mọi run (nặng; bản gốc nằm ở output Kaggle / máy local) ---
+**/weights/
+**/preds/
+**/checkpoints/
+*.pt
+# ...trừ checkpoint tham chiếu kiến trúc DAGSNet mà test/code của từng phương pháp dùng làm mốc.
+!**/knowledge/ckpt_round_005.pt
+!afpha/architecture/ckpt_round_005.pt
+
+# --- Luật riêng của các phương pháp cũ (trước đây nằm trong <method>/.gitignore) ---
+# Notebook sinh tự động có nhúng key W&B; dựng lại bằng script gen_notebook(s) của từng phương pháp.
+afpha/notebooks/
+fd_ids/papers/**/notebook/**/*.ipynb
+nilm_fl/papers/**/notebook/**/*.ipynb
+pfedes/papers/**/notebook/**/*.ipynb
+tinyproto/papers/tinyproto-lee-2026/notebook/**/*.ipynb
+tinyproto/papers/tinyproto-lee-2026/validation/**/*.ipynb
+tinyproto/papers/tinyproto-lee-2026/production/**/*.ipynb
+# Artifact run đã kéo về: hàng chục GB, không phải mã nguồn.
+fd_ids/papers/**/runs/
+nilm_fl/papers/**/runs/
+pfedes/papers/**/runs/
+tinyproto/papers/tinyproto-lee-2026/runs/
+tinyproto/papers/tinyproto-lee-2026/resume-datasets/

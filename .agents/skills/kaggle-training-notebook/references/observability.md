@@ -123,8 +123,8 @@ can be attributed to a module rather than to "somewhere in the backward".
 ## W&B `crashed` while the Kaggle kernel says RUNNING is not a hang
 
 W&B flips a run to `crashed` after a few minutes without heartbeat, and a Kaggle container can
-lose outbound sync for a long stretch while training continues. Measured 2026-09-14 (pFedES
-100c, session 2): heartbeat froze at 00:40Z, state `crashed`, kernel RUNNING; at 01:27Z the run
+lose outbound sync for a long stretch while training continues. Measured 2026-09-14 (a
+sibling rebuild, 100c, session 2): heartbeat froze at 00:40Z, state `crashed`, kernel RUNNING; at 01:27Z the run
 returned to `running` and the missing round row arrived carrying its original `_timestamp`
 (00:40Z) -- nothing had stopped. Before treating a `crashed` state as a dead kernel, wait at
 least **two round-times** past the last row and require a second signal (kernel status not

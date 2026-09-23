@@ -11,7 +11,7 @@ papers/<slug>/
     checkpoints/  metrics/  preds/  confusion/  reports/  logs/
 ```
 
-`<slug>` is `firstauthor-year-keyword`, lowercase and hyphenated — `zhou-2023-edl-ids`. `run_name` matches `CFG.run_name` so a folder maps to exactly one training run.
+`<slug>` is `firstauthor-year-keyword`, lowercase and hyphenated — `bouayad-2024-lwfednids`. `run_name` matches `CFG.run_name` so a folder maps to exactly one training run.
 
 Two documents, because they answer two different questions. `paper.md` answers *what did the authors do* — and stays fixed once written. `rebuild.md` answers *what did we do differently* — and grows as the work does. Collapsing them into one file loses the boundary between the source of truth and the delta, which is precisely the boundary a reviewer asks about.
 

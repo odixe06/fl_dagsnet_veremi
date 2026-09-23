@@ -65,3 +65,4 @@ Strong success criteria let you loop independently. Weak criteria ("make it work
 **If anything needs to be done manually, please let me know so I can do it.**
 
 **During the process, if you are unsure about anything, ask me questions to clarify and confirm the requirements before proceeding**
+
