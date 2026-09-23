@@ -54,7 +54,7 @@ dùng chung với dự án khác.)
   log extension VS Code sao chép chúng) — vì mỗi token từng được **dán vào chat** khi thêm tài khoản
   — và **refresh token của `minhtran0601`** trong một transcript (`edl-cmso`). Cả `.mcp.json` lẫn
   `.vscode/mcp.json` của repo này còn mode 644 (đã siết về 600); các repo anh em trong
-  `fl_dagsnet_veremi1/` cũng mang bearer cũ.
+  [`fl_dagsnet_veremi`](https://github.com/odixe06/fl_dagsnet_veremi) (khi đó tên `fl_dagsnet_veremi1/`) cũng mang bearer cũ.
 - **Xoay vòng là việc của người**: KGAT mới tạo trên kaggle.com, refresh token mới chỉ có qua
   `kaggle auth login --force` (browser, đúng tài khoản). Agent không tự làm được; công cụ:
   `scripts/rotate_kaggle_creds_wizard.sh` (10 stage: preflight → 8 tài khoản → khôi phục active +

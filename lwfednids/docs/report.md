@@ -264,8 +264,8 @@ Chiều ngược lại: 43 % / 29 % / 29 % dòng `timeDelayAttack` bị dự đo
 | cấu hình | tham số | 20c | 50c | 100c | nguồn |
 |---|---:|---:|---:|---:|---|
 | **Lightweight-Fed-NIDS (bản này)**: cắt 70 % kênh, FedAvg 1/N, AdamW wd 1e-4 | **35.891** | **0,7917** | **0,7526** | **0,7557** | §3.1 |
-| AFPHA: DAGSNet đầy đủ, FedAvg + prox thích nghi, Adam wd 0, trọng số n_i/N | 395.024 | 0,7752 | 0,7162 | 0,6949 | `fl_dagsnet_veremi1/afpha/report.md` §3 |
-| FD-IDS: DAGSNet đầy đủ, FedProx + KD theo round | 395.024 | 0,7655 | 0,6815 | 0,6606 | `fl_dagsnet_veremi1/fd_ids/report.md` §0 |
+| AFPHA: DAGSNet đầy đủ, FedAvg + prox thích nghi, Adam wd 0, trọng số n_i/N | 395.024 | 0,7752 | 0,7162 | 0,6949 | [`afpha/docs/report.md` §3](https://github.com/odixe06/fl_dagsnet_veremi/blob/master/afpha/docs/report.md#3-kết-quả-tổng-hợp) |
+| FD-IDS: DAGSNet đầy đủ, FedProx + KD theo round | 395.024 | 0,7655 | 0,6815 | 0,6606 | [`fd_ids/docs/report.md` §0](https://github.com/odixe06/fl_dagsnet_veremi/blob/master/fd_ids/docs/report.md#0-tóm-tắt) |
 | DAGSNet **centralized**: không FL, round cuối (r49) / round đỉnh chọn hậu nghiệm (r5) | 395.024 | 0,8365 / 0,8532 | | | [`knowledge/architecture.md`](../knowledge/architecture.md) |
 
 Tất cả các số trên là f1_macro ở round cuối (round 50 với FL).
