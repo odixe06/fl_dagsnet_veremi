@@ -1,7 +1,7 @@
 """Prototypes, APS scaling, and the TinyProto-FP regularizer — paper §3.1 and §4.2.
 
 Everything here is deliberately explicit about which equation it implements and which choice
-is this build's rather than the authors'. `papers/tinyproto-lee-2026/rebuild.md` carries the
+is this build's rather than the authors'. `docs/rebuild.md` carries the
 same table; keep the two in sync.
 
     local prototype        c_L[i,j] = (1/n_ij) Σ_{(x,y)∈D_ij} f_i(θ_i; x)          Eq. (3)

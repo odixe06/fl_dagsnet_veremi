@@ -11,7 +11,7 @@ Ngày chuẩn bị: 2026-09-06. [Phân biệt với bài gốc](paper.md).
 | Round | 50, đánh số 1–50 |
 | Local epoch | 1 lượt đầy đủ trên mỗi client tham gia mỗi round |
 | Batch mỗi client | 512 / 512 / 256 tương ứng |
-| Kiến trúc | DAGSNet đúng architecture/ARCHITECTURE.md, 395.024 tham số |
+| Kiến trúc | DAGSNet đúng knowledge/ARCHITECTURE.md, 395.024 tham số |
 | Khởi tạo | mới, PyTorch mặc định; không nạp checkpoint round 5 |
 | Đánh giá | chỉ global sau aggregation, toàn bộ test mỗi round |
 | Metrics | accuracy; precision/recall/F1 × macro/micro/weighted |

@@ -1,7 +1,7 @@
 """DAGSNet — Khan et al. 2025 §4.10, Eq. (38)-(48). 395,024 learnable parameters.
 In: (B, 66) z-scored features.  Out: (B, 16) logits (NO softmax).
 
-Copied verbatim from architecture/ARCHITECTURE.md §6. Do not change CFG: the
+Copied verbatim from knowledge/ARCHITECTURE.md §6. Do not change CFG: the
 parameter count and state_dict key set are part of the reconstruction contract.
 """
 import torch

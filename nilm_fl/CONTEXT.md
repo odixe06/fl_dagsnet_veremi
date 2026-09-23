@@ -17,8 +17,8 @@ kernels/datasets trên Kaggle — chưa làm). Tài khoản CLI/MCP active: **od
 | [`lightweight_fl_nilm.md`](lightweight_fl_nilm.md) | bài báo Li, Yao, Qin, Wang — *Lightweight Federated Learning for On-Device NILM* | chỉ đọc |
 | [`knowledge/`](knowledge/) | **sự thật không đổi** dùng chung nhiều phương pháp (DAGSNet, dataset, máy local, Kaggle) | sửa khi *đo lại* |
 | [`papers/nilm-li-2024/`](papers/nilm-li-2024/) | **phương pháp này** | |
-| ├ [`paper.md`](papers/nilm-li-2024/paper.md) | trích xuất phần học tương hỗ (Eq. 17–19, Algorithm 1) + 8 chỗ bài báo để trống | |
-| ├ [`rebuild.md`](papers/nilm-li-2024/rebuild.md) | **quyết định đã chốt, 13 deviation, hợp đồng artifact, ước lượng chi phí, bảng test** | |
+| ├ [`paper.md`](docs/paper.md) | trích xuất phần học tương hỗ (Eq. 17–19, Algorithm 1) + 8 chỗ bài báo để trống | |
+| ├ [`rebuild.md`](docs/rebuild.md) | **quyết định đã chốt, 13 deviation, hợp đồng artifact, ước lượng chi phí, bảng test** | |
 | ├ [`proj/`](papers/nilm-li-2024/proj/) | **8 module** — nguồn duy nhất của code notebook | sửa ở đây |
 | │ ├ `model.py` | DAGSNet 395.024 tham số; `build_model` dùng cho **mọi** model (w_s, w_r, w̄_r) | |
 | │ ├ `nilm.py` | Eq. (17)–(19): `mutual_loss`, `client_update` (2 forward + 1 backward), `make_optimizer`, `aggregate` (1/K), `lr_at`, flat layout | |
@@ -31,7 +31,7 @@ kernels/datasets trên Kaggle — chưa làm). Tài khoản CLI/MCP active: **od
 | ├ `runs/pulls/{K}c_sN/` | output từng phiên đã kéo (`PULL_OK`); `runs/pulls/probe20/` = probe calibration | |
 | ├ `runs/merged/nilm_{K}c/` | **cây chuẩn** ghép phiên bằng `merge_sessions.py`, verify local (20c 50 ✔, 50c 50 ✔, 100c 50 ✔) | sinh lại sau mỗi phiên |
 | ├ `runs/ckpt_ds/100c_sN/` | staging handoff bundle round cuối phiên N → dataset của tài khoản chạy phiên N+1 | |
-| ├ [`REPORT.md`](papers/nilm-li-2024/REPORT.md) | **báo cáo bản cuối (18-09)**: mục 1–8 + phụ lục mọi round; phụ lục sinh tự động giữa marker `APPENDIX` | thân bài sửa tay; phụ lục ❌ |
+| ├ [`REPORT.md`](docs/report.md) | **báo cáo bản cuối (18-09)**: mục 1–8 + phụ lục mọi round; phụ lục sinh tự động giữa marker `APPENDIX` | thân bài sửa tay; phụ lục ❌ |
 | └ [`report_data/`](papers/nilm-li-2024/report_data/) | số liệu + hình cho REPORT, sinh bởi `scripts/report_data.py` (README.md = bảng headline) | ❌ sinh lại |
 | [`scripts/`](scripts/) | `gen_notebook.py`, `validate_notebooks.py`, `verify_run.py`, `run_local_checked.py` (watchdog RAM bắt buộc), `pull_output.sh` (kéo output có retry, in `PULL_OK`, log `<dest>.cli.log`), `stage_ckpt_dataset.py` (`--last-only` = handoff bundle), `gen_ckpt_probe.py` (probe CPU, in `PROBE_OK`), `report_data.py` (số liệu/hình/phụ lục REPORT), `watch_prod.py`/`poll_prod.sh` (trạng thái kernel + W&B) | |
 | [`tests/`](tests/) | 7 file — bảng ở `rebuild.md` §5; `test_ckpt_verify.py` 31 check (case 7–10 = handoff bundle/merge) | |

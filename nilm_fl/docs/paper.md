@@ -1,6 +1,6 @@
 # Lightweight FL for on-device NILM (Li, Yao, Qin, Wang) — trích xuất phương pháp
 
-Nguồn: [`../../lightweight_fl_nilm.md`](../../lightweight_fl_nilm.md). Chỉ trích phần **học
+Nguồn: [`../../lightweight_fl_nilm.md`](../lightweight_fl_nilm.md). Chỉ trích phần **học
 tương hỗ liên bang** (§III.A bước 2–4, §III.C, Algorithm 1). Phần NAS (§III.B: MNAS, không
 gian tìm kiếm nén, single-path, hardware-aware) **cố ý bỏ** theo yêu cầu chủ dự án. Mọi
 chỗ bài báo để trống ghi ở §4; quyết định thay thế ở [`rebuild.md`](rebuild.md).

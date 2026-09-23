@@ -1,10 +1,10 @@
 """Per-round metric tables for report.md mục 2.8, straight from each run's history.csv.
 
-Writes figures/../tables_2_8.md and, with --apply, splices it into report.md between the
+Writes docs/tables_2_8.md and, with --apply, splices it into docs/report.md between the
 markers so the report's tables stay derivable from artifacts rather than hand-maintained.
 
     python make_tables.py            # regenerate the block, print a summary
-    python make_tables.py --apply    # also rewrite mục 2.8 in report.md
+    python make_tables.py --apply    # also rewrite mục 2.8 in docs/report.md
 """
 import csv, sys
 from pathlib import Path
@@ -114,7 +114,7 @@ for title, d, note in BUILDS:
     out.append("")
 
 block = "\n".join(out)
-Path("tables_2_8.md").write_text(block)
+Path("docs/tables_2_8.md").write_text(block)
 if problems_all:
     print("\n⚠ metrics.md publication checks FAILED:")
     for t, b in problems_all[:20]:
@@ -126,7 +126,7 @@ for t,n,br,bf,lf,h in summary:
     print(f"{t:<48}{n:>7}{bf:>10.5f}{br:>4}{lf:>10.5f}{h:>7.2f}")
 
 if "--apply" in sys.argv:
-    rep = Path("report.md"); s = rep.read_text()
+    rep = Path("docs/report.md"); s = rep.read_text()
     a, b = s.index(BEGIN), s.index(END)
     rep.write_text(s[:a] + BEGIN + "\n" + block + "\n" + s[b:])
     print("\nreport.md mục 2.8 rewritten")

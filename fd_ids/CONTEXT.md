@@ -33,7 +33,7 @@ dừng (20c `f1_macro` 0,192 → 0,578 → 0,705; 50c 0,223 → 0,547 → 0,682)
 gì qua W&B.
 
 Rà soát lần 1–3 (§6, §11) đã đóng: **R01–R18** đều sửa xong, mỗi mục một ca chèn lỗi. Suite
-local **13 file, 88 phép kiểm**, pass toàn bộ. Tổng **41** lỗi ghi ở [`TEST_LOG.md`](TEST_LOG.md)
+local **13 file, 88 phép kiểm**, pass toàn bộ. Tổng **41** lỗi ghi ở [`TEST_LOG.md`](docs/TEST_LOG.md)
 §2 — trong đó #36, #37, #38 chỉ lộ ra khi chạm phần cứng thật, sau khi mọi cổng local đã xanh.
 
 **Mục tiêu.** Dựng lại phương pháp huấn luyện của *FD-IDS* (Zhang et al., **Sensors** 2025,
@@ -70,8 +70,8 @@ trong `knowledge/`, cho **ba cấu hình 20 / 50 / 100 client**, chạy trên Ka
 | ├ `test_verifier` · `test_data_cache` | R13 12 ca tamper · R14 loader thật + cache | |
 | ├ `test_teacher` · `test_budget` · `test_schedule` | R16 teacher cache · R17 đồng hồ · bất biến theo lịch | |
 | └ `test_smoke_real` · `test_validator` | end-to-end dữ liệu thật · R18 7 mutation | |
-| [`TEST_LOG.md`](TEST_LOG.md) | **mọi kết quả đo** (local + Kaggle) | ghi thêm, không xoá |
-| [`report.md`](report.md) + [`figures/`](figures/) | **báo cáo** — sinh bởi `scripts/make_report.py` từ `runs/`; đủ 10 metric × 50 round/cấu hình, tự đối chiếu CSV↔JSON↔CM | ❌ không sửa tay: sửa generator rồi chạy lại |
+| [`TEST_LOG.md`](docs/TEST_LOG.md) | **mọi kết quả đo** (local + Kaggle) | ghi thêm, không xoá |
+| [`report.md`](docs/report.md) + [`figures/`](figures/) | **báo cáo** — sinh bởi `scripts/make_report.py` từ `runs/`; đủ 10 metric × 50 round/cấu hình, tự đối chiếu CSV↔JSON↔CM | ❌ không sửa tay: sửa generator rồi chạy lại |
 | `.claude/skills/` + `.agents/skills/` | skill `kaggle-training-notebook` — `.agents` là bản gốc, `.claude` là bản mirror; **sửa thì sửa cả hai** | |
 
 Dữ liệu local: train `~/nckh/dataset/fl_client/alpha05/{20,50,100}_client/train/client_id=NNN/`,

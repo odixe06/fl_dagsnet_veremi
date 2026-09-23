@@ -49,7 +49,7 @@ f1_macro của cả hai đều nằm ở **round 0**. Kế hoạch cũ
 10.509, và f1_macro round 0 rơi từ 0,83081 xuống 0,47856. Batch lớn là lý do duy nhất TPU
 thắng về throughput, mà chính nó phá kết quả. Build 1 KHÔNG đặt chung bảng với bài báo (mục 6).
 
-**Báo cáo tổng hợp cả ba build:** [`report.md`](report.md) ở gốc project.
+**Báo cáo tổng hợp cả ba build:** [`report.md`](docs/report.md) ở gốc project.
 
 Câu đầu tiên cho session mới:
 
@@ -61,7 +61,7 @@ Câu đầu tiên cho session mới:
 
 Dựng lại phương pháp của bài báo **Khan et al. 2025, *Scientific Reports*, DOI `10.1038/s41598-025-94445-9`** — "A Secure and Efficient Deep Learning-Based Intrusion Detection Framework for the Internet of Vehicles" — trên dataset VeReMi NextGen của tôi, rồi huấn luyện + đánh giá trên Kaggle 2×T4.
 
-Bài báo gốc: [`s41598-025-94445-9.md`](s41598-025-94445-9.md) · Mô tả dataset: [`dataset.md`](dataset.md)
+Bài báo gốc: [`s41598-025-94445-9.md`](s41598-025-94445-9.md) · Mô tả dataset: [`dataset.md`](knowledge/DATASET.md)
 Dataset Kaggle: `odixe0502/veremi-nextgen2026-centralized`
 
 **Dựng lại stage 3–5 của bài báo:** DWT → ViT → GAT → fusion (Eq. 28) → CMSO feature selection (Eq. 29–37) → DAGSNet (DenseNet + GoogleNet + AlexNet + SqueezeNet, Eq. 38–48).
@@ -234,7 +234,7 @@ phí, phải tính cả chiều rộng chứ không chỉ chiều dài của ten
 > vì nó ghi lại các bẫy đã dính và số đo một-chip.
 
 Bốn probe, tổng **842 s trong 20 h quota TPU**. Chi tiết kỹ thuật đầy đủ đã ghi vào skill:
-[`references/tpu-pytorch.md`](.claude/skills/kaggle-training-notebook/references/tpu-pytorch.md).
+[`references/tpu-pytorch.md`](../.claude/skills/kaggle-training-notebook/references/tpu-pytorch.md).
 
 ### Số đo quyết định
 
@@ -336,7 +336,7 @@ cho 27.614 samples/s — bằng nửa hai con T4. Không có cách tối ưu nà
 3. **`/kaggle/temp` không tồn tại trên node TPU** — dùng `/tmp` (1 TB).
 
 Chi tiết đầy đủ đã ghi vào skill:
-[`references/tpu-pytorch.md`](.claude/skills/kaggle-training-notebook/references/tpu-pytorch.md).
+[`references/tpu-pytorch.md`](../.claude/skills/kaggle-training-notebook/references/tpu-pytorch.md).
 
 ### v2-fp32 và v3 kế thừa gì
 
@@ -1505,7 +1505,7 @@ truyền qua command-line argument, không commit.
 hình MCP lên user level.
 
 Chi tiết đầy đủ, gồm cách chạy luồng OAuth không cần trình duyệt trên máy này:
-[`references/multi-account.md`](.claude/skills/kaggle-training-notebook/references/multi-account.md).
+[`references/multi-account.md`](../.claude/skills/kaggle-training-notebook/references/multi-account.md).
 
 ### Lệnh hay dùng
 
@@ -1587,7 +1587,7 @@ Muốn test lại: extract các module `%%writefile` ra rồi chạy trong env `
 
 ## 6. ⚠ Bắt buộc ghi kèm mọi con số công bố
 
-Lấy từ mục "Reporting results" của [`dataset.md`](dataset.md). Tôi đã xác nhận và chấp nhận điểm 4.
+Lấy từ mục "Reporting results" của [`dataset.md`](knowledge/DATASET.md). Tôi đã xác nhận và chấp nhận điểm 4.
 
 1. Split theo **thời gian mô phỏng**, không theo xe — 64 điểm cắt, mỗi (class × scenario) một điểm.
 2. Lớp benign lấy từ luồng **không có tấn công**, khiến nhóm đặc trưng `rate` mạnh bất thường.

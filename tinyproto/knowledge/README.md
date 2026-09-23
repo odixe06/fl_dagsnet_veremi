@@ -28,4 +28,4 @@ kiểm. Đó là cách một lựa chọn thiết kế bị nhầm thành thuộ
 
 Ví dụ đã xảy ra (đã sửa 2026-09-08): bảng "ước lượng μ" và bảng chi phí truyền tin theo `s = 50`
 từng nằm trong `DATASET.md`. Cả hai phụ thuộc TinyProto; đã chuyển sang
-`papers/tinyproto-lee-2026/rebuild.md` §8. Thống kê `n_ij` gốc thì ở lại, vì đó là dữ liệu.
+`docs/rebuild.md` §8. Thống kê `n_ij` gốc thì ở lại, vì đó là dữ liệu.

@@ -194,7 +194,7 @@ CAVEATS = """## Caveats that must travel with every number above
 * **AFPHA is not fully specified in the paper.** Section 4.6 describes it in prose as
   FedAvg + FedProx + HFL. The proximal coefficient, the adaptive rule, the clustering,
   the participation rate and the optimizer schedule are this project's choices
-  (`papers/khan-2025-afpha/rebuild.md`, Proposal A), not the authors' published
+  (`docs/rebuild.md`, Proposal A), not the authors' published
   hyperparameters. This is not an exact reproduction of AFPHA.
 * **The hierarchy is algebraically FedAvg.** One sample-weighted cluster average followed
   by one sample-weighted server average equals sample-weighted FedAvg over all clients.
@@ -270,7 +270,7 @@ client, 100% participation, fixed clusters of 5. Fresh DAGSNet (395,024 paramete
 PyTorch default initialization). After each aggregation the global model is evaluated on
 the **entire** 10,761,343-row test set and all 10 metrics are recorded.
 
-Specification: `papers/khan-2025-afpha/rebuild.md` Proposal A, approved 2026-09-06.
+Specification: `docs/rebuild.md` Proposal A, approved 2026-09-06.
 Read the caveats at the bottom before quoting any number.
 """),
         md("## 1. Hardware gate"),

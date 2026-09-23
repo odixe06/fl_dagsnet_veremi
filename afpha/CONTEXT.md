@@ -10,7 +10,7 @@
 **Cập nhật: 2026-09-07. Thư mục: /home/odixe/nckh/afpha.**
 
 **Trạng thái 2026-09-08: CẢ BA KỊCH BẢN ĐÃ HOÀN THÀNH 50/50 round, verifier 10/10 mỗi run,
-report đã viết ở [report.md](report.md).** R1–R5 của mục 14 đã sửa và có test tiêm lỗi chứng
+report đã viết ở [report.md](docs/report.md).** R1–R5 của mục 14 đã sửa và có test tiêm lỗi chứng
 minh (mục 14.1–14.3). Kết quả và phân tích ở mục 16.
 Đặc tả đã chốt; 9 review finding của 2026-09-06 đã có bản sửa và kiểm chứng luồng thông thường
 (mục 12), kèm 7 lỗi
@@ -31,7 +31,7 @@ push lại — không push mù. Version 2 xác thực W&B thành công và tạo
 
 ## 1. Cách làm việc với người dùng
 
-Đọc [AGENTS.md](AGENTS.md) trước khi sửa code. Người dùng giao tiếp bằng tiếng Việt,
+Đọc [AGENTS.md](../AGENTS.md) trước khi sửa code. Người dùng giao tiếp bằng tiếng Việt,
 yêu cầu hỏi rõ và chốt những điểm chưa chắc trước khi triển khai; việc nào phải làm
 thủ công thì nêu cụ thể. Không hỏi lại các quyết định đã xác nhận dưới đây.
 
@@ -110,7 +110,7 @@ trực tiếp với số CAN/CIC-IDS của bài báo; feature lưu ở fp16 (m�
 
 Bài báo mục 4.6 chỉ mô tả AFPHA bằng lời (FedAvg + FedProx + HFL). **Mọi con số dưới đây là
 lựa chọn triển khai, không phải hyperparameter công bố của tác giả. Không gọi đây là exact
-reproduction.** Nguồn đầy đủ: [rebuild.md](papers/khan-2025-afpha/rebuild.md).
+reproduction.** Nguồn đầy đủ: [rebuild.md](docs/rebuild.md).
 
 - 100% client tham gia; cụm cố định 5 client → 4/10/20 cụm; hoán vị `default_rng(42)`.
 - Aggregation sample-weighted trong cụm rồi sample-weighted ở server.
@@ -149,7 +149,7 @@ Notebook nhúng nguyên văn src/*.py + meta.json + scaler.json, nên thứ ch�
 Thiết kế tốc độ: dữ liệu train cả kịch bản nằm thường trú trên VRAM từng GPU dưới dạng
 fp16 (5,68 GB), không có DataLoader, không copy PCIe trong vòng train; hai worker
 persistent nhận client động theo thứ tự lớn-trước; aggregation chạy ở process cha theo
-thứ tự cụm cố định. Chi tiết và số đo: [perf-federated.md](.agents/skills/kaggle-training-notebook/references/perf-federated.md).
+thứ tự cụm cố định. Chi tiết và số đo: [perf-federated.md](../.agents/skills/kaggle-training-notebook/references/perf-federated.md).
 
 Guard đã có: client bị **từ chối** (abort round, giữ nguyên round đã commit) nếu trọng số
 không hữu hạn, loss/grad-norm **trên các step được áp dụng** không hữu hạn, mọi step bị AMP
@@ -356,7 +356,7 @@ checkpoint. Key local trong `~/.netrc`.
 đọc hoạt động. `api.runs('21522798-uit/afpha-dagsnet-veremi')` hiện lỗi vì **project chưa tồn
 tại** (chưa run nào) — đây là trạng thái mong đợi trước lần train đầu, không phải lỗi token.
 
-Công cụ đọc: [inspect_run.py](.agents/skills/wandb-training-monitor/scripts/inspect_run.py),
+Công cụ đọc: [inspect_run.py](../.agents/skills/wandb-training-monitor/scripts/inspect_run.py),
 `--self-test` pass. Dùng đúng `ENTITY/PROJECT/RUN_ID`, không đoán run mới nhất:
 
 ```bash
@@ -556,7 +556,7 @@ với nhau; đây là kết quả cần báo cáo, không phải lỗi cần vá
 **Cả ba pass `verify_run.py --require-complete` 10/10.** Output ở `runs/{20,50,100}client/`.
 Với cả ba run, 9 file source chạy trên Kaggle khớp **byte** với `src/` + `architecture/` local.
 
-Report: **[report.md](report.md)** — sinh bằng `scripts/make_report.py`, đọc thẳng từ artifact,
+Report: **[report.md](docs/report.md)** — sinh bằng `scripts/make_report.py`, đọc thẳng từ artifact,
 không gõ tay số nào. Gồm: caveat khoa học, thiết lập, kết quả tổng hợp, phân tích, hiệu năng,
 **ba bảng đầy đủ 50 round × 10 metrics**, per-class round 50, kiểm chứng, nguồn artifact.
 Đã kiểm chéo độc lập: mọi số round 50 trong report dựng lại được từ chính confusion matrix thô,
@@ -606,13 +606,13 @@ Những thay đổi skill **đã làm ngày 2026-09-06** (trạng thái train m�
 
 - Giữ `.agents/skills` làm nguồn chính. Hai `SKILL.md` trong `.claude/skills` trở thành
   entrypoint ngắn trỏ tới nguồn chính; các reference/helper đã sửa được đồng bộ ở cả hai cây.
-- Viết lại [multi-account.md](.agents/skills/kaggle-training-notebook/references/multi-account.md):
+- Viết lại [multi-account.md](../.agents/skills/kaggle-training-notebook/references/multi-account.md):
   tách inspect với switch; đọc inventory/quota hiện tại; không cộng mặc định thành 90 giờ;
   phân biệt CLI OAuth, Codex header helper và static header của Claude/VS Code.
 - Bỏ kết luận nhận dạng account từ `has_ever_run`, và bỏ suy luận probe riêng thất bại
   có nghĩa token chắc chắn hỏng. Native MCP vừa kiểm lại vẫn xác thực thành công,
   GPU used/reserved=0, allowed=108000s; quota này không trả username.
-- Sửa [kaggle_account.py](.agents/skills/kaggle-training-notebook/scripts/kaggle_account.py):
+- Sửa [kaggle_account.py](../.agents/skills/kaggle-training-notebook/scripts/kaggle_account.py):
   quota khả dụng trừ cả `time_reserved`, chặn budget âm/NaN/Inf, không báo success khi refresh
   hoặc sync thất bại; kiểm snapshot đúng username, token đủ hai loại, chuẩn hóa tiền tố Bearer,
   giữ file credential mode 0600 và không in nội dung exception có thể mang secret.
@@ -627,7 +627,7 @@ Những thay đổi skill **đã làm ngày 2026-09-06** (trạng thái train m�
 Kiểm chứng: cả **4/4 SKILL.md pass quick_validate**, metadata UI hợp lệ, reference link
 thực tế tồn tại (ví dụ template trong code fence không tính là link tới file hiện có),
 các support file sửa ở hai cây khớp byte. Helper có **10 test offline** trong
-[test_kaggle_account.py](.agents/skills/kaggle-training-notebook/scripts/test_kaggle_account.py),
+[test_kaggle_account.py](../.agents/skills/kaggle-training-notebook/scripts/test_kaggle_account.py),
 dùng credential giả và mock network; chạy lại bằng:
 
 ```bash

@@ -1,6 +1,6 @@
 # Chỉ mục log — đọc file nào khi cần gì
 
-Đây là **log thô**. Kết luận đã tổng hợp ở [`../TESTLOG.md`](../TESTLOG.md); đừng suy luận
+Đây là **log thô**. Kết luận đã tổng hợp ở [`../TESTLOG.md`](../../../docs/TESTLOG.md); đừng suy luận
 kết quả trực tiếp từ log ở đây mà không đối chiếu TESTLOG.
 
 Quy ước tên: `-final` = lần chạy cuối được chấp nhận làm bằng chứng của phiên đó.
@@ -67,7 +67,7 @@ Không có hậu tố = lần chạy sớm hơn, **giữ làm lịch sử**, kh�
 | `production-review-checks.log` | Pass kiểm bộ hiện tại, peak 645 MiB. Các dòng `GAP` là vấn đề còn mở, không phải đã sửa. |
 | `production-review-regressions.log` | 20 regression pass, peak 620 MiB. |
 
-Kết luận và hướng xử lý ở [`../PRODUCTION_REVIEW.md`](../PRODUCTION_REVIEW.md), CONTEXT §8.
+Kết luận và hướng xử lý ở [`../PRODUCTION_REVIEW.md`](../../../docs/PRODUCTION_REVIEW.md), CONTEXT §8.
 
 ## Lịch sử / bối cảnh
 

@@ -1,4 +1,4 @@
-"""AFPHA: the approved Proposal A specification (papers/khan-2025-afpha/rebuild.md).
+"""AFPHA: the approved Proposal A specification (docs/rebuild.md).
 
 Every constant here completes a gap the paper leaves open. They are implementation
 choices, not the authors' published hyperparameters, and the two-level averaging is

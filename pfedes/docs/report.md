@@ -2,8 +2,8 @@
 
 **Trạng thái: HOÀN TẤT.** Cả ba kịch bản 20 / 50 / 100 client đã chạy đủ **50/50 round**; mọi con số dưới đây là
 số chính thức, đọc từ ba thư mục run đã ghép và verify (`runs/merged/pfedes_{20,50,100}c_cos/`).
-Ngày lập: 2026-09-15, hoàn tất 2026-09-16. Nguồn số liệu: [`report_data/`](report_data/) (sinh bởi
-[`scripts/report_data.py`](../../scripts/report_data.py) từ artifact đã kéo về và verify local; không có số nào
+Ngày lập: 2026-09-15, hoàn tất 2026-09-16. Nguồn số liệu: [`report_data/`](../papers/pfedes-yi-2025/report_data) (sinh bởi
+[`scripts/report_data.py`](../scripts/report_data.py) từ artifact đã kéo về và verify local; không có số nào
 lấy từ W&B). Sổ quyết định: [`rebuild.md`](rebuild.md); phương pháp gốc: [`paper.md`](paper.md).
 
 ---
@@ -38,10 +38,10 @@ Caveat bắt buộc (mục 3.3 và 7) đi kèm mọi con số: test toàn cục 
 ## 2. Bài báo và những gì được dựng lại
 
 **Bài báo.** Yi L., Yu H., Ren C., Wang G., Liu X., Li X. *pFedES: Generalized Proxy Feature Extractor Sharing
-for Model Heterogeneous Personalized Federated Learning.* Bản markdown trong repo ([`00121-YiL.md`](../../00121-YiL.md))
+for Model Heterogeneous Personalized Federated Learning.* Bản markdown trong repo ([`00121-YiL.md`](../00121-YiL.md))
 **không có phụ lục**: Algorithm 1, Table 3–4 (kiến trúc CNN-1…5), giá trị μ và E_fe đã chọn đều thiếu.
 
-**Cơ chế được dựng lại đầy đủ** (Eq. (4)–(11), [`proj/pfedes.py`](proj/pfedes.py)):
+**Cơ chế được dựng lại đầy đủ** (Eq. (4)–(11), [`proj/pfedes.py`](../papers/pfedes-yi-2025/proj/pfedes.py)):
 
 - Server chỉ giữ và tổng hợp **proxy feature extractor G(θ)** nhỏ; classifier F_k(ω_k) của từng client không
   bao giờ rời client.
@@ -76,7 +76,7 @@ batch ghép ở bước ① là tự nhất quán.
 
 ## 3. Dữ liệu
 
-Số đo thật từ [`knowledge/DATASET.md`](../../knowledge/DATASET.md) (audit 2026-09-07), không chép từ README.
+Số đo thật từ [`knowledge/DATASET.md`](../knowledge/DATASET.md) (audit 2026-09-07), không chép từ README.
 
 ### 3.1 Kích thước và phân mảnh
 
@@ -149,7 +149,7 @@ Run W&B (giám sát, không phải nguồn số): `21522798-uit/pfedes-veremi`, 
 
 ### 5.1 Đường cong theo round
 
-![f1_macro và accuracy (mean ± std trên client) theo round; lịch LR](report_data/convergence.png)
+![f1_macro và accuracy (mean ± std trên client) theo round; lịch LR](../papers/pfedes-yi-2025/report_data/convergence.png)
 
 *Điều cần thấy:* cả ba đường **không đi lên** sau round 1; dải ± std (độ phân tán giữa client) rộng hơn nhiều so với
 biến động theo round.
@@ -194,7 +194,7 @@ nhưng nó bỏ sót phần lớn `benign` (recall gộp 0,26 / 0,19 / 0,16) —
 
 ### 5.3 Phân tán giữa client
 
-![Phân bố f1_macro theo client ở round cuối](report_data/client_spread.png)
+![Phân bố f1_macro theo client ở round cuối](../papers/pfedes-yi-2025/report_data/client_spread.png)
 
 | | 20c | 50c | 100c |
 |---|---:|---:|---:|
@@ -230,13 +230,13 @@ F1 từng lớp, **mean trên client** (trái) và trên **confusion gộp** c�
 | feignedBraking | 1,10 % | 0,694 / 0,496 / 0,330 | 0,724 / 0,546 / 0,379 |
 | suddenConstantSpeed | 0,54 % | 0,244 / 0,127 / 0,062 | 0,263 / 0,147 / 0,073 |
 
-![F1 từng lớp 20c](report_data/per_class_f1_20c.png)
-![F1 từng lớp 50c](report_data/per_class_f1_50c.png)
-![F1 từng lớp 100c](report_data/per_class_f1_100c.png)
+![F1 từng lớp 20c](../papers/pfedes-yi-2025/report_data/per_class_f1_20c.png)
+![F1 từng lớp 50c](../papers/pfedes-yi-2025/report_data/per_class_f1_50c.png)
+![F1 từng lớp 100c](../papers/pfedes-yi-2025/report_data/per_class_f1_100c.png)
 
-![Confusion gộp 20c, chuẩn hoá theo hàng](report_data/confusion_20c.png)
-![Confusion gộp 50c, chuẩn hoá theo hàng](report_data/confusion_50c.png)
-![Confusion gộp 100c, chuẩn hoá theo hàng](report_data/confusion_100c.png)
+![Confusion gộp 20c, chuẩn hoá theo hàng](../papers/pfedes-yi-2025/report_data/confusion_20c.png)
+![Confusion gộp 50c, chuẩn hoá theo hàng](../papers/pfedes-yi-2025/report_data/confusion_50c.png)
+![Confusion gộp 100c, chuẩn hoá theo hàng](../papers/pfedes-yi-2025/report_data/confusion_100c.png)
 
 *Điều cần thấy trong confusion:*
 
@@ -258,7 +258,7 @@ Nguồn: `report_data/per_class_final_Kc.csv` (support, P/R/F1 mean và gộp, s
 
 ### 5.5 Chi phí tính toán trên 2×T4
 
-![Phút train / eval mỗi round](report_data/round_time.png)
+![Phút train / eval mỗi round](../papers/pfedes-yi-2025/report_data/round_time.png)
 
 | | 20c | 50c | 100c |
 |---|---:|---:|---:|
@@ -337,7 +337,7 @@ Tái lập: `python scripts/gen_notebook.py --owner <acct> --clients {20,50,100}
 (phiên tiếp: `--session N --require-resume --kernel-source <kernel phiên trước>`) → `validate_notebooks.py` →
 `kaggle kernels push`; dataset Kaggle `odixe0502/veremi-fl-{20,50,100}client` + `odixe0502/veremi-nextgen2026-centralized`
 (public); `machine_shape` NvidiaTeslaT4, `docker_image` pin theo digest. Mã nguồn duy nhất của notebook:
-[`proj/`](proj/) (8 module); notebook đã thực thi của từng phiên nằm trong `logs/sessions/<n>/executed.ipynb`.
+[`proj/`](../papers/pfedes-yi-2025/proj) (8 module); notebook đã thực thi của từng phiên nằm trong `logs/sessions/<n>/executed.ipynb`.
 
 ---
 
