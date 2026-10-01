@@ -113,7 +113,7 @@ Never delete the kernel as a substitute for cancellation.
 Check before asking the user to interrupt work:
 
 * **Two sessions can run concurrently on one account.** Measured 2026-09-04: a 50-round training
-  run and a 4-round resume ran side by side on `minhtran0601`, both `RUNNING`, both progressing.
+  run and a 4-round resume ran side by side on one account, both `RUNNING`, both progressing.
   Wanting to start something else is not a reason to stop what is running.
 * **Quota is the real constraint, not concurrency.** `get_accelerator_quota` shows
   `total_time_allowed - time_used - time_reserved`. If the free remainder covers the new run,

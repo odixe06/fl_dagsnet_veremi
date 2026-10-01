@@ -6,10 +6,10 @@ later user messages first. A saved credential is not by itself authorization to 
 
 ## Inspect without switching
 
-From the repository root:
+From the project directory that contains this `.claude/`:
 
 ```bash
-KAGGLE_ACCOUNT_HELPER=.agents/skills/kaggle-training-notebook/scripts/kaggle_account.py
+KAGGLE_ACCOUNT_HELPER=.claude/skills/kaggle-training-notebook/scripts/kaggle_account.py
 conda run -n nckh python "$KAGGLE_ACCOUNT_HELPER" list
 conda run -n nckh python "$KAGGLE_ACCOUNT_HELPER" quota
 conda run -n nckh python "$KAGGLE_ACCOUNT_HELPER" health

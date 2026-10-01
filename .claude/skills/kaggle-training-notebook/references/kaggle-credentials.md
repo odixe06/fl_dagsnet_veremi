@@ -71,17 +71,16 @@ with api:
 **Accounts added 2026-09-21: `catbaochau` and `trietbackup`.** Both were saved as
 `.mcp-token` first and introspected `active` with the matching username the same minute; the
 owner then completed the browser login for each, so both now have an OAuth snapshot as well and
-`list`, `quota`, `health`, `plan`, `ensure` and `use` all work for them. The MCP token of
-`minhtran0601` was rotated the same day (the old value was replaced in place, mode 0600).
+`list`, `quota`, `health`, `plan`, `ensure` and `use` all work for them.
 Which account may run which work is a per-project decision and belongs in that project's
 `CONTEXT.md`, not here.
 
-**Rotation, 2026-09-22.** The MCP token of `odixe0502` was replaced (old value introspected
+**Rotation, 2026-09-22.** The MCP token of one saved account was replaced (old value introspected
 `active=False` before it was discarded; new value `active=True`, username confirmed). A byte
 scan of `~/.claude`, `~/.vscode-server` and `~/nckh` that day found **every saved KGAT value
 inside Claude Code transcripts** (`~/.claude/projects/*/*.jsonl`, and the VS Code extension log
 that mirrors them) — because each token had been pasted into a chat message when the account
-was added — and the **refresh token of `minhtran0601`** in one transcript. Two rules follow:
+was added — and the **refresh token of one account** in one transcript. Two rules follow:
 
 - **Never paste a credential into a chat window.** Write it to the file yourself (`read -s`
   or an editor), or run the project's rotation wizard, which reads it with hidden input:
@@ -107,6 +106,14 @@ GPU quota is guaranteed (fresh account, phone-verified); it is NOT yet part of a
 100c hop chain — the owner chose to keep the s4→s8 plan in `CONTEXT.md` §11 unchanged. On 2026-09-11 all five saved bearers introspected as active,
 including the four that `probe_kaggle_mcp.py` had reported `Unauthenticated` days earlier —
 which is the measured form of the warning above: the direct probe cannot reject a token.
+
+**Token-only accounts re-added 2026-09-30: `odixe0502` and `minhtran0601`.** Both had been
+locked and deleted from `accounts/` on 2026-09-29; after the owner restored them, each
+`.mcp-token` introspected `active=True` with the matching username, and `kaggle_as.py <user> --
+kaggle kernels list --mine` worked for both. They stay `CLI creds MISSING` until the owner runs
+`kaggle_account.py add-account <user>` (browser login; it leaves the new account ACTIVE, so
+switch back afterwards). The owner pasted both tokens into a chat to install them, so they
+are in that transcript: rotate them with the wizard when convenient.
 
 Running one command as another saved account without switching the live login — minting an
 OAuth access token in memory (and introspecting it) or passing the token file path — is what

@@ -11,10 +11,12 @@ and are never taken from here. User decisions override anything below.
   learnable parameters, PyTorch default initialization, seed 42. Fresh initialization unless
   the project says otherwise.
 - Train: `/home/odixe/nckh/veremi/dataset/fl_client/alpha05/{20,50,100}_client/train/client_id=NNN/`;
-  Kaggle `odixe0502/veremi-fl-{20,50,100}client`, relative roots `{20,50,100}_client/`.
+  Kaggle `trietbackup/veremi-fl-20client`, `minhtriethihi/veremi-fl-50client`,
+  `khanhmay0304/veremi-fl-100client` (public),
+  relative roots `{20,50,100}_client/`.
   Resolve unique runtime sentinels, not a fixed mount prefix.
 - Fixed test: `/home/odixe/nckh/veremi/dataset/centralized/test`; Kaggle
-  `odixe0502/veremi-nextgen2026-centralized`, `upload/test/` + `upload/scaler.json`.
+  `trietbackup/veremi-nextgen2026-test` (test only), `upload/test/` + `upload/scaler.json`.
 - Train is standardized; test is raw. Reuse the matching `scaler.json`, feature order and
   labels; verify against `knowledge/meta.json`. Only `f_*` columns enter the model.
 - 43,045,415 train rows per scenario and 10,761,343 test rows, 16 classes, Dirichlet α = 0.5

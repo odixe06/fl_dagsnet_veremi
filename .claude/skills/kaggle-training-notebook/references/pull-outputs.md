@@ -76,7 +76,7 @@ A pulled notebook with zero rendered outputs is a signal, not a file to quietly 
 
    ```bash
    conda run -n nckh python \
-     .agents/skills/kaggle-training-notebook/scripts/download_executed_notebook.py \
+     .claude/skills/kaggle-training-notebook/scripts/download_executed_notebook.py \
      <owner>/<kernel-slug> --output papers/<slug>/notebook/<name>.executed.ipynb
    ```
 
@@ -183,7 +183,7 @@ builds should not have to reassemble it. Provenance is kept, but it is kept *ins
 merged run rather than as parallel trees.
 
 ```bash
-conda run -n nckh python .agents/skills/kaggle-training-notebook/scripts/merge_sessions.py \
+conda run -n nckh python .claude/skills/kaggle-training-notebook/scripts/merge_sessions.py \
   --out runs_merged pull_session1/ pull_session2/
 ```
 
