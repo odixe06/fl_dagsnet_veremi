@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# LƯU Ý 26/11/2026: repo đã gỡ DVC và remote Google Drive không còn. Script chỉ còn giá trị lịch sử, không chạy.
 # Sao lưu toàn bộ repo để có thể xóa bản local mà không mất gì:
 #   - mã + lịch sử git            -> GitHub (origin) + file git bundle trên Google Drive
 #   - mọi artifact bị gitignore    -> DVC remote trên Google Drive (trừ secrets)

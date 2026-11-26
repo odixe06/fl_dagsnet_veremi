@@ -2,6 +2,13 @@
 
 Behavioral guidelines to reduce common LLM coding mistakes. Merge with project-specific instructions as needed.
 
+## Gỡ DVC — 26/11/2026
+
+- Repo không còn dùng DVC. Đã gỡ `.dvc/`, `.dvcignore` và 56 pointer `*.dvc` khỏi nhánh `master`. Pointer cũ còn trong lịch sử Git, xem commit `f9014e1`.
+- Đã xóa `NCKH/veremi_build/fl_dagsnet_veremi/dvc-storage` trên OneDrive (5.412 object, 73,4 GB) vào thùng rác OneDrive. Remote cũ trên Google Drive `/mnt/g/My Drive/NCKH/veremi_build/fl_dagsnet_veremi` không còn.
+- `dvc pull` không còn khôi phục được dữ liệu. Code và notebook vẫn trong Git. Git bundle `fl_dagsnet_veremi.bundle` và `secrets/fl_dagsnet_veremi` vẫn giữ ở `NCKH/veremi_build/` trên OneDrive. Phần DVC trong `backup.sh` không còn dùng được.
+- Lý do: owner chỉ giữ DVC cho các dự án đang làm (`odixe06/experiment`, `experiment_10k_clients`). Các hướng dẫn DVC bên dưới chỉ còn giá trị lịch sử.
+
 **Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use judgment.
 
 ## 1. Think Before Coding
